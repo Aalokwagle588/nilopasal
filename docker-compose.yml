@@ -1,0 +1,51 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:16-alpine
+    container_name: nilopasal_postgres
+    restart: always
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-aalok}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-postgres}
+      POSTGRES_DB: ${POSTGRES_DB:-nilopasal}
+    ports:
+      - "5432:5432"
+    volumes:
+      - nilopasal_pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-aalok} -d ${POSTGRES_DB:-nilopasal}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  api:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: nilopasal_api
+    restart: always
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      NODE_ENV: production
+      PORT: 4000
+      DATABASE_URL: postgresql://${POSTGRES_USER:-aalok}:${POSTGRES_PASSWORD:-postgres}@db:5432/${POSTGRES_DB:-nilopasal}?schema=public
+      COOKIE_SECURE: "true"
+      SESSION_COOKIE_NAME: __Host-nilopasal_session
+      SESSION_TTL_DAYS: 30
+      CORS_ORIGINS: "https://nilopasal.com,https://www.nilopasal.com,http://localhost:3000,http://127.0.0.1:3000"
+      TRUST_PROXY: "loopback, linklocal, uniquelocal"
+      LOG_LEVEL: info
+    ports:
+      - "4000:4000"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:4000/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+
+volumes:
+  nilopasal_pgdata:
+    driver: local

@@ -1,0 +1,1012 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full bg-slate-50">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NiloPasal - Vendor & Ecosystem Management Dashboard</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts: Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#f0f7ff',
+                            100: '#e0effe',
+                            500: '#2563eb',
+                            600: '#1d4ed8',
+                            700: '#1e40af',
+                            900: '#0f172a',
+                            accent: '#0ea5e9',
+                            emerald: '#10b981',
+                            amber: '#f59e0b'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom scrollbar for clean dashboard UI */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+    </style>
+</head>
+<body class="font-sans antialiased h-full flex flex-col text-slate-800 bg-slate-50">
+
+    <div class="flex h-screen overflow-hidden">
+
+        <!-- Sidebar -->
+        <aside id="sidebar" class="w-64 bg-slate-900 text-slate-300 flex flex-col flex-shrink-0 transition-all duration-300 z-30">
+            <!-- Logo Section -->
+            <div class="h-16 flex items-center justify-between px-6 bg-slate-950/50 border-b border-slate-800">
+                <div class="flex items-center space-x-3">
+                    <div class="h-9 w-9 rounded-xl bg-gradient-to-tr from-blue-600 to-sky-400 flex items-center justify-center text-white font-bold text-xl shadow-lg shadow-blue-500/30">
+                        N
+                    </div>
+                    <div>
+                        <span class="text-lg font-bold text-white tracking-wide">nilopasal<span class="text-sky-400">.com</span></span>
+                        <span class="block text-[10px] text-slate-400 font-medium uppercase tracking-wider">Vendor Portal</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Navigation Links -->
+            <nav class="flex-1 overflow-y-auto py-4 px-3 space-y-1">
+                <div class="px-3 py-2 text-xs font-semibold text-slate-400 uppercase tracking-wider">Core Navigation</div>
+                
+                <a href="#" class="flex items-center space-x-3 px-3 py-2.5 rounded-lg bg-blue-600 text-white font-medium shadow-md shadow-blue-600/20">
+                    <i class="fa-solid fa-chart-pie w-5 text-center"></i>
+                    <span>Dashboard</span>
+                </a>
+
+                <div class="pt-2 pb-1 px-3 text-xs font-semibold text-slate-400 uppercase tracking-wider">Vendor Ecosystem</div>
+                
+                <a href="#" onclick="filterByNav('all')" class="flex items-center justify-between px-3 py-2 rounded-lg hover:bg-slate-800 hover:text-white transition group">
+                    <div class="flex items-center space-x-3">
+                        <i class="fa-solid fa-users w-5 text-center text-slate-400 group-hover:text-blue-400"></i>
+                        <span>All Vendors</span>
+                    </div>
+                    <span class="bg-slate-800 text-slate-400 text-xs px-2 py-0.5 rounded-full group-hover:bg-slate-700">1,248</span>
+                </a>
+
+                <a href="#" onclick="filterByNav('farmer')" class="flex items-center justify-between px-3 py-2 rounded-lg hover:bg-slate-800 hover:text-white transition group">
+                    <div class="flex items-center space-x-3">
+                        <i class="fa-solid fa-wheat-awn w-5 text-center text-emerald-400"></i>
+                        <span>Farmers & Agritech</span>
+                    </div>
+                    <span class="bg-emerald-950/80 text-emerald-400 text-xs px-2 py-0.5 rounded-full font-medium border border-emerald-800/50">342</span>
+                </a>
+
+                <a href="#" onclick="filterByNav('reseller')" class="flex items-center justify-between px-3 py-2 rounded-lg hover:bg-slate-800 hover:text-white transition group">
+                    <div class="flex items-center space-x-3">
+                        <i class="fa-solid fa-share-nodes w-5 text-center text-slate-400 group-hover:text-blue-400"></i>
+                        <span>Resellers</span>
+                    </div>
+                    <span class="bg-slate-800 text-slate-400 text-xs px-2 py-0.5 rounded-full">215</span>
+                </a>
+
+                <a href="#" onclick="filterByNav('retailer')" class="flex items-center justify-between px-3 py-2 rounded-lg hover:bg-slate-800 hover:text-white transition group">
+                    <div class="flex items-center space-x-3">
+                        <i class="fa-solid fa-store w-5 text-center text-slate-400 group-hover:text-blue-400"></i>
+                        <span>Retailers</span>
+                    </div>
+                    <span class="bg-slate-800 text-slate-400 text-xs px-2 py-0.5 rounded-full">410</span>
+                </a>
+
+                <a href="#" onclick="filterByNav('manufacturer')" class="flex items-center justify-between px-3 py-2 rounded-lg hover:bg-slate-800 hover:text-white transition group">
+                    <div class="flex items-center space-x-3">
+                        <i class="fa-solid fa-industry w-5 text-center text-slate-400 group-hover:text-blue-400"></i>
+                        <span>Manufacturers</span>
+                    </div>
+                    <span class="bg-slate-800 text-slate-400 text-xs px-2 py-0.5 rounded-full">88</span>
+                </a>
+
+                <a href="#" onclick="filterByNav('dealer')" class="flex items-center justify-between px-3 py-2 rounded-lg hover:bg-slate-800 hover:text-white transition group">
+                    <div class="flex items-center space-x-3">
+                        <i class="fa-solid fa-handshake w-5 text-center text-slate-400 group-hover:text-blue-400"></i>
+                        <span>Dealers & Wholesalers</span>
+                    </div>
+                    <span class="bg-slate-800 text-slate-400 text-xs px-2 py-0.5 rounded-full">120</span>
+                </a>
+
+                <a href="#" onclick="filterByNav('customer')" class="flex items-center justify-between px-3 py-2 rounded-lg hover:bg-slate-800 hover:text-white transition group">
+                    <div class="flex items-center space-x-3">
+                        <i class="fa-solid fa-user-tag w-5 text-center text-slate-400 group-hover:text-blue-400"></i>
+                        <span>Bulk Customers</span>
+                    </div>
+                    <span class="bg-slate-800 text-slate-400 text-xs px-2 py-0.5 rounded-full">73</span>
+                </a>
+
+                <div class="pt-4 pb-1 px-3 text-xs font-semibold text-slate-400 uppercase tracking-wider">Operations</div>
+
+                <a href="#" class="flex items-center space-x-3 px-3 py-2 rounded-lg hover:bg-slate-800 hover:text-white transition">
+                    <i class="fa-solid fa-boxes-stacked w-5 text-center text-slate-400"></i>
+                    <span>Inventory & Sync</span>
+                </a>
+                <a href="#" class="flex items-center space-x-3 px-3 py-2 rounded-lg hover:bg-slate-800 hover:text-white transition">
+                    <i class="fa-solid fa-file-invoice-dollar w-5 text-center text-slate-400"></i>
+                    <span>Payouts & Settlements</span>
+                </a>
+                <a href="#" class="flex items-center space-x-3 px-3 py-2 rounded-lg hover:bg-slate-800 hover:text-white transition">
+                    <i class="fa-solid fa-chart-line w-5 text-center text-slate-400"></i>
+                    <span>Analytics & Reports</span>
+                </a>
+                <a href="#" class="flex items-center space-x-3 px-3 py-2 rounded-lg hover:bg-slate-800 hover:text-white transition">
+                    <i class="fa-solid fa-gear w-5 text-center text-slate-400"></i>
+                    <span>Settings & Compliance</span>
+                </a>
+            </nav>
+
+            <!-- Sidebar Footer User Profile -->
+            <div class="p-4 bg-slate-950/80 border-t border-slate-800 flex items-center space-x-3">
+                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=100" class="w-9 h-9 rounded-full object-cover border border-slate-700" alt="Admin Profile">
+                <div class="flex-1 overflow-hidden">
+                    <p class="text-sm font-medium text-white truncate">Admin Operations</p>
+                    <p class="text-xs text-slate-400 truncate">admin@nilopasal.com</p>
+                </div>
+                <button class="text-slate-400 hover:text-white"><i class="fa-solid fa-arrow-right-from-bracket"></i></button>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <div class="flex-1 flex flex-col min-w-0 overflow-hidden bg-slate-50">
+            
+            <!-- Top Header -->
+            <header class="h-16 bg-white border-b border-slate-200 flex items-center justify-between px-6 z-20">
+                <!-- Search Input -->
+                <div class="flex items-center space-x-4 flex-1 max-w-xl">
+                    <div class="relative w-full">
+                        <span class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-slate-400">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </span>
+                        <input id="globalSearch" onkeyup="handleSearch()" type="text" placeholder="Search vendors, tax IDs, phone numbers, location..." class="w-full pl-10 pr-4 py-2 text-sm bg-slate-100/70 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:bg-white transition">
+                    </div>
+                </div>
+
+                <!-- Right Header Actions -->
+                <div class="flex items-center space-x-4">
+                    <!-- Notifications -->
+                    <div class="relative">
+                        <button class="p-2 text-slate-500 hover:text-blue-600 rounded-lg hover:bg-slate-100 relative transition">
+                            <i class="fa-regular fa-bell text-lg"></i>
+                            <span class="absolute top-1.5 right-1.5 w-2 h-2 bg-red-500 rounded-full ring-2 ring-white"></span>
+                        </button>
+                    </div>
+
+                    <!-- Add Vendor Button -->
+                    <button onclick="openAddModal()" class="flex items-center space-x-2 bg-blue-600 hover:bg-blue-700 text-white font-medium text-sm px-4 py-2 rounded-lg shadow-sm shadow-blue-500/20 transition">
+                        <i class="fa-solid fa-plus text-xs"></i>
+                        <span>Onboard Vendor</span>
+                    </button>
+                </div>
+            </header>
+
+            <!-- Main Content Container -->
+            <main class="flex-1 overflow-y-auto p-6 space-y-6">
+                
+                <!-- Welcome Banner & Quick Action Header -->
+                <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                    <div>
+                        <h1 class="text-2xl font-bold text-slate-900">Vendor Command Center</h1>
+                        <p class="text-sm text-slate-500">Manage partners, farmers, dealers, and local supply chain channels for NiloPasal.</p>
+                    </div>
+                    <div class="flex items-center space-x-3">
+                        <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-emerald-100 text-emerald-800">
+                            <span class="w-2 h-2 mr-1.5 bg-emerald-500 rounded-full animate-pulse"></span>
+                            Live Sync Active
+                        </span>
+                        <button onclick="resetFilters()" class="text-xs bg-white border border-slate-200 hover:bg-slate-50 px-3 py-1.5 rounded-lg text-slate-600 font-medium shadow-sm transition">
+                            <i class="fa-solid fa-arrows-rotate mr-1"></i> Refresh Data
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Overview Stat Cards -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+                    <!-- Card 1 -->
+                    <div class="bg-white p-5 rounded-xl border border-slate-200/80 shadow-sm relative overflow-hidden">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <p class="text-xs font-semibold text-slate-500 uppercase tracking-wider">Total Ecosystem</p>
+                                <h3 class="text-2xl font-bold text-slate-900 mt-1">1,248</h3>
+                            </div>
+                            <div class="p-2.5 bg-blue-50 text-blue-600 rounded-lg">
+                                <i class="fa-solid fa-users text-lg"></i>
+                            </div>
+                        </div>
+                        <div class="mt-3 flex items-center text-xs text-emerald-600 font-medium">
+                            <i class="fa-solid fa-arrow-up mr-1"></i>
+                            <span>+12.4% from last month</span>
+                        </div>
+                    </div>
+
+                    <!-- Card 2: Farmer Focus -->
+                    <div class="bg-gradient-to-br from-emerald-900 to-teal-950 p-5 rounded-xl text-white shadow-md relative overflow-hidden">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <p class="text-xs font-semibold text-emerald-300 uppercase tracking-wider">Farmers & Suppliers</p>
+                                <h3 class="text-2xl font-bold text-white mt-1">342</h3>
+                            </div>
+                            <div class="p-2.5 bg-emerald-800/60 text-emerald-300 rounded-lg backdrop-blur-sm border border-emerald-700/50">
+                                <i class="fa-solid fa-wheat-awn text-lg"></i>
+                            </div>
+                        </div>
+                        <div class="mt-3 flex items-center text-xs text-emerald-300 font-medium">
+                            <i class="fa-solid fa-seedling mr-1"></i>
+                            <span>48 Local Cooperatives Joined</span>
+                        </div>
+                    </div>
+
+                    <!-- Card 3 -->
+                    <div class="bg-white p-5 rounded-xl border border-slate-200/80 shadow-sm">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <p class="text-xs font-semibold text-slate-500 uppercase tracking-wider">Pending Verification</p>
+                                <h3 class="text-2xl font-bold text-slate-900 mt-1">18</h3>
+                            </div>
+                            <div class="p-2.5 bg-amber-50 text-amber-600 rounded-lg">
+                                <i class="fa-solid fa-shield-halved text-lg"></i>
+                            </div>
+                        </div>
+                        <div class="mt-3 flex items-center text-xs text-amber-600 font-medium">
+                            <i class="fa-solid fa-clock mr-1"></i>
+                            <span>Action needed on Citizenship/PAN</span>
+                        </div>
+                    </div>
+
+                    <!-- Card 4 -->
+                    <div class="bg-white p-5 rounded-xl border border-slate-200/80 shadow-sm">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <p class="text-xs font-semibold text-slate-500 uppercase tracking-wider">Active Resellers</p>
+                                <h3 class="text-2xl font-bold text-slate-900 mt-1">215</h3>
+                            </div>
+                            <div class="p-2.5 bg-indigo-50 text-indigo-600 rounded-lg">
+                                <i class="fa-solid fa-share-nodes text-lg"></i>
+                            </div>
+                        </div>
+                        <div class="mt-3 flex items-center text-xs text-slate-500">
+                            <i class="fa-solid fa-chart-line mr-1 text-emerald-500"></i>
+                            <span class="text-slate-600">Avg NPR 45K/mo payout</span>
+                        </div>
+                    </div>
+
+                    <!-- Card 5 -->
+                    <div class="bg-white p-5 rounded-xl border border-slate-200/80 shadow-sm">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <p class="text-xs font-semibold text-slate-500 uppercase tracking-wider">Monthly Payout Volume</p>
+                                <h3 class="text-2xl font-bold text-slate-900 mt-1">NRs. 4.8M</h3>
+                            </div>
+                            <div class="p-2.5 bg-sky-50 text-sky-600 rounded-lg">
+                                <i class="fa-solid fa-wallet text-lg"></i>
+                            </div>
+                        </div>
+                        <div class="mt-3 flex items-center text-xs text-emerald-600 font-medium">
+                            <i class="fa-solid fa-circle-check mr-1"></i>
+                            <span>Next payout cycle in 2 days</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Farmer & Agro Supply Chain Spotlight Widget -->
+                <div class="bg-white rounded-xl border border-emerald-100 shadow-sm p-5 relative">
+                    <div class="flex flex-col md:flex-row md:items-center justify-between pb-4 mb-4 border-b border-slate-100">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-10 h-10 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center font-bold">
+                                <i class="fa-solid fa-tractor text-lg"></i>
+                            </div>
+                            <div>
+                                <h2 class="text-base font-bold text-slate-900">Direct Farm Produce & Agro-Suppliers Spotlight</h2>
+                                <p class="text-xs text-slate-500">Connecting local Nepalese farmers directly with nilopasal.com consumer network.</p>
+                            </div>
+                        </div>
+                        <div class="mt-3 md:mt-0 flex items-center space-x-2">
+                            <span class="text-xs text-slate-500 font-medium">Supply Status:</span>
+                            <span class="px-2.5 py-1 rounded-full text-xs font-medium bg-emerald-50 text-emerald-700 border border-emerald-200">
+                                Fresh Harvest Active
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div class="bg-slate-50 p-4 rounded-lg border border-slate-100 flex items-center space-x-4">
+                            <div class="w-12 h-12 rounded-lg bg-amber-100 text-amber-700 flex items-center justify-center flex-shrink-0 font-bold">
+                                <i class="fa-solid fa-apple-whole text-xl"></i>
+                            </div>
+                            <div class="flex-1 min-w-0">
+                                <p class="text-xs text-slate-500 uppercase font-semibold">Top Harvest In Stock</p>
+                                <p class="text-sm font-bold text-slate-900 truncate">Mustang Organic Apples</p>
+                                <p class="text-xs text-emerald-600 font-medium">4.2 Tons directly from Jomsom Hub</p>
+                            </div>
+                        </div>
+
+                        <div class="bg-slate-50 p-4 rounded-lg border border-slate-100 flex items-center space-x-4">
+                            <div class="w-12 h-12 rounded-lg bg-emerald-100 text-emerald-700 flex items-center justify-center flex-shrink-0 font-bold">
+                                <i class="fa-solid fa-leaf text-xl"></i>
+                            </div>
+                            <div class="flex-1 min-w-0">
+                                <p class="text-xs text-slate-500 uppercase font-semibold">Verified Farmer Groups</p>
+                                <p class="text-sm font-bold text-slate-900 truncate">Ilam Tea & Cardamom Growers</p>
+                                <p class="text-xs text-slate-600">89 Registered Farmers</p>
+                            </div>
+                        </div>
+
+                        <div class="bg-slate-50 p-4 rounded-lg border border-slate-100 flex items-center space-x-4">
+                            <div class="w-12 h-12 rounded-lg bg-blue-100 text-blue-700 flex items-center justify-center flex-shrink-0 font-bold">
+                                <i class="fa-solid fa-truck-ramp-box text-xl"></i>
+                            </div>
+                            <div class="flex-1 min-w-0">
+                                <p class="text-xs text-slate-500 uppercase font-semibold">Cold Storage Tracking</p>
+                                <p class="text-sm font-bold text-slate-900 truncate">Chitwan Dairy & Agro Depot</p>
+                                <p class="text-xs text-blue-600 font-medium">Optimal Temperature (3°C)</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Main Data Control Center -->
+                <div class="bg-white rounded-xl border border-slate-200/80 shadow-sm overflow-hidden">
+                    
+                    <!-- Table Header Controls & Tab Filters -->
+                    <div class="p-5 border-b border-slate-100 space-y-4">
+                        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                            <div>
+                                <h3 class="text-lg font-bold text-slate-900">Vendor Directory</h3>
+                                <p class="text-xs text-slate-500">Filter and control accounts across all partner verticals.</p>
+                            </div>
+
+                            <!-- Filter Controls -->
+                            <div class="flex items-center space-x-3">
+                                <!-- Status Filter Dropdown -->
+                                <select id="statusFilter" onchange="applyFilters()" class="text-xs border border-slate-200 rounded-lg px-3 py-2 bg-slate-50 font-medium text-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                    <option value="all">All Statuses</option>
+                                    <option value="Active">Active</option>
+                                    <option value="Pending">Pending Approval</option>
+                                    <option value="Suspended">Suspended</option>
+                                </select>
+
+                                <!-- Region Filter Dropdown -->
+                                <select id="regionFilter" onchange="applyFilters()" class="text-xs border border-slate-200 rounded-lg px-3 py-2 bg-slate-50 font-medium text-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                    <option value="all">All Regions</option>
+                                    <option value="Kathmandu Valley">Kathmandu Valley</option>
+                                    <option value="Gandaki Zone">Gandaki Zone</option>
+                                    <option value="Eastern Terai">Eastern Terai</option>
+                                    <option value="Karnali Region">Karnali Region</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Category Tabs -->
+                        <div class="flex items-center space-x-1 border-b border-slate-100 overflow-x-auto pb-2 scrollbar-none">
+                            <button onclick="setCategoryTab('all', this)" class="category-tab px-4 py-2 text-xs font-semibold rounded-lg bg-blue-50 text-blue-600 whitespace-nowrap">
+                                All Partners
+                            </button>
+                            <button onclick="setCategoryTab('farmer', this)" class="category-tab px-4 py-2 text-xs font-semibold text-slate-600 hover:bg-slate-100 rounded-lg whitespace-nowrap">
+                                <i class="fa-solid fa-wheat-awn text-emerald-500 mr-1"></i> Farmers & Agro
+                            </button>
+                            <button onclick="setCategoryTab('retailer', this)" class="category-tab px-4 py-2 text-xs font-semibold text-slate-600 hover:bg-slate-100 rounded-lg whitespace-nowrap">
+                                Retailers
+                            </button>
+                            <button onclick="setCategoryTab('reseller', this)" class="category-tab px-4 py-2 text-xs font-semibold text-slate-600 hover:bg-slate-100 rounded-lg whitespace-nowrap">
+                                Resellers
+                            </button>
+                            <button onclick="setCategoryTab('manufacturer', this)" class="category-tab px-4 py-2 text-xs font-semibold text-slate-600 hover:bg-slate-100 rounded-lg whitespace-nowrap">
+                                Manufacturers
+                            </button>
+                            <button onclick="setCategoryTab('dealer', this)" class="category-tab px-4 py-2 text-xs font-semibold text-slate-600 hover:bg-slate-100 rounded-lg whitespace-nowrap">
+                                Dealers
+                            </button>
+                            <button onclick="setCategoryTab('customer', this)" class="category-tab px-4 py-2 text-xs font-semibold text-slate-600 hover:bg-slate-100 rounded-lg whitespace-nowrap">
+                                Bulk Customers
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Table Element -->
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left border-collapse">
+                            <thead>
+                                <tr class="bg-slate-50/80 text-slate-500 uppercase text-[11px] font-semibold tracking-wider border-b border-slate-200">
+                                    <th class="py-3.5 px-4">Vendor & ID</th>
+                                    <th class="py-3.5 px-4">Type</th>
+                                    <th class="py-3.5 px-4">Contact & Location</th>
+                                    <th class="py-3.5 px-4">Volume / Stock</th>
+                                    <th class="py-3.5 px-4">Status</th>
+                                    <th class="py-3.5 px-4 text-right">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="vendorTableBody" class="divide-y divide-slate-100 text-sm">
+                                <!-- JavaScript populated rows will render here -->
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Table Pagination -->
+                    <div class="p-4 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-500">
+                        <div>Showing <span id="showingCount">0</span> of <span id="totalCount">0</span> registered vendors</div>
+                        <div class="flex items-center space-x-1">
+                            <button class="px-3 py-1.5 border border-slate-200 rounded-md hover:bg-slate-50 disabled:opacity-50" disabled>Previous</button>
+                            <button class="px-3 py-1.5 bg-blue-600 text-white rounded-md font-medium">1</button>
+                            <button class="px-3 py-1.5 border border-slate-200 rounded-md hover:bg-slate-50">2</button>
+                            <button class="px-3 py-1.5 border border-slate-200 rounded-md hover:bg-slate-50">3</button>
+                            <button class="px-3 py-1.5 border border-slate-200 rounded-md hover:bg-slate-50">Next</button>
+                        </div>
+                    </div>
+                </div>
+
+            </main>
+        </div>
+    </div>
+
+    <!-- Modal: Vendor Detail View Drawer -->
+    <div id="vendorDetailModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex justify-end hidden opacity-0 transition-opacity duration-300">
+        <div class="bg-white w-full max-w-2xl h-full shadow-2xl flex flex-col overflow-hidden transform translate-x-full transition-transform duration-300" id="vendorDetailContent">
+            <!-- Modal Header -->
+            <div class="p-6 bg-slate-900 text-white flex items-center justify-between">
+                <div class="flex items-center space-x-3">
+                    <img id="detailAvatar" src="" class="w-12 h-12 rounded-full object-cover border-2 border-blue-400" alt="Vendor">
+                    <div>
+                        <h3 id="detailName" class="text-lg font-bold">Vendor Name</h3>
+                        <p id="detailId" class="text-xs text-slate-400">ID: #NP-000</p>
+                    </div>
+                </div>
+                <button onclick="closeDetailModal()" class="text-slate-400 hover:text-white text-xl">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <!-- Modal Content Area -->
+            <div class="flex-1 overflow-y-auto p-6 space-y-6">
+                <!-- Overview Row -->
+                <div class="grid grid-cols-2 gap-4 bg-slate-50 p-4 rounded-xl border border-slate-100">
+                    <div>
+                        <p class="text-xs text-slate-400 font-semibold uppercase">Vendor Role</p>
+                        <p id="detailRole" class="text-sm font-bold text-slate-800 capitalize mt-0.5">-</p>
+                    </div>
+                    <div>
+                        <p class="text-xs text-slate-400 font-semibold uppercase">Account Status</p>
+                        <span id="detailStatusPill" class="inline-block mt-0.5 text-xs px-2.5 py-0.5 rounded-full font-medium">-</span>
+                    </div>
+                    <div>
+                        <p class="text-xs text-slate-400 font-semibold uppercase">Email Contact</p>
+                        <p id="detailEmail" class="text-sm font-medium text-slate-800 mt-0.5">-</p>
+                    </div>
+                    <div>
+                        <p class="text-xs text-slate-400 font-semibold uppercase">Phone & Location</p>
+                        <p id="detailPhoneLocation" class="text-sm font-medium text-slate-800 mt-0.5">-</p>
+                    </div>
+                </div>
+
+                <!-- KYC & Tax Verification Docs -->
+                <div>
+                    <h4 class="text-xs font-bold text-slate-900 uppercase tracking-wider mb-3">Verification Documents (KYC)</h4>
+                    <div class="space-y-2">
+                        <div class="flex items-center justify-between p-3 bg-slate-50 border border-slate-200 rounded-lg">
+                            <div class="flex items-center space-x-3">
+                                <i class="fa-solid fa-file-pdf text-red-500 text-xl"></i>
+                                <div>
+                                    <p class="text-xs font-semibold text-slate-800">Business Registration / PAN Certificate</p>
+                                    <p class="text-[10px] text-slate-500">Verified on 12 Jan 2026</p>
+                                </div>
+                            </div>
+                            <span class="text-xs font-medium text-emerald-600"><i class="fa-solid fa-circle-check"></i> Approved</span>
+                        </div>
+                        <div class="flex items-center justify-between p-3 bg-slate-50 border border-slate-200 rounded-lg">
+                            <div class="flex items-center space-x-3">
+                                <i class="fa-solid fa-id-card text-blue-500 text-xl"></i>
+                                <div>
+                                    <p class="text-xs font-semibold text-slate-800">Citizenship / Identification Copy</p>
+                                    <p class="text-[10px] text-slate-500">Verified Document</p>
+                                </div>
+                            </div>
+                            <span class="text-xs font-medium text-emerald-600"><i class="fa-solid fa-circle-check"></i> Approved</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Margin / Commission Rates -->
+                <div>
+                    <h4 class="text-xs font-bold text-slate-900 uppercase tracking-wider mb-3">Nilopasal Margin & Commission Settings</h4>
+                    <div class="p-4 bg-blue-50/50 border border-blue-100 rounded-xl space-y-3">
+                        <div class="flex items-center justify-between">
+                            <label class="text-xs font-medium text-slate-700">Platform Commission Rate (%)</label>
+                            <input type="number" value="5.5" class="w-20 text-xs p-1.5 border border-slate-300 rounded text-center font-bold">
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <label class="text-xs font-medium text-slate-700">Payment Payout Cycle</label>
+                            <select class="text-xs p-1.5 border border-slate-300 rounded bg-white">
+                                <option>Weekly (Every Friday)</option>
+                                <option>Bi-Weekly</option>
+                                <option>Monthly</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Performance Highlights -->
+                <div>
+                    <h4 class="text-xs font-bold text-slate-900 uppercase tracking-wider mb-3">Performance Overview</h4>
+                    <div class="grid grid-cols-3 gap-3 text-center">
+                        <div class="p-3 bg-slate-50 border border-slate-100 rounded-lg">
+                            <p class="text-xs text-slate-400">Rating</p>
+                            <p id="detailRating" class="text-base font-bold text-amber-500 mt-1">4.8 <i class="fa-solid fa-star text-xs"></i></p>
+                        </div>
+                        <div class="p-3 bg-slate-50 border border-slate-100 rounded-lg">
+                            <p class="text-xs text-slate-400">Total Sales</p>
+                            <p id="detailSales" class="text-base font-bold text-slate-800 mt-1">NRs 2.4M</p>
+                        </div>
+                        <div class="p-3 bg-slate-50 border border-slate-100 rounded-lg">
+                            <p class="text-xs text-slate-400">Fulfilment Rate</p>
+                            <p class="text-base font-bold text-emerald-600 mt-1">98.4%</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal Footer Actions -->
+            <div class="p-4 bg-slate-100 border-t border-slate-200 flex items-center justify-between">
+                <button onclick="toggleSuspendCurrentVendor()" id="modalSuspendBtn" class="px-4 py-2 bg-red-100 hover:bg-red-200 text-red-700 text-xs font-semibold rounded-lg transition">
+                    Suspend Account
+                </button>
+                <div class="flex space-x-2">
+                    <button onclick="closeDetailModal()" class="px-4 py-2 border border-slate-300 text-slate-700 text-xs font-semibold rounded-lg hover:bg-slate-200 transition">
+                        Close
+                    </button>
+                    <button onclick="saveVendorChanges()" class="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-xs font-semibold rounded-lg shadow-sm transition">
+                        Save Changes
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal: Onboard New Vendor -->
+    <div id="addVendorModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center hidden">
+        <div class="bg-white rounded-xl shadow-2xl w-full max-w-lg overflow-hidden border border-slate-200">
+            <div class="p-5 bg-slate-900 text-white flex items-center justify-between">
+                <h3 class="text-base font-bold flex items-center"><i class="fa-solid fa-user-plus mr-2 text-sky-400"></i> Onboard New Vendor / Partner</h3>
+                <button onclick="closeAddModal()" class="text-slate-400 hover:text-white"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            
+            <form id="addVendorForm" onsubmit="handleAddVendor(event)" class="p-6 space-y-4 text-xs">
+                <div>
+                    <label class="block font-semibold text-slate-700 mb-1">Full Name / Business Title</label>
+                    <input type="text" id="addName" required placeholder="e.g. Pokhara Organic Farm Co-Op" class="w-full p-2.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none">
+                </div>
+
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block font-semibold text-slate-700 mb-1">Vendor Type Category</label>
+                        <select id="addType" class="w-full p-2.5 border border-slate-300 rounded-lg bg-white focus:ring-2 focus:ring-blue-500">
+                            <option value="farmer">Farmer / Agro Producer</option>
+                            <option value="retailer">Retailer</option>
+                            <option value="reseller">Reseller</option>
+                            <option value="manufacturer">Manufacturer</option>
+                            <option value="dealer">Dealer / Wholesaler</option>
+                            <option value="customer">Bulk Customer</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block font-semibold text-slate-700 mb-1">Region / Location</label>
+                        <input type="text" id="addLocation" required placeholder="e.g. Kaski, Gandaki Zone" class="w-full p-2.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500">
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block font-semibold text-slate-700 mb-1">Contact Email</label>
+                        <input type="email" id="addEmail" required placeholder="vendor@nilopasal.com" class="w-full p-2.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500">
+                    </div>
+                    <div>
+                        <label class="block font-semibold text-slate-700 mb-1">Phone Number</label>
+                        <input type="text" id="addPhone" required placeholder="+977 9801234567" class="w-full p-2.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block font-semibold text-slate-700 mb-1">Primary Produce / Product Category</label>
+                    <input type="text" id="addProduct" placeholder="e.g. Fresh Honey, Tea Leaf, Electronics" class="w-full p-2.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500">
+                </div>
+
+                <div class="pt-4 flex justify-end space-x-2 border-t border-slate-100">
+                    <button type="button" onclick="closeAddModal()" class="px-4 py-2 border border-slate-300 text-slate-600 rounded-lg hover:bg-slate-100 font-medium">Cancel</button>
+                    <button type="submit" class="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-semibold shadow-sm">Submit Registration</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Mock dataset representing NiloPasal vendor database
+        let vendorsData = [
+            {
+                id: "NP-8012",
+                name: "Gurung Agro Farms & Tea Co.",
+                type: "farmer",
+                email: "contact@gurungagro.np",
+                phone: "+977 9856012345",
+                location: "Ilam, Eastern Nepal",
+                region: "Eastern Terai",
+                stockCount: "12.5 Tons",
+                status: "Active",
+                rating: 4.9,
+                avatar: "https://images.unsplash.com/photo-1595273670150-bd0c3c392e46?auto=format&fit=crop&q=80&w=120"
+            },
+            {
+                id: "NP-4011",
+                name: "Himalayan Wholesale Distributors",
+                type: "dealer",
+                email: "sales@himalayandealers.com",
+                phone: "+977 01-4412345",
+                location: "Kalimati, Kathmandu",
+                region: "Kathmandu Valley",
+                stockCount: "4,500 Units",
+                status: "Active",
+                rating: 4.7,
+                avatar: "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=120"
+            },
+            {
+                id: "NP-1089",
+                name: "Anil Craft & Handicrafts",
+                type: "manufacturer",
+                email: "anil@craftsnepal.com",
+                phone: "+977 9841223344",
+                location: "Patan, Lalitpur",
+                region: "Kathmandu Valley",
+                stockCount: "820 SKUs",
+                status: "Pending",
+                rating: 4.5,
+                avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=120"
+            },
+            {
+                id: "NP-3044",
+                name: "Muktinath Organic Apple Orchards",
+                type: "farmer",
+                email: "supply@mustangapples.np",
+                phone: "+977 9808112233",
+                location: "Jomsom, Mustang",
+                region: "Gandaki Zone",
+                stockCount: "18.0 Tons",
+                status: "Active",
+                rating: 5.0,
+                avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=120"
+            },
+            {
+                id: "NP-7012",
+                name: "Sita Digital Retail Outlet",
+                type: "retailer",
+                email: "sita.store@gmail.com",
+                phone: "+977 9811224455",
+                location: "Pokhara Lakeside",
+                region: "Gandaki Zone",
+                stockCount: "310 Orders/mo",
+                status: "Active",
+                rating: 4.6,
+                avatar: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=120"
+            },
+            {
+                id: "NP-9055",
+                name: "Everest Resell Network",
+                type: "reseller",
+                email: "everest.resell@nilopasal.com",
+                phone: "+977 9822334455",
+                location: "Bhakktapur",
+                region: "Kathmandu Valley",
+                stockCount: "142 Sales",
+                status: "Suspended",
+                rating: 3.8,
+                avatar: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&q=80&w=120"
+            },
+            {
+                id: "NP-5021",
+                name: "Terai Agro Seed Suppliers",
+                type: "farmer",
+                email: "info@teraiagroseeds.com",
+                phone: "+977 9803344556",
+                location: "Biratnagar",
+                region: "Eastern Terai",
+                stockCount: "6.2 Tons",
+                status: "Pending",
+                rating: 4.2,
+                avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=120"
+            },
+            {
+                id: "NP-6019",
+                name: "Karnali Organic Beans Group",
+                type: "farmer",
+                email: "karnali.beans@organic.np",
+                phone: "+977 9848011223",
+                location: "Jumla",
+                region: "Karnali Region",
+                stockCount: "8.4 Tons",
+                status: "Active",
+                rating: 4.9,
+                avatar: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=120"
+            }
+        ];
+
+        let currentCategory = 'all';
+        let currentSelectedVendorId = null;
+
+        // Render Table Function
+        function renderTable(data) {
+            const tableBody = document.getElementById('vendorTableBody');
+            tableBody.innerHTML = '';
+
+            if (data.length === 0) {
+                tableBody.innerHTML = `
+                    <tr>
+                        <td colspan="6" class="text-center py-8 text-slate-400">
+                            <i class="fa-solid fa-box-open text-3xl mb-2"></i>
+                            <p>No vendors matched your filter search criteria.</p>
+                        </td>
+                    </tr>
+                `;
+                document.getElementById('showingCount').innerText = '0';
+                document.getElementById('totalCount').innerText = vendorsData.length;
+                return;
+            }
+
+            data.forEach(vendor => {
+                let typeBadge = '';
+                switch(vendor.type) {
+                    case 'farmer':
+                        typeBadge = `<span class="bg-emerald-50 text-emerald-700 border border-emerald-200 px-2.5 py-0.5 rounded-full text-[11px] font-semibold flex items-center w-max"><i class="fa-solid fa-wheat-awn mr-1"></i> Farmer</span>`;
+                        break;
+                    case 'retailer':
+                        typeBadge = `<span class="bg-blue-50 text-blue-700 border border-blue-200 px-2.5 py-0.5 rounded-full text-[11px] font-semibold flex items-center w-max"><i class="fa-solid fa-store mr-1"></i> Retailer</span>`;
+                        break;
+                    case 'reseller':
+                        typeBadge = `<span class="bg-purple-50 text-purple-700 border border-purple-200 px-2.5 py-0.5 rounded-full text-[11px] font-semibold flex items-center w-max"><i class="fa-solid fa-share-nodes mr-1"></i> Reseller</span>`;
+                        break;
+                    case 'manufacturer':
+                        typeBadge = `<span class="bg-slate-100 text-slate-700 border border-slate-200 px-2.5 py-0.5 rounded-full text-[11px] font-semibold flex items-center w-max"><i class="fa-solid fa-industry mr-1"></i> Manufacturer</span>`;
+                        break;
+                    case 'dealer':
+                        typeBadge = `<span class="bg-amber-50 text-amber-700 border border-amber-200 px-2.5 py-0.5 rounded-full text-[11px] font-semibold flex items-center w-max"><i class="fa-solid fa-handshake mr-1"></i> Dealer</span>`;
+                        break;
+                    default:
+                        typeBadge = `<span class="bg-gray-100 text-gray-700 px-2.5 py-0.5 rounded-full text-[11px] font-semibold flex items-center w-max">Customer</span>`;
+                }
+
+                let statusPill = '';
+                if(vendor.status === 'Active') {
+                    statusPill = `<span class="bg-emerald-100 text-emerald-800 text-[11px] font-bold px-2.5 py-0.5 rounded-full inline-flex items-center"><span class="w-1.5 h-1.5 rounded-full bg-emerald-500 mr-1.5"></span>Active</span>`;
+                } else if(vendor.status === 'Pending') {
+                    statusPill = `<span class="bg-amber-100 text-amber-800 text-[11px] font-bold px-2.5 py-0.5 rounded-full inline-flex items-center"><span class="w-1.5 h-1.5 rounded-full bg-amber-500 mr-1.5"></span>Pending</span>`;
+                } else {
+                    statusPill = `<span class="bg-red-100 text-red-800 text-[11px] font-bold px-2.5 py-0.5 rounded-full inline-flex items-center"><span class="w-1.5 h-1.5 rounded-full bg-red-500 mr-1.5"></span>Suspended</span>`;
+                }
+
+                const tr = document.createElement('tr');
+                tr.className = "hover:bg-slate-50/80 transition border-b border-slate-100";
+                tr.innerHTML = `
+                    <td class="py-3.5 px-4">
+                        <div class="flex items-center space-x-3">
+                            <img src="${vendor.avatar}" class="w-9 h-9 rounded-full object-cover border border-slate-200 shadow-sm" alt="Avatar">
+                            <div>
+                                <div class="font-bold text-slate-900 flex items-center space-x-1">
+                                    <span>${vendor.name}</span>
+                                    ${vendor.rating >= 4.8 ? '<i class="fa-solid fa-circle-check text-blue-500 text-xs" title="Verified NiloPasal Partner"></i>' : ''}
+                                </div>
+                                <div class="text-[11px] text-slate-400 font-mono">ID: ${vendor.id}</div>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="py-3.5 px-4">${typeBadge}</td>
+                    <td class="py-3.5 px-4">
+                        <div class="text-xs text-slate-800 font-medium">${vendor.phone}</div>
+                        <div class="text-[11px] text-slate-500"><i class="fa-solid fa-location-dot text-slate-400 mr-1"></i>${vendor.location}</div>
+                    </td>
+                    <td class="py-3.5 px-4">
+                        <div class="text-xs font-semibold text-slate-900">${vendor.stockCount}</div>
+                        <div class="text-[10px] text-amber-500 font-semibold"><i class="fa-solid fa-star text-[9px]"></i> ${vendor.rating} / 5.0</div>
+                    </td>
+                    <td class="py-3.5 px-4">${statusPill}</td>
+                    <td class="py-3.5 px-4 text-right">
+                        <div class="flex items-center justify-end space-x-2">
+                            <button onclick="openVendorDetail('${vendor.id}')" class="p-1.5 text-blue-600 hover:bg-blue-50 rounded-lg transition" title="Manage Vendor Details">
+                                <i class="fa-solid fa-eye"></i>
+                            </button>
+                            <button onclick="quickActionPayout('${vendor.id}')" class="p-1.5 text-emerald-600 hover:bg-emerald-50 rounded-lg transition" title="Process Payout">
+                                <i class="fa-solid fa-money-bill-transfer"></i>
+                            </button>
+                        </div>
+                    </td>
+                `;
+                tableBody.appendChild(tr);
+            });
+
+            document.getElementById('showingCount').innerText = data.length;
+            document.getElementById('totalCount').innerText = vendorsData.length;
+        }
+
+        // Apply Filters logic
+        function applyFilters() {
+            const searchTerm = document.getElementById('globalSearch').value.toLowerCase();
+            const statusVal = document.getElementById('statusFilter').value;
+            const regionVal = document.getElementById('regionFilter').value;
+
+            let filtered = vendorsData.filter(vendor => {
+                const matchesCategory = (currentCategory === 'all' || vendor.type === currentCategory);
+                const matchesSearch = vendor.name.toLowerCase().includes(searchTerm) || 
+                                      vendor.id.toLowerCase().includes(searchTerm) ||
+                                      vendor.location.toLowerCase().includes(searchTerm) ||
+                                      vendor.email.toLowerCase().includes(searchTerm);
+                const matchesStatus = (statusVal === 'all' || vendor.status === statusVal);
+                const matchesRegion = (regionVal === 'all' || vendor.region === regionVal);
+
+                return matchesCategory && matchesSearch && matchesStatus && matchesRegion;
+            });
+
+            renderTable(filtered);
+        }
+
+        function handleSearch() {
+            applyFilters();
+        }
+
+        function setCategoryTab(category, btn) {
+            currentCategory = category;
+            
+            // Highlight Tab Buttons
+            document.querySelectorAll('.category-tab').forEach(b => {
+                b.className = "category-tab px-4 py-2 text-xs font-semibold text-slate-600 hover:bg-slate-100 rounded-lg whitespace-nowrap";
+            });
+            btn.className = "category-tab px-4 py-2 text-xs font-semibold rounded-lg bg-blue-50 text-blue-600 whitespace-nowrap";
+
+            applyFilters();
+        }
+
+        function filterByNav(category) {
+            currentCategory = category;
+            
+            // Sync Category Tabs
+            const tabs = document.querySelectorAll('.category-tab');
+            tabs.forEach(tab => {
+                if(tab.getAttribute('onclick').includes(`'${category}'`)) {
+                    tab.click();
+                }
+            });
+
+            applyFilters();
+        }
+
+        function resetFilters() {
+            document.getElementById('globalSearch').value = '';
+            document.getElementById('statusFilter').value = 'all';
+            document.getElementById('regionFilter').value = 'all';
+            currentCategory = 'all';
+            setCategoryTab('all', document.querySelectorAll('.category-tab')[0]);
+            applyFilters();
+        }
+
+        // Vendor Detail Drawer Actions
+        function openVendorDetail(id) {
+            const vendor = vendorsData.find(v => v.id === id);
+            if(!vendor) return;
+
+            currentSelectedVendorId = id;
+
+            document.getElementById('detailName').innerText = vendor.name;
+            document.getElementById('detailId').innerText = `ID: #${vendor.id}`;
+            document.getElementById('detailAvatar').src = vendor.avatar;
+            document.getElementById('detailRole').innerText = vendor.type;
+            document.getElementById('detailEmail').innerText = vendor.email;
+            document.getElementById('detailPhoneLocation').innerText = `${vendor.phone} (${vendor.location})`;
+            document.getElementById('detailRating').innerHTML = `${vendor.rating} <i class="fa-solid fa-star text-xs"></i>`;
+
+            const statusPill = document.getElementById('detailStatusPill');
+            if(vendor.status === 'Active') {
+                statusPill.className = "inline-block text-xs px-2.5 py-0.5 rounded-full font-medium bg-emerald-100 text-emerald-800";
+                statusPill.innerText = "Active Partner";
+            } else if(vendor.status === 'Pending') {
+                statusPill.className = "inline-block text-xs px-2.5 py-0.5 rounded-full font-medium bg-amber-100 text-amber-800";
+                statusPill.innerText = "Pending Approval";
+            } else {
+                statusPill.className = "inline-block text-xs px-2.5 py-0.5 rounded-full font-medium bg-red-100 text-red-800";
+                statusPill.innerText = "Suspended";
+            }
+
+            const modal = document.getElementById('vendorDetailModal');
+            const drawer = document.getElementById('vendorDetailContent');
+            
+            modal.classList.remove('hidden');
+            setTimeout(() => {
+                modal.classList.remove('opacity-0');
+                drawer.classList.remove('translate-x-full');
+            }, 10);
+        }
+
+        function closeDetailModal() {
+            const modal = document.getElementById('vendorDetailModal');
+            const drawer = document.getElementById('vendorDetailContent');
+            
+            drawer.classList.add('translate-x-full');
+            modal.classList.add('opacity-0');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+            }, 300);
+        }
+
+        function toggleSuspendCurrentVendor() {
+            if(!currentSelectedVendorId) return;
+            const vendor = vendorsData.find(v => v.id === currentSelectedVendorId);
+            if(vendor) {
+                vendor.status = vendor.status === 'Suspended' ? 'Active' : 'Suspended';
+                applyFilters();
+                openVendorDetail(currentSelectedVendorId);
+            }
+        }
+
+        function saveVendorChanges() {
+            closeDetailModal();
+        }
+
+        // Add Modal Open/Close
+        function openAddModal() {
+            document.getElementById('addVendorModal').classList.remove('hidden');
+        }
+
+        function closeAddModal() {
+            document.getElementById('addVendorModal').classList.add('hidden');
+        }
+
+        function handleAddVendor(e) {
+            e.preventDefault();
+            const newVendor = {
+                id: "NP-" + Math.floor(1000 + Math.random() * 9000),
+                name: document.getElementById('addName').value,
+                type: document.getElementById('addType').value,
+                email: document.getElementById('addEmail').value,
+                phone: document.getElementById('addPhone').value,
+                location: document.getElementById('addLocation').value,
+                region: "Kathmandu Valley",
+                stockCount: "New Onboard",
+                status: "Pending",
+                rating: 5.0,
+                avatar: "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&q=80&w=120"
+            };
+
+            vendorsData.unshift(newVendor);
+            closeAddModal();
+            applyFilters();
+            document.getElementById('addVendorForm').reset();
+        }
+
+        function quickActionPayout(id) {
+            const vendor = vendorsData.find(v => v.id === id);
+            if(vendor) {
+                alert(`Initiated digital settlement payout process for ${vendor.name} (ID: ${vendor.id}).`);
+            }
+        }
+
+        // Initialize On Load
+        window.onload = function() {
+            renderTable(vendorsData);
+        };
+    </script>
+</body>
+</html>

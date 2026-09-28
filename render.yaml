@@ -1,0 +1,41 @@
+services:
+  # Nilopasal Node.js Backend API
+  - type: web
+    name: nilopasal-api
+    runtime: node
+    rootDir: backend
+    plan: starter
+    region: singapore # Closest low-latency region to Nepal
+    buildCommand: npm ci && npx prisma generate && npm run build
+    startCommand: npx prisma migrate deploy && npm start
+    healthCheckPath: /health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000
+      - key: DATABASE_URL
+        fromDatabase:
+          name: nilopasal-db
+          property: connectionString
+      - key: COOKIE_SECURE
+        value: "true"
+      - key: SESSION_COOKIE_NAME
+        value: "__Host-nilopasal_session"
+      - key: SESSION_TTL_DAYS
+        value: "30"
+      - key: CORS_ORIGINS
+        value: "https://nilopasal.com,https://www.nilopasal.com,https://api.nilopasal.com"
+      - key: TRUST_PROXY
+        value: "true"
+      - key: LOG_LEVEL
+        value: "info"
+
+databases:
+  # Managed PostgreSQL 16 Database
+  - name: nilopasal-db
+    databaseName: nilopasal
+    user: nilopasal_user
+    plan: starter
+    region: singapore
+    postgresMajorVersion: 16

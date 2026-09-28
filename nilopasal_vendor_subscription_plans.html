@@ -1,0 +1,1133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nilopasal Vendor Subscription Plans</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#f0f7ff',
+                            100: '#e0effe',
+                            200: '#bae0fd',
+                            500: '#0284c7',
+                            600: '#026597',
+                            700: '#0369a1',
+                            800: '#075985',
+                            900: '#0c4a6e',
+                        },
+                        nepal: {
+                            red: '#DC241F',
+                            blue: '#003893'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+        }
+        .gradient-border {
+            background: linear-gradient(60deg, #0284c7, #0d9488, #2563eb);
+        }
+        .custom-shadow {
+            box-shadow: 0 10px 30px -5px rgba(2, 132, 199, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        .popular-card-shadow {
+            box-shadow: 0 20px 40px -15px rgba(2, 132, 199, 0.25);
+        }
+        .promo-glow {
+            box-shadow: 0 0 25px rgba(220, 38, 38, 0.25);
+        }
+    </style>
+</head>
+<body class="text-slate-800 antialiased bg-slate-50 min-h-screen flex flex-col justify-between">
+
+    <!-- Top Bar Notice -->
+    <div class="bg-gradient-to-r from-red-700 via-brand-900 to-slate-900 text-white text-xs md:text-sm py-2 px-4 text-center font-medium flex flex-wrap items-center justify-center gap-2 shadow-inner">
+        <span class="bg-amber-400 text-slate-900 border border-amber-300 text-[10px] uppercase tracking-wider font-extrabold px-2 py-0.5 rounded-full animate-bounce">
+            🔥 Limited Offer
+        </span>
+        <span><strong>First 5 Manufacturers Only:</strong> Get 1 Full Year FREE Starter Plan (Up to 20 SKUs)!</span>
+        <button onclick="openCouponModal()" class="underline hover:text-amber-300 transition-colors ml-1 font-bold">
+            Claim Free Coupon Code &rarr;
+        </button>
+    </div>
+
+    <!-- Header Navigation -->
+    <header class="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-slate-200/80">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- Brand Logo -->
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-700 to-teal-500 flex items-center justify-center text-white shadow-md shadow-brand-500/20 font-black text-xl tracking-wider">
+                    N
+                </div>
+                <div>
+                    <div class="flex items-center gap-2">
+                        <span class="text-xl font-black tracking-tight text-slate-900">NILOPASAL</span>
+                        <span class="bg-slate-100 text-slate-600 border border-slate-200 text-[10px] font-bold px-2 py-0.5 rounded uppercase tracking-wider">Vendor Portal</span>
+                    </div>
+                    <p class="text-xs text-slate-500 hidden sm:block">Nepal's Premier B2B Manufacturing Marketplace</p>
+                </div>
+            </div>
+
+            <!-- Header Actions -->
+            <div class="flex items-center gap-3">
+                <button onclick="openCouponModal()" class="hidden lg:flex items-center gap-2 text-xs font-bold text-red-700 bg-red-50 hover:bg-red-100 border border-red-200 px-3 py-2 rounded-lg transition-all">
+                    <i class="fa-solid fa-ticket text-red-500"></i>
+                    Apply Free Coupon (FIRST5FREE)
+                </button>
+                <button onclick="openSkuModal()" class="hidden md:flex items-center gap-2 text-xs font-semibold text-brand-700 bg-brand-50 hover:bg-brand-100 border border-brand-200 px-3 py-2 rounded-lg transition-all">
+                    <i class="fa-solid fa-circle-question"></i>
+                    What is an SKU?
+                </button>
+                <a href="#faq" class="text-sm font-medium text-slate-600 hover:text-slate-900 px-3 py-2 hidden sm:block">FAQs</a>
+                <button onclick="openModal('Starter')" class="bg-slate-900 hover:bg-slate-800 text-white font-medium text-sm px-4 py-2 rounded-lg transition-colors shadow-sm">
+                    Vendor Login
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-grow">
+        <!-- Hero Section -->
+        <section class="relative pt-10 pb-16 overflow-hidden">
+            <div class="absolute inset-0 bg-[radial-gradient(#e2e8f0_1px,transparent_1px)] [background-size:16px_16px] [mask-image:radial-gradient(ellipse_50%_50%_at_50%_50%,#000_70%,transparent_100%)] opacity-60"></div>
+            
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+                
+                <!-- Special Offer Promo Box -->
+                <div class="max-w-4xl mx-auto mb-8 bg-gradient-to-r from-red-600 via-rose-600 to-amber-600 p-0.5 rounded-2xl shadow-xl promo-glow">
+                    <div class="bg-white rounded-[15px] p-5 sm:p-6 text-left flex flex-col md:flex-row items-center justify-between gap-6">
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 rounded-2xl bg-red-100 text-red-600 flex items-center justify-center shrink-0 text-2xl font-black shadow-inner">
+                                <i class="fa-solid fa-gift"></i>
+                            </div>
+                            <div>
+                                <div class="flex items-center gap-2 flex-wrap">
+                                    <span class="bg-red-100 text-red-800 border border-red-200 text-[10px] font-black px-2.5 py-0.5 rounded-full uppercase tracking-wider">Early Adopter Offer</span>
+                                    <span class="text-xs text-slate-500 font-semibold"><i class="fa-solid fa-clock text-amber-500"></i> Subject to Admin Approval</span>
+                                </div>
+                                <h2 class="text-lg sm:text-xl font-extrabold text-slate-900 mt-1">
+                                    100% FREE 1-Year Starter Plan for First 5 Manufacturers
+                                </h2>
+                                <p class="text-xs sm:text-sm text-slate-600 mt-1">
+                                    List up to 20 SKUs/products with zero subscription fees for 12 months. Nilopasal Admin verifies vendor credentials before activating free coupons.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="shrink-0 text-center md:text-right w-full md:w-auto border-t md:border-t-0 border-slate-100 pt-4 md:pt-0">
+                            <div class="text-xs font-bold text-slate-500 mb-1">Coupon Slots Left:</div>
+                            <div class="inline-flex items-center gap-1.5 bg-amber-50 border border-amber-200 px-3 py-1 rounded-full text-amber-800 text-xs font-extrabold mb-3">
+                                <span class="w-2 h-2 rounded-full bg-red-500 animate-ping"></span>
+                                <span id="spots-left-count">3 of 5 Spots Remaining</span>
+                            </div>
+                            <button onclick="openCouponModal()" class="w-full md:w-auto bg-gradient-to-r from-red-600 to-rose-600 hover:from-red-700 hover:to-rose-700 text-white font-extrabold text-xs px-5 py-2.5 rounded-xl transition-all shadow-md flex items-center justify-center gap-2">
+                                <i class="fa-solid fa-ticket"></i> Apply For Free 1-Year Coupon
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="inline-flex items-center gap-2 bg-brand-50 border border-brand-200/80 rounded-full px-3 py-1 text-xs font-semibold text-brand-700 mb-4">
+                    <i class="fa-solid fa-boxes-stacked text-brand-500"></i>
+                    Fair SKU/Variant-Based Subscription Pricing
+                </div>
+                <h1 class="text-3xl sm:text-5xl font-extrabold text-slate-900 tracking-tight max-w-3xl mx-auto leading-tight">
+                    Scale Your Manufacturing Business in Nepal
+                </h1>
+                <p class="mt-4 text-base sm:text-lg text-slate-600 max-w-2xl mx-auto">
+                    Pay only for what you list. Every plan includes full access to Digital Khata, inventory tools, customer chat, and nationwide market reach.
+                </p>
+
+                <!-- Billing Switcher Toggle -->
+                <div class="mt-10 flex items-center justify-center gap-4">
+                    <span id="monthly-label" class="text-sm font-bold text-slate-900">Monthly Billing</span>
+                    <button id="billing-toggle" onclick="toggleBilling()" class="relative w-16 h-8 bg-slate-300 rounded-full p-1 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2" aria-label="Toggle Billing Frequency">
+                        <div id="toggle-circle" class="w-6 h-6 bg-white rounded-full shadow-md transform transition-transform duration-300"></div>
+                    </button>
+                    <div class="flex items-center gap-2">
+                        <span id="yearly-label" class="text-sm font-semibold text-slate-500">Yearly Billing</span>
+                        <span class="bg-amber-100 text-amber-800 border border-amber-300 text-xs font-extrabold px-2 py-0.5 rounded-full flex items-center gap-1 animate-pulse">
+                            <i class="fa-solid fa-sparkles text-amber-600"></i> Save 17% (2 Months Free)
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 -mt-4 mb-16 relative z-20">
+            <div class="bg-white rounded-2xl border border-slate-200/90 shadow-xl p-6 sm:p-8">
+                <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 pb-6 border-b border-slate-100">
+                    <div>
+                        <div class="flex items-center gap-2">
+                            <h2 class="text-xl font-bold text-slate-900">Interactive SKU Plan Recommender</h2>
+                            <span class="bg-brand-50 text-brand-700 text-xs font-semibold px-2 py-0.5 rounded border border-brand-200">Smart Estimator</span>
+                        </div>
+                        <p class="text-xs sm:text-sm text-slate-500 mt-1">Not sure which plan you need? Calculate your total Stock Keeping Units (SKUs) based on product variants.</p>
+                    </div>
+                    <button onclick="openSkuModal()" class="text-xs font-bold text-brand-600 hover:text-brand-800 flex items-center gap-1.5 underline">
+                        <i class="fa-solid fa-info-circle"></i> How SKU calculation works
+                    </button>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
+                    <!-- Input 1: Parent Products -->
+                    <div class="bg-slate-50 p-4 rounded-xl border border-slate-200">
+                        <label for="calc-products" class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">
+                            1. Parent Products
+                        </label>
+                        <input type="number" id="calc-products" value="5" min="1" max="500" oninput="calculateSKUs()" class="w-full bg-white border border-slate-300 rounded-lg px-3 py-2 text-slate-900 font-bold focus:ring-2 focus:ring-brand-500 focus:outline-none">
+                        <p class="text-[11px] text-slate-500 mt-1">e.g. Cotton T-Shirt, Leather Shoes</p>
+                    </div>
+
+                    <!-- Input 2: Colors per product -->
+                    <div class="bg-slate-50 p-4 rounded-xl border border-slate-200">
+                        <label for="calc-colors" class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">
+                            2. Color Options / Item
+                        </label>
+                        <input type="number" id="calc-colors" value="2" min="1" max="20" oninput="calculateSKUs()" class="w-full bg-white border border-slate-300 rounded-lg px-3 py-2 text-slate-900 font-bold focus:ring-2 focus:ring-brand-500 focus:outline-none">
+                        <p class="text-[11px] text-slate-500 mt-1">e.g. Red, Blue, Black</p>
+                    </div>
+
+                    <!-- Input 3: Sizes per product -->
+                    <div class="bg-slate-50 p-4 rounded-xl border border-slate-200">
+                        <label for="calc-sizes" class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">
+                            3. Size Options / Item
+                        </label>
+                        <input type="number" id="calc-sizes" value="2" min="1" max="20" oninput="calculateSKUs()" class="w-full bg-white border border-slate-300 rounded-lg px-3 py-2 text-slate-900 font-bold focus:ring-2 focus:ring-brand-500 focus:outline-none">
+                        <p class="text-[11px] text-slate-500 mt-1">e.g. S, M, L, XL</p>
+                    </div>
+                </div>
+
+                <!-- Calculator Output Banner -->
+                <div class="mt-6 bg-slate-900 text-white p-4 sm:p-5 rounded-xl flex flex-col sm:flex-row items-center justify-between gap-4">
+                    <div class="flex items-center gap-4 text-center sm:text-left">
+                        <div class="w-12 h-12 rounded-lg bg-brand-500 flex items-center justify-center shrink-0 text-white font-extrabold text-xl shadow-md">
+                            <i class="fa-solid fa-calculator"></i>
+                        </div>
+                        <div>
+                            <div class="text-xs text-slate-400 font-medium">Estimated Catalog Size:</div>
+                            <div class="text-xl font-extrabold flex items-center gap-2 justify-center sm:justify-start">
+                                <span id="calculated-sku-count" class="text-amber-400 text-2xl">20</span> SKUs / Variants
+                                <span class="text-xs font-normal text-slate-400">(<span id="calc-formula">5 products × 2 colors × 2 sizes</span>)</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-center sm:text-right shrink-0">
+                        <div class="text-xs text-slate-400 mb-1">Recommended Plan:</div>
+                        <span id="recommended-plan-badge" class="bg-slate-700 text-white text-xs font-extrabold px-3 py-1 rounded-full uppercase tracking-wide">
+                            Starter Plan (Qualifies for Free 1-Year Coupon!)
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+
+                <!-- Plan 1: Starter -->
+                <div id="card-starter" class="bg-white rounded-2xl border-2 border-slate-200 custom-shadow p-6 flex flex-col justify-between relative transition-all duration-300 hover:-translate-y-1">
+                    <div class="absolute -top-3.5 left-1/2 transform -translate-x-1/2 bg-red-600 text-white text-[10px] font-black uppercase tracking-wider px-2.5 py-0.5 rounded-full shadow-sm flex items-center gap-1">
+                        <i class="fa-solid fa-ticket"></i> Free Coupon Eligible
+                    </div>
+
+                    <div>
+                        <div class="flex items-center justify-between mb-4 mt-1">
+                            <span class="text-xs font-extrabold tracking-wider text-slate-500 uppercase">Starter</span>
+                            <span class="bg-slate-100 text-slate-700 text-[11px] font-semibold px-2 py-0.5 rounded">Small Makers</span>
+                        </div>
+                        <h3 class="text-2xl font-bold text-slate-900">Up to 20 SKUs</h3>
+                        <p class="text-xs text-slate-500 mt-1 min-h-[32px]">Ideal for boutique workshops & small-batch producers.</p>
+
+                        <!-- Price Section -->
+                        <div class="my-6">
+                            <div class="flex items-baseline">
+                                <span class="text-xs text-slate-500 font-medium mr-1">Rs.</span>
+                                <span class="starter-price text-3xl font-extrabold text-slate-900">3,000</span>
+                                <span class="billing-period text-slate-500 text-xs ml-1">/ month</span>
+                            </div>
+                            <div class="starter-subtext text-[11px] text-slate-400 mt-1">Billed monthly</div>
+                        </div>
+
+                        <!-- Included Features -->
+                        <div class="space-y-3 pt-4 border-t border-slate-100 text-xs text-slate-700">
+                            <div class="flex items-center gap-2 font-medium">
+                                <i class="fa-solid fa-check text-emerald-500"></i>
+                                Up to 20 product variants
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <i class="fa-solid fa-check text-emerald-500"></i>
+                                Digital Khata Integration
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <i class="fa-solid fa-check text-emerald-500"></i>
+                                Real-Time Inventory Tracking
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <i class="fa-solid fa-check text-emerald-500"></i>
+                                Customer Chat & Inquiries
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <i class="fa-solid fa-check text-emerald-500"></i>
+                                Standard Search Visibility
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="space-y-2 mt-8">
+                        <button onclick="openModal('Starter')" class="w-full py-2.5 px-4 bg-slate-900 hover:bg-slate-800 text-white rounded-xl font-bold text-xs transition-colors shadow-sm">
+                            Select Starter
+                        </button>
+                        <button onclick="openCouponModal()" class="w-full py-2 px-3 bg-red-50 hover:bg-red-100 text-red-700 border border-red-200 rounded-xl font-bold text-[11px] transition-colors flex items-center justify-center gap-1.5">
+                            <i class="fa-solid fa-ticket"></i> Apply Free 1-Year Coupon
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Plan 2: Business (Most Popular) -->
+                <div id="card-business" class="bg-white rounded-2xl border-2 border-brand-500 popular-card-shadow p-6 flex flex-col justify-between relative transition-all duration-300 hover:-translate-y-1 transform scale-[1.02]">
+                    <!-- Popular Tag -->
+                    <div class="absolute -top-3.5 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-brand-600 to-teal-600 text-white text-[11px] font-black uppercase tracking-widest px-3 py-0.5 rounded-full shadow-md flex items-center gap-1">
+                        <i class="fa-solid fa-fire text-amber-300"></i> Most Popular
+                    </div>
+
+                    <div>
+                        <div class="flex items-center justify-between mb-4 mt-1">
+                            <span class="text-xs font-extrabold tracking-wider text-brand-700 uppercase">Business</span>
+                            <span class="bg-brand-50 text-brand-700 text-[11px] font-semibold px-2 py-0.5 rounded border border-brand-200">Growing Brands</span>
+                        </div>
+                        <h3 class="text-2xl font-bold text-slate-900">Up to 50 SKUs</h3>
+                        <p class="text-xs text-slate-500 mt-1 min-h-[32px]">Perfect for expanding manufacturers with active catalog lines.</p>
+
+                        <!-- Price Section -->
+                        <div class="my-6">
+                            <div class="flex items-baseline">
+                                <span class="text-xs text-slate-500 font-medium mr-1">Rs.</span>
+                                <span class="business-price text-3xl font-extrabold text-slate-900">6,000</span>
+                                <span class="billing-period text-slate-500 text-xs ml-1">/ month</span>
+                            </div>
+                            <div class="business-subtext text-[11px] text-slate-400 mt-1">Billed monthly</div>
+                        </div>
+
+                        <!-- Included Features -->
+                        <div class="space-y-3 pt-4 border-t border-slate-100 text-xs text-slate-700">
+                            <div class="flex items-center gap-2 font-semibold text-slate-900">
+                                <i class="fa-solid fa-circle-check text-brand-600"></i>
+                                Up to 50 product variants
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <i class="fa-solid fa-check text-emerald-500"></i>
+                                All Starter Plan features
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <i class="fa-solid fa-check text-emerald-500"></i>
+                                Enhanced Search Boost
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <i class="fa-solid fa-check text-emerald-500"></i>
+                                Promotional Discount Manager
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <i class="fa-solid fa-check text-emerald-500"></i>
+                                Advanced Sales Analytics
+                            </div>
+                        </div>
+                    </div>
+
+                    <button onclick="openModal('Business')" class="mt-8 w-full py-3 px-4 bg-brand-600 hover:bg-brand-700 text-white rounded-xl font-bold text-xs transition-colors shadow-md shadow-brand-500/30">
+                        Start Business Plan
+                    </button>
+                </div>
+
+                <!-- Plan 3: Professional -->
+                <div id="card-professional" class="bg-white rounded-2xl border border-slate-200 custom-shadow p-6 flex flex-col justify-between relative transition-all duration-300 hover:-translate-y-1">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-xs font-extrabold tracking-wider text-slate-500 uppercase">Professional</span>
+                            <span class="bg-slate-100 text-slate-700 text-[11px] font-semibold px-2 py-0.5 rounded">Established</span>
+                        </div>
+                        <h3 class="text-2xl font-bold text-slate-900">Up to 100 SKUs</h3>
+                        <p class="text-xs text-slate-500 mt-1 min-h-[32px]">Designed for high-volume, multi-category local factories.</p>
+
+                        <!-- Price Section -->
+                        <div class="my-6">
+                            <div class="flex items-baseline">
+                                <span class="text-xs text-slate-500 font-medium mr-1">Rs.</span>
+                                <span class="professional-price text-3xl font-extrabold text-slate-900">9,500</span>
+                                <span class="billing-period text-slate-500 text-xs ml-1">/ month</span>
+                            </div>
+                            <div class="professional-subtext text-[11px] text-slate-400 mt-1">Billed monthly</div>
+                        </div>
+
+                        <!-- Included Features -->
+                        <div class="space-y-3 pt-4 border-t border-slate-100 text-xs text-slate-700">
+                            <div class="flex items-center gap-2 font-medium">
+                                <i class="fa-solid fa-check text-emerald-500"></i>
+                                Up to 100 product variants
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <i class="fa-solid fa-check text-emerald-500"></i>
+                                Priority Marketplace Ranking
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <i class="fa-solid fa-check text-emerald-500"></i>
+                                Bulk CSV Product Uploads
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <i class="fa-solid fa-check text-emerald-500"></i>
+                                Multi-user Vendor Staff Accounts
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <i class="fa-solid fa-check text-emerald-500"></i>
+                                Priority Vendor Support
+                            </div>
+                        </div>
+                    </div>
+
+                    <button onclick="openModal('Professional')" class="mt-8 w-full py-2.5 px-4 bg-slate-900 hover:bg-slate-800 text-white rounded-xl font-bold text-xs transition-colors shadow-sm">
+                        Select Professional
+                    </button>
+                </div>
+
+                <!-- Plan 4: Enterprise -->
+                <div id="card-enterprise" class="bg-gradient-to-b from-slate-900 to-slate-800 text-white rounded-2xl custom-shadow p-6 flex flex-col justify-between relative transition-all duration-300 hover:-translate-y-1">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-xs font-extrabold tracking-wider text-amber-400 uppercase">Enterprise</span>
+                            <span class="bg-slate-800 text-slate-300 text-[11px] font-semibold px-2 py-0.5 rounded border border-slate-700">Large Enterprise</span>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white">100+ SKUs</h3>
+                        <p class="text-xs text-slate-400 mt-1 min-h-[32px]">Custom catalog limits, dedicated APIs & enterprise integration.</p>
+
+                        <!-- Price Section -->
+                        <div class="my-6">
+                            <div class="text-3xl font-extrabold text-white">Custom Pricing</div>
+                            <div class="text-[11px] text-slate-400 mt-1">Tailored for large manufacturers</div>
+                        </div>
+
+                        <!-- Included Features -->
+                        <div class="space-y-3 pt-4 border-t border-slate-700/80 text-xs text-slate-300">
+                            <div class="flex items-center gap-2">
+                                <i class="fa-solid fa-check text-amber-400"></i>
+                                Unlimited / Customized SKUs
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <i class="fa-solid fa-check text-amber-400"></i>
+                                Dedicated Key Account Manager
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <i class="fa-solid fa-check text-amber-400"></i>
+                                Custom ERP & Digital Khata Sync
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <i class="fa-solid fa-check text-amber-400"></i>
+                                Customized Promotional Campaigns
+                            </div>
+                        </div>
+                    </div>
+
+                    <button onclick="openModal('Enterprise')" class="mt-8 w-full py-2.5 px-4 bg-white hover:bg-slate-100 text-slate-900 rounded-xl font-bold text-xs transition-colors shadow-sm">
+                        Contact Sales
+                    </button>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Admin Verification Status Tracker Preview -->
+        <section id="application-status-section" class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 my-10 hidden">
+            <div class="bg-white rounded-2xl border-2 border-brand-500 p-6 shadow-xl relative">
+                <div class="flex items-center justify-between border-b border-slate-100 pb-4 mb-4">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-xl bg-brand-50 text-brand-600 flex items-center justify-center font-bold text-lg">
+                            <i class="fa-solid fa-[#0284c7] fa-clipboard-check"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-base font-bold text-slate-900">Nilopasal Coupon Application Tracker</h3>
+                            <p class="text-xs text-slate-500">Real-time status for Coupon Code: <strong class="text-brand-700 font-mono">FIRST5FREE</strong></p>
+                        </div>
+                    </div>
+                    <span id="tracker-status-badge" class="bg-amber-100 text-amber-800 border border-amber-300 text-xs font-extrabold px-3 py-1 rounded-full flex items-center gap-1.5">
+                        <i class="fa-solid fa-hourglass-half animate-spin"></i> Pending Admin Approval
+                    </span>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs">
+                    <div class="bg-slate-50 p-3 rounded-lg border border-slate-200">
+                        <span class="text-slate-400 block font-semibold">Vendor Name:</span>
+                        <strong id="tracker-vendor-name" class="text-slate-800 text-sm">Himalayan Craft Works</strong>
+                    </div>
+                    <div class="bg-slate-50 p-3 rounded-lg border border-slate-200">
+                        <span class="text-slate-400 block font-semibold">Requested Plan:</span>
+                        <strong class="text-slate-800 text-sm">1-Year Starter (20 SKUs)</strong>
+                    </div>
+                    <div class="bg-slate-50 p-3 rounded-lg border border-slate-200">
+                        <span class="text-slate-400 block font-semibold">Total Discount:</span>
+                        <strong class="text-emerald-600 text-sm font-extrabold">100% OFF (Rs. 30,000 Saved)</strong>
+                    </div>
+                </div>
+
+                <!-- Admin Simulator Toggle for Testing -->
+                <div class="mt-5 pt-4 border-t border-slate-100 bg-slate-50 -mx-6 -mb-6 p-4 rounded-b-2xl flex flex-col sm:flex-row items-center justify-between gap-3 text-xs">
+                    <span class="text-slate-500 font-semibold flex items-center gap-1.5">
+                        <i class="fa-solid fa-sliders text-brand-600"></i> Admin Simulation Preview:
+                    </span>
+                    <div class="flex items-center gap-2">
+                        <button onclick="setAdminStatus('pending')" class="px-3 py-1.5 bg-amber-100 hover:bg-amber-200 text-amber-900 rounded-lg font-bold transition-colors">
+                            Simulate: Pending Review
+                        </button>
+                        <button onclick="setAdminStatus('approved')" class="px-3 py-1.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg font-bold transition-colors shadow-sm">
+                            Simulate: Admin Approved
+                        </button>
+                        <button onclick="setAdminStatus('rejected')" class="px-3 py-1.5 bg-slate-200 hover:bg-slate-300 text-slate-700 rounded-lg font-bold transition-colors">
+                            Simulate: Rejected
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="trial-banner" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 my-16">
+            <div class="bg-gradient-to-r from-brand-800 via-brand-700 to-teal-800 rounded-3xl p-8 sm:p-12 text-white relative overflow-hidden shadow-2xl">
+                <div class="absolute -right-10 -bottom-10 opacity-10 text-9xl font-black">
+                    NILOPASAL
+                </div>
+                <div class="relative z-10 flex flex-col lg:flex-row items-center justify-between gap-8">
+                    <div class="max-w-2xl text-center lg:text-left">
+                        <span class="inline-block bg-white/20 backdrop-blur-md text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-3">
+                            Zero Risk • 14 Days Standard Trial
+                        </span>
+                        <h2 class="text-2xl sm:text-4xl font-extrabold tracking-tight">
+                            Start With Your 14-Day Free Vendor Trial
+                        </h2>
+                        <p class="mt-2 text-brand-100 text-sm sm:text-base">
+                            List up to 10 product variants, test Digital Khata, respond to customer inquiries, and manage orders free for 14 days. No payment details required.
+                        </p>
+                    </div>
+                    <div class="shrink-0 flex flex-col sm:flex-row gap-4 w-full lg:w-auto">
+                        <button onclick="openModal('Starter (Free Trial)')" class="bg-white hover:bg-slate-100 text-brand-900 font-extrabold px-6 py-3.5 rounded-xl text-sm transition-all shadow-lg text-center">
+                            Activate Free Trial Now
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 my-16">
+            <div class="text-center mb-10">
+                <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900">Included Features Across All Vendor Plans</h2>
+                <p class="text-sm text-slate-500 mt-2">Every Nilopasal vendor gets full access to our core manufacturing suite.</p>
+            </div>
+
+            <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-slate-100">
+                    
+                    <!-- Feature Group 1 -->
+                    <div class="p-6 space-y-4">
+                        <h3 class="text-sm font-extrabold text-brand-700 uppercase tracking-wider flex items-center gap-2">
+                            <i class="fa-solid fa-boxes-packing"></i> Catalog & Inventory
+                        </h3>
+                        <ul class="space-y-3 text-xs text-slate-700">
+                            <li class="flex items-start gap-2">
+                                <i class="fa-solid fa-circle-check text-emerald-500 mt-0.5"></i>
+                                <span><strong>SKU / Variant Management:</strong> Color, size, material variations.</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i class="fa-solid fa-circle-check text-emerald-500 mt-0.5"></i>
+                                <span><strong>HD Photos & Specs:</strong> High-resolution product image gallery.</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i class="fa-solid fa-circle-check text-emerald-500 mt-0.5"></i>
+                                <span><strong>Real-time Stock Tracking:</strong> Automatic stock deduction per order.</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Feature Group 2 -->
+                    <div class="p-6 space-y-4">
+                        <h3 class="text-sm font-extrabold text-brand-700 uppercase tracking-wider flex items-center gap-2">
+                            <i class="fa-solid fa-book-bookmark"></i> Operations & Accounting
+                        </h3>
+                        <ul class="space-y-3 text-xs text-slate-700">
+                            <li class="flex items-start gap-2">
+                                <i class="fa-solid fa-circle-check text-emerald-500 mt-0.5"></i>
+                                <span><strong>Digital Khata:</strong> Built-in vendor ledger for buyer credit & records.</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i class="fa-solid fa-circle-check text-emerald-500 mt-0.5"></i>
+                                <span><strong>Direct Customer Chat:</strong> Instant messaging with retail buyers.</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i class="fa-solid fa-circle-check text-emerald-500 mt-0.5"></i>
+                                <span><strong>Fulfillment Dashboard:</strong> Order status tracking from order to delivery.</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Feature Group 3 -->
+                    <div class="p-6 space-y-4">
+                        <h3 class="text-sm font-extrabold text-brand-700 uppercase tracking-wider flex items-center gap-2">
+                            <i class="fa-solid fa-chart-line"></i> Growth & Marketing
+                        </h3>
+                        <ul class="space-y-3 text-xs text-slate-700">
+                            <li class="flex items-start gap-2">
+                                <i class="fa-solid fa-circle-check text-emerald-500 mt-0.5"></i>
+                                <span><strong>Custom Store Page:</strong> Dedicated manufacturer profile URL.</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i class="fa-solid fa-circle-check text-emerald-500 mt-0.5"></i>
+                                <span><strong>Analytics & Reports:</strong> Views, buyer trends, and revenue insights.</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i class="fa-solid fa-circle-check text-emerald-500 mt-0.5"></i>
+                                <span><strong>Reviews & Ratings:</strong> Verified buyer reviews to build trust.</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <section id="faq" class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 my-20">
+            <div class="text-center mb-10">
+                <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900">Frequently Asked Questions</h2>
+                <p class="text-sm text-slate-500 mt-2">Everything you need to know about Nilopasal vendor subscriptions</p>
+            </div>
+
+            <div class="space-y-4">
+                <!-- FAQ Item 0: New Early Adopter Offer -->
+                <div class="bg-white border-2 border-red-200 rounded-xl overflow-hidden shadow-sm">
+                    <button onclick="toggleFaq(0)" class="w-full text-left px-6 py-4 font-bold text-red-900 flex justify-between items-center hover:bg-red-50/50 text-sm">
+                        <span class="flex items-center gap-2">
+                            <i class="fa-solid fa-ticket text-red-500"></i>
+                            How does the First 5 Free Manufacturers Coupon work?
+                        </span>
+                        <i id="faq-icon-0" class="fa-solid fa-chevron-down text-slate-400 transition-transform"></i>
+                    </button>
+                    <div id="faq-answer-0" class="hidden px-6 pb-4 text-xs text-slate-600 border-t border-slate-100 pt-3 leading-relaxed">
+                        The first 5 eligible Nepali manufacturers who apply will receive a promo coupon (<strong class="font-mono">FIRST5FREE</strong>) granting 100% discount on the Starter Plan (Up to 20 SKUs) for 1 full year (Rs. 30,000 value). Because spots are strictly limited, every application is reviewed and approved by the Nilopasal Admin team to confirm manufacturer status before activation.
+                    </div>
+                </div>
+
+                <!-- FAQ Item 1 -->
+                <div class="bg-white border border-slate-200 rounded-xl overflow-hidden shadow-sm">
+                    <button onclick="toggleFaq(1)" class="w-full text-left px-6 py-4 font-bold text-slate-800 flex justify-between items-center hover:bg-slate-50 text-sm">
+                        <span>How are SKUs / variants calculated?</span>
+                        <i id="faq-icon-1" class="fa-solid fa-chevron-down text-slate-400 transition-transform"></i>
+                    </button>
+                    <div id="faq-answer-1" class="hidden px-6 pb-4 text-xs text-slate-600 border-t border-slate-100 pt-3 leading-relaxed">
+                        An SKU (Stock Keeping Unit) corresponds to each unique, orderable item in your store. If you sell 1 T-shirt model that comes in 2 colors (Black, White) and 3 sizes (M, L, XL), that single product generates 2 x 3 = 6 active SKUs against your subscription plan limit.
+                    </div>
+                </div>
+
+                <!-- FAQ Item 2 -->
+                <div class="bg-white border border-slate-200 rounded-xl overflow-hidden shadow-sm">
+                    <button onclick="toggleFaq(2)" class="w-full text-left px-6 py-4 font-bold text-slate-800 flex justify-between items-center hover:bg-slate-50 text-sm">
+                        <span>What happens when I reach my SKU limit?</span>
+                        <i id="faq-icon-2" class="fa-solid fa-chevron-down text-slate-400 transition-transform"></i>
+                    </button>
+                    <div id="faq-answer-2" class="hidden px-6 pb-4 text-xs text-slate-600 border-t border-slate-100 pt-3 leading-relaxed">
+                        When you hit your limit, existing items remain fully active and orderable. To add new variants or products, you can easily upgrade to the next plan directly from your vendor dashboard, or temporarily archive old SKUs.
+                    </div>
+                </div>
+
+                <!-- FAQ Item 3 -->
+                <div class="bg-white border border-slate-200 rounded-xl overflow-hidden shadow-sm">
+                    <button onclick="toggleFaq(3)" class="w-full text-left px-6 py-4 font-bold text-slate-800 flex justify-between items-center hover:bg-slate-50 text-sm">
+                        <span>How does the 14-Day Free Trial work?</span>
+                        <i id="faq-icon-3" class="fa-solid fa-chevron-down text-slate-400 transition-transform"></i>
+                    </button>
+                    <div id="faq-answer-3" class="hidden px-6 pb-4 text-xs text-slate-600 border-t border-slate-100 pt-3 leading-relaxed">
+                        You get instant access to all core platform tools (Digital Khata, inventory, order processing, and customer chat) for 14 days with a limit of 10 SKUs. No credit card or payment is required upfront. You can pick a paid plan at any point during or after your trial.
+                    </div>
+                </div>
+
+                <!-- FAQ Item 4 -->
+                <div class="bg-white border border-slate-200 rounded-xl overflow-hidden shadow-sm">
+                    <button onclick="toggleFaq(4)" class="w-full text-left px-6 py-4 font-bold text-slate-800 flex justify-between items-center hover:bg-slate-50 text-sm">
+                        <span>Can I change my plan or billing frequency later?</span>
+                        <i id="faq-icon-4" class="fa-solid fa-chevron-down text-slate-400 transition-transform"></i>
+                    </button>
+                    <div id="faq-answer-4" class="hidden px-6 pb-4 text-xs text-slate-600 border-t border-slate-100 pt-3 leading-relaxed">
+                        Yes! You can switch between Monthly and Yearly billing or upgrade/downgrade your tier at any time. When upgrading mid-cycle, unused days from your previous plan are automatically prorated.
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-slate-900 text-slate-400 border-t border-slate-800 text-xs py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div>
+                <div class="flex items-center gap-2 text-white font-bold text-base mb-3">
+                    <div class="w-7 h-7 rounded bg-brand-500 flex items-center justify-center text-white text-sm font-black">N</div>
+                    NILOPASAL VENDOR
+                </div>
+                <p class="text-slate-400 leading-relaxed">
+                    Empowering Nepali manufacturers and wholesale suppliers with modern digital listing, inventory, and Khata tools.
+                </p>
+            </div>
+            <div>
+                <h4 class="text-white font-bold mb-3">Vendor Navigation</h4>
+                <ul class="space-y-2">
+                    <li><a href="#" class="hover:text-white transition-colors">Pricing Plans</a></li>
+                    <li><a href="#" onclick="openCouponModal()" class="hover:text-amber-300 transition-colors text-amber-400 font-semibold">Free Coupon Offer (5 Left)</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors">SKU Guide</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors">Digital Khata Info</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-white font-bold mb-3">Support & Legal</h4>
+                <ul class="space-y-2">
+                    <li><a href="#" class="hover:text-white transition-colors">Vendor Guidelines</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors">Terms of Service</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors">Privacy Policy</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors">Contact Vendor Support</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-white font-bold mb-3">Nepal Office</h4>
+                <p class="leading-relaxed">
+                    Kathmandu, Bagmati Province, Nepal<br>
+                    Email: vendors@nilopasal.com.np<br>
+                    Phone: +977-1-4XXXXXX
+                </p>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 mt-8 border-t border-slate-800 text-center text-slate-500">
+            &copy; 2026 Nilopasal Platform. All rights reserved. Designed for Manufacturers in Nepal.
+        </div>
+    </footer>
+
+    <!-- Plan Selection / Registration Modal -->
+    <div id="plan-modal" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl max-w-md w-full p-6 shadow-2xl relative border border-slate-100 transform transition-all">
+            <button onclick="closeModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+            
+            <div class="text-center mb-6">
+                <div class="w-12 h-12 bg-brand-50 text-brand-600 rounded-full flex items-center justify-center mx-auto mb-3 text-xl font-bold">
+                    <i class="fa-solid fa-store"></i>
+                </div>
+                <h3 class="text-xl font-bold text-slate-900">Join Nilopasal Vendor Network</h3>
+                <p class="text-xs text-slate-500 mt-1">You selected the <span id="modal-plan-name" class="font-bold text-brand-700">Business</span> plan</p>
+            </div>
+
+            <form onsubmit="handleCheckoutSubmit(event)" class="space-y-4 text-left">
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">Manufacturing Company Name</label>
+                    <input type="text" id="checkout-company-name" placeholder="e.g. Nepal Textile Industries" required class="w-full border border-slate-300 rounded-lg px-3 py-2 text-xs focus:ring-2 focus:ring-brand-500 focus:outline-none">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">Contact Phone Number</label>
+                    <input type="tel" placeholder="+977 98XXXXXXXX" required class="w-full border border-slate-300 rounded-lg px-3 py-2 text-xs focus:ring-2 focus:ring-brand-500 focus:outline-none">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">Have a Free Offer Coupon Code?</label>
+                    <div class="flex gap-2">
+                        <input type="text" id="checkout-promo-code" placeholder="Enter coupon code (e.g. FIRST5FREE)" class="w-full border border-slate-300 rounded-lg px-3 py-2 text-xs uppercase font-mono focus:ring-2 focus:ring-brand-500 focus:outline-none">
+                        <button type="button" onclick="applyPromoCode()" class="bg-slate-800 text-white text-xs font-bold px-3 py-2 rounded-lg hover:bg-slate-700 transition-colors">
+                            Apply
+                        </button>
+                    </div>
+                    <p id="promo-status-msg" class="text-[11px] mt-1 font-semibold hidden"></p>
+                </div>
+                <div class="bg-slate-50 p-3 rounded-lg border border-slate-200 text-xs flex justify-between items-center">
+                    <div>
+                        <span class="text-slate-500 block">Selected Billing:</span>
+                        <strong id="modal-billing-type" class="text-slate-800">Monthly Billing</strong>
+                    </div>
+                    <div class="text-right">
+                        <span id="modal-plan-price" class="text-sm font-black text-brand-700">Rs. 6,000 / mo</span>
+                    </div>
+                </div>
+                <button type="submit" class="w-full py-3 bg-brand-600 hover:bg-brand-700 text-white font-bold rounded-xl text-xs shadow-md transition-colors">
+                    Proceed to Vendor Onboarding
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Special Coupon Claim Modal -->
+    <div id="coupon-modal" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl max-w-lg w-full p-6 sm:p-7 shadow-2xl relative border border-slate-100 overflow-y-auto max-h-[90vh]">
+            <button onclick="closeCouponModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+
+            <div class="flex items-center gap-3 mb-4">
+                <div class="w-12 h-12 rounded-2xl bg-red-100 text-red-600 flex items-center justify-center font-bold text-xl shrink-0">
+                    <i class="fa-solid fa-ticket"></i>
+                </div>
+                <div>
+                    <span class="bg-red-100 text-red-800 text-[10px] font-black px-2 py-0.5 rounded uppercase tracking-wider">
+                        First 5 Manufacturers Special
+                    </span>
+                    <h3 class="text-lg font-extrabold text-slate-900">Claim 1-Year Free Starter Plan</h3>
+                </div>
+            </div>
+
+            <div class="bg-amber-50 border border-amber-200 rounded-xl p-3 text-xs text-amber-900 mb-5 flex items-start gap-2">
+                <i class="fa-solid fa-shield-halved text-amber-600 text-sm mt-0.5 shrink-0"></i>
+                <div>
+                    <strong>Nilopasal Admin Approval Notice:</strong>
+                    Free 1-year coupons (<code class="font-mono bg-amber-100 px-1 py-0.5 rounded font-bold">FIRST5FREE</code>) are approved manually by the Nilopasal team to ensure verified Nepali manufacturers qualify.
+                </div>
+            </div>
+
+            <form onsubmit="submitCouponClaim(event)" class="space-y-4 text-left">
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">Manufacturer / Factory Name *</label>
+                    <input type="text" id="claim-factory-name" placeholder="e.g. Annapurna Garment Manufacturers" required class="w-full border border-slate-300 rounded-lg px-3 py-2 text-xs focus:ring-2 focus:ring-red-500 focus:outline-none">
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 mb-1">Contact Person *</label>
+                        <input type="text" placeholder="Full Name" required class="w-full border border-slate-300 rounded-lg px-3 py-2 text-xs focus:ring-2 focus:ring-red-500 focus:outline-none">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 mb-1">Phone Number *</label>
+                        <input type="tel" placeholder="+977 98XXXXXXXX" required class="w-full border border-slate-300 rounded-lg px-3 py-2 text-xs focus:ring-2 focus:ring-red-500 focus:outline-none">
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">Business Email Address *</label>
+                    <input type="email" placeholder="vendor@factory.com.np" required class="w-full border border-slate-300 rounded-lg px-3 py-2 text-xs focus:ring-2 focus:ring-red-500 focus:outline-none">
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 mb-1">Primary Product Category</label>
+                        <select class="w-full border border-slate-300 rounded-lg px-3 py-2 text-xs focus:ring-2 focus:ring-red-500 focus:outline-none">
+                            <option>Apparel & Clothing</option>
+                            <option>Handicrafts & Woolens</option>
+                            <option>Footwear & Leather</option>
+                            <option>Food Manufacturing</option>
+                            <option>Plastics & Household</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 mb-1">Estimated SKU Count</label>
+                        <select class="w-full border border-slate-300 rounded-lg px-3 py-2 text-xs focus:ring-2 focus:ring-red-500 focus:outline-none">
+                            <option>1 to 10 SKUs</option>
+                            <option selected>11 to 20 SKUs (Starter Fit)</option>
+                            <option>21 to 50 SKUs</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Coupon Applied Box -->
+                <div class="bg-red-50 p-3 rounded-xl border border-red-200 text-xs flex justify-between items-center">
+                    <div>
+                        <span class="text-red-800 font-bold block">Coupon Code Auto-Applied:</span>
+                        <code class="text-red-700 font-extrabold text-sm font-mono">FIRST5FREE</code>
+                    </div>
+                    <div class="text-right">
+                        <span class="line-through text-slate-400 text-xs">Rs. 30,000 / yr</span>
+                        <span class="block text-sm font-extrabold text-emerald-600">FREE FOR 1 YEAR</span>
+                    </div>
+                </div>
+
+                <button type="submit" class="w-full py-3 bg-red-600 hover:bg-red-700 text-white font-extrabold rounded-xl text-xs shadow-md transition-colors flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-paper-plane"></i> Submit Application For Admin Review
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- SKU Visual Explainer Modal -->
+    <div id="sku-modal" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl max-w-lg w-full p-6 shadow-2xl relative border border-slate-100">
+            <button onclick="closeSkuModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+
+            <div class="flex items-center gap-3 mb-4">
+                <div class="w-10 h-10 rounded-xl bg-amber-100 text-amber-700 flex items-center justify-center font-bold text-lg">
+                    <i class="fa-solid fa-cubes"></i>
+                </div>
+                <div>
+                    <h3 class="text-lg font-bold text-slate-900">Understanding SKUs vs Products</h3>
+                    <p class="text-xs text-slate-500">How Nilopasal counts variants in subscription plans</p>
+                </div>
+            </div>
+
+            <div class="space-y-4 text-xs text-slate-600">
+                <p>
+                    A <strong>Parent Product</strong> is the overall item line (e.g. <i>"Cotton Crewneck T-Shirt"</i>). Each specific size, color, or style combination is an <strong>SKU (Stock Keeping Unit)</strong> with its own inventory level.
+                </p>
+
+                <!-- Visual Calculation Example -->
+                <div class="bg-slate-50 p-4 rounded-xl border border-slate-200">
+                    <div class="font-bold text-slate-800 mb-2 flex items-center justify-between">
+                        <span>Example: 1 Parent T-shirt Listing</span>
+                        <span class="bg-amber-100 text-amber-800 px-2 py-0.5 rounded text-[10px]">6 SKUs Total</span>
+                    </div>
+                    <div class="grid grid-cols-2 gap-2 text-[11px] font-mono">
+                        <div class="bg-white p-2 rounded border border-slate-200 flex items-center gap-1.5">
+                            <span class="w-2.5 h-2.5 rounded-full bg-slate-900 inline-block"></span>
+                            Black / Medium
+                        </div>
+                        <div class="bg-white p-2 rounded border border-slate-200 flex items-center gap-1.5">
+                            <span class="w-2.5 h-2.5 rounded-full bg-slate-900 inline-block"></span>
+                            Black / Large
+                        </div>
+                        <div class="bg-white p-2 rounded border border-slate-200 flex items-center gap-1.5">
+                            <span class="w-2.5 h-2.5 rounded-full bg-slate-900 inline-block"></span>
+                            Black / XL
+                        </div>
+                        <div class="bg-white p-2 rounded border border-slate-200 flex items-center gap-1.5">
+                            <span class="w-2.5 h-2.5 rounded-full bg-slate-300 border border-slate-400 inline-block"></span>
+                            White / Medium
+                        </div>
+                        <div class="bg-white p-2 rounded border border-slate-200 flex items-center gap-1.5">
+                            <span class="w-2.5 h-2.5 rounded-full bg-slate-300 border border-slate-400 inline-block"></span>
+                            White / Large
+                        </div>
+                        <div class="bg-white p-2 rounded border border-slate-200 flex items-center gap-1.5">
+                            <span class="w-2.5 h-2.5 rounded-full bg-slate-300 border border-slate-400 inline-block"></span>
+                            White / XL
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-emerald-50 text-emerald-800 p-3 rounded-lg border border-emerald-200 text-xs">
+                    <i class="fa-solid fa-lightbulb text-emerald-600 mr-1"></i>
+                    <strong>Pro-Tip:</strong> Out-of-stock items marked as "Archived" in your dashboard do not count towards your plan's active SKU quota.
+                </div>
+            </div>
+
+            <button onclick="closeSkuModal()" class="mt-6 w-full py-2.5 bg-slate-900 hover:bg-slate-800 text-white font-bold rounded-xl text-xs transition-colors">
+                Got It, Thanks!
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Global State
+        let isYearly = false;
+        let couponSpotsRemaining = 3;
+
+        const pricingData = {
+            Starter: { monthly: "3,000", yearly: "30,000" },
+            Business: { monthly: "6,000", yearly: "60,000" },
+            Professional: { monthly: "9,500", yearly: "95,000" }
+        };
+
+        // Toggle Billing Logic
+        function toggleBilling() {
+            isYearly = !isYearly;
+            const circle = document.getElementById('toggle-circle');
+            const monthlyLabel = document.getElementById('monthly-label');
+            const yearlyLabel = document.getElementById('yearly-label');
+
+            if (isYearly) {
+                circle.classList.add('translate-x-8');
+                monthlyLabel.classList.remove('text-slate-900');
+                monthlyLabel.classList.add('text-slate-500');
+                yearlyLabel.classList.remove('text-slate-500');
+                yearlyLabel.classList.add('text-slate-900', 'font-bold');
+            } else {
+                circle.classList.remove('translate-x-8');
+                monthlyLabel.classList.remove('text-slate-500');
+                monthlyLabel.classList.add('text-slate-900', 'font-bold');
+                yearlyLabel.classList.remove('text-slate-900', 'font-bold');
+                yearlyLabel.classList.add('text-slate-500');
+            }
+
+            updatePrices();
+        }
+
+        function updatePrices() {
+            const starterPrice = document.querySelector('.starter-price');
+            const businessPrice = document.querySelector('.business-price');
+            const professionalPrice = document.querySelector('.professional-price');
+            
+            const periods = document.querySelectorAll('.billing-period');
+            const starterSub = document.querySelector('.starter-subtext');
+            const businessSub = document.querySelector('.business-subtext');
+            const proSub = document.querySelector('.professional-subtext');
+
+            if (isYearly) {
+                starterPrice.textContent = pricingData.Starter.yearly;
+                businessPrice.textContent = pricingData.Business.yearly;
+                professionalPrice.textContent = pricingData.Professional.yearly;
+
+                periods.forEach(p => p.textContent = ' / year');
+                starterSub.textContent = 'Rs. 2,500/mo equivalent (Save Rs. 6,000)';
+                businessSub.textContent = 'Rs. 5,000/mo equivalent (Save Rs. 12,000)';
+                proSub.textContent = 'Rs. 7,916/mo equivalent (Save Rs. 19,000)';
+            } else {
+                starterPrice.textContent = pricingData.Starter.monthly;
+                businessPrice.textContent = pricingData.Business.monthly;
+                professionalPrice.textContent = pricingData.Professional.monthly;
+
+                periods.forEach(p => p.textContent = ' / month');
+                starterSub.textContent = 'Billed monthly';
+                businessSub.textContent = 'Billed monthly';
+                proSub.textContent = 'Billed monthly';
+            }
+        }
+
+        // Calculate SKUs in Interactive Tool
+        function calculateSKUs() {
+            const products = parseInt(document.getElementById('calc-products').value) || 0;
+            const colors = parseInt(document.getElementById('calc-colors').value) || 0;
+            const sizes = parseInt(document.getElementById('calc-sizes').value) || 0;
+
+            const totalSKUs = products * colors * sizes;
+            
+            document.getElementById('calculated-sku-count').textContent = totalSKUs;
+            document.getElementById('calc-formula').textContent = `${products} products × ${colors} colors × ${sizes} sizes`;
+
+            const badge = document.getElementById('recommended-plan-badge');
+
+            if (totalSKUs <= 20) {
+                badge.textContent = 'Starter Plan (Qualifies for Free 1-Year Coupon!)';
+                badge.className = 'bg-red-500 text-white text-xs font-extrabold px-3 py-1 rounded-full uppercase tracking-wide';
+            } else if (totalSKUs <= 50) {
+                badge.textContent = 'Business Plan (Up to 50 SKUs)';
+                badge.className = 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 text-xs font-extrabold px-3 py-1 rounded-full uppercase tracking-wide';
+            } else if (totalSKUs <= 100) {
+                badge.textContent = 'Professional Plan (Up to 100 SKUs)';
+                badge.className = 'bg-brand-500/30 text-brand-200 border border-brand-400/40 text-xs font-extrabold px-3 py-1 rounded-full uppercase tracking-wide';
+            } else {
+                badge.textContent = 'Enterprise Plan (100+ SKUs)';
+                badge.className = 'bg-amber-500/30 text-amber-300 border border-amber-400/40 text-xs font-extrabold px-3 py-1 rounded-full uppercase tracking-wide';
+            }
+        }
+
+        // Modal Controls
+        function openModal(planName) {
+            document.getElementById('modal-plan-name').textContent = planName;
+            document.getElementById('modal-billing-type').textContent = isYearly ? 'Yearly Billing (2 Months Free)' : 'Monthly Billing';
+            
+            let priceText = "Custom Pricing";
+            if (planName.includes('Starter')) priceText = isYearly ? "Rs. 30,000 / year" : "Rs. 3,000 / month";
+            if (planName.includes('Business')) priceText = isYearly ? "Rs. 60,000 / year" : "Rs. 6,000 / month";
+            if (planName.includes('Professional')) priceText = isYearly ? "Rs. 95,000 / year" : "Rs. 9,500 / month";
+            
+            document.getElementById('modal-plan-price').textContent = priceText;
+            document.getElementById('plan-modal').classList.remove('hidden');
+        }
+
+        function closeModal() {
+            document.getElementById('plan-modal').classList.add('hidden');
+        }
+
+        function openCouponModal() {
+            document.getElementById('coupon-modal').classList.remove('hidden');
+        }
+
+        function closeCouponModal() {
+            document.getElementById('coupon-modal').classList.add('hidden');
+        }
+
+        function openSkuModal() {
+            document.getElementById('sku-modal').classList.remove('hidden');
+        }
+
+        function closeSkuModal() {
+            document.getElementById('sku-modal').classList.add('hidden');
+        }
+
+        // Promo Code Verification in Checkout
+        function applyPromoCode() {
+            const input = document.getElementById('checkout-promo-code').value.trim().toUpperCase();
+            const statusMsg = document.getElementById('promo-status-msg');
+
+            if (input === 'FIRST5FREE') {
+                statusMsg.textContent = '✓ Valid Coupon Code! 100% OFF Starter Plan (Pending Nilopasal Admin Approval)';
+                statusMsg.className = 'text-[11px] mt-1 font-semibold text-emerald-600 block';
+                document.getElementById('modal-plan-price').innerHTML = '<span class="line-through text-slate-400 text-xs">Rs. 30,000</span> <span class="text-emerald-600 font-extrabold">FREE (1 Yr)</span>';
+            } else if (input === '') {
+                statusMsg.textContent = 'Please enter a coupon code.';
+                statusMsg.className = 'text-[11px] mt-1 font-semibold text-red-500 block';
+            } else {
+                statusMsg.textContent = 'Invalid promo code. Check for typos or apply for FIRST5FREE.';
+                statusMsg.className = 'text-[11px] mt-1 font-semibold text-red-500 block';
+            }
+        }
+
+        // Coupon Claim Submission
+        function submitCouponClaim(event) {
+            event.preventDefault();
+            const factory = document.getElementById('claim-factory-name').value || "Your Factory";
+
+            // Update remaining spots
+            if (couponSpotsRemaining > 1) {
+                couponSpotsRemaining--;
+                document.getElementById('spots-left-count').textContent = `${couponSpotsRemaining} of 5 Spots Remaining`;
+            }
+
+            closeCouponModal();
+
+            // Display Status Tracker Section
+            document.getElementById('tracker-vendor-name').textContent = factory;
+            document.getElementById('application-status-section').classList.remove('hidden');
+            
+            // Scroll to Tracker
+            document.getElementById('application-status-section').scrollIntoView({ behavior: 'smooth' });
+            
+            setAdminStatus('pending');
+        }
+
+        // Admin Approval Simulation Function
+        function setAdminStatus(status) {
+            const badge = document.getElementById('tracker-status-badge');
+            
+            if (status === 'pending') {
+                badge.className = 'bg-amber-100 text-amber-800 border border-amber-300 text-xs font-extrabold px-3 py-1 rounded-full flex items-center gap-1.5';
+                badge.innerHTML = '<i class="fa-solid fa-hourglass-half animate-spin"></i> Pending Admin Approval';
+            } else if (status === 'approved') {
+                badge.className = 'bg-emerald-100 text-emerald-800 border border-emerald-300 text-xs font-extrabold px-3 py-1 rounded-full flex items-center gap-1.5 animate-pulse';
+                badge.innerHTML = '<i class="fa-solid fa-circle-check text-emerald-600"></i> Approved by Nilopasal Admin';
+            } else if (status === 'rejected') {
+                badge.className = 'bg-rose-100 text-rose-800 border border-rose-300 text-xs font-extrabold px-3 py-1 rounded-full flex items-center gap-1.5';
+                badge.innerHTML = '<i class="fa-solid fa-circle-xmark text-rose-600"></i> Rejected (Invalid Manufacturer Info)';
+            }
+        }
+
+        function handleCheckoutSubmit(event) {
+            event.preventDefault();
+            const company = document.getElementById('checkout-company-name').value;
+            alert(`Application for ${company} submitted! Our Nilopasal vendor onboarding team will contact you shortly.`);
+            closeModal();
+        }
+
+        // FAQ Toggle
+        function toggleFaq(id) {
+            const answer = document.getElementById(`faq-answer-${id}`);
+            const icon = document.getElementById(`faq-icon-${id}`);
+            
+            if (answer.classList.contains('hidden')) {
+                answer.classList.remove('hidden');
+                icon.classList.add('rotate-180');
+            } else {
+                answer.classList.add('hidden');
+                icon.classList.remove('rotate-180');
+            }
+        }
+
+        // Initial Calculation Run
+        calculateSKUs();
+    </script>
+</body>
+</html>

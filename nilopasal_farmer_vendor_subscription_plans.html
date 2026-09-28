@@ -1,0 +1,967 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nilopasal Farmer Vendor Subscription Plans</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        agro: {
+                            50: '#f0fdf4',
+                            100: '#dcfce7',
+                            200: '#bbf7d0',
+                            500: '#22c55e',
+                            600: '#16a34a',
+                            700: '#15803d',
+                            800: '#166534',
+                            900: '#14532d',
+                        },
+                        earth: {
+                            50: '#fffbeb',
+                            100: '#fef3c7',
+                            500: '#f59e0b',
+                            700: '#b45309',
+                            800: '#78350f',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+        }
+        .agro-card-shadow {
+            box-shadow: 0 10px 30px -5px rgba(22, 163, 74, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        .popular-agro-shadow {
+            box-shadow: 0 20px 40px -12px rgba(22, 163, 74, 0.25);
+        }
+        .promo-glow-agro {
+            box-shadow: 0 0 25px rgba(245, 158, 11, 0.3);
+        }
+    </style>
+</head>
+<body class="text-slate-800 antialiased bg-slate-50 min-h-screen flex flex-col justify-between">
+
+    <!-- Top Announcement Bar -->
+    <div class="bg-gradient-to-r from-agro-900 via-agro-800 to-earth-800 text-white text-xs md:text-sm py-2.5 px-4 text-center font-medium flex flex-wrap items-center justify-center gap-2 shadow-inner">
+        <span class="bg-amber-400 text-slate-900 border border-amber-300 text-[10px] uppercase tracking-wider font-black px-2.5 py-0.5 rounded-full animate-bounce">
+            🌾 Early Farmer Offer
+        </span>
+        <span><strong>First 10 Farmers:</strong> Get 1 Full Year FREE Farmer Plus Plan (Up to 20 Products)!</span>
+        <button onclick="openCouponModal()" class="underline hover:text-amber-300 transition-colors ml-1 font-extrabold flex items-center gap-1">
+            Claim Free Coupon <i class="fa-solid fa-arrow-right text-xs"></i>
+        </button>
+    </div>
+
+    <!-- Header Navigation -->
+    <header class="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-slate-200/80">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- Brand Logo -->
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-agro-700 to-emerald-500 flex items-center justify-center text-white shadow-md shadow-agro-600/20 font-black text-xl tracking-wider">
+                    <i class="fa-solid fa-wheat-awn"></i>
+                </div>
+                <div>
+                    <div class="flex items-center gap-2">
+                        <span class="text-xl font-black tracking-tight text-slate-900">NILOPASAL</span>
+                        <span class="bg-agro-100 text-agro-800 border border-agro-200 text-[10px] font-bold px-2 py-0.5 rounded uppercase tracking-wider">Agro Vendor</span>
+                    </div>
+                    <p class="text-xs text-slate-500 hidden sm:block">Empowering Nepali Farmers & Agriculture Businesses</p>
+                </div>
+            </div>
+
+            <!-- Header Actions -->
+            <div class="flex items-center gap-3">
+                <button onclick="openCouponModal()" class="hidden lg:flex items-center gap-2 text-xs font-bold text-earth-800 bg-earth-50 hover:bg-earth-100 border border-earth-200 px-3 py-2 rounded-lg transition-all">
+                    <i class="fa-solid fa-ticket text-amber-600"></i>
+                    Apply Free Code (FARMER100)
+                </button>
+                <button onclick="openCalculatorModal()" class="hidden md:flex items-center gap-2 text-xs font-semibold text-agro-700 bg-agro-50 hover:bg-agro-100 border border-agro-200 px-3 py-2 rounded-lg transition-all">
+                    <i class="fa-solid fa-calculator"></i>
+                    Crop Calculator
+                </button>
+                <a href="#faq" class="text-sm font-medium text-slate-600 hover:text-slate-900 px-3 py-2 hidden sm:block">FAQs</a>
+                <button onclick="openCheckoutModal('Free Farmer', 0)" class="bg-slate-900 hover:bg-slate-800 text-white font-medium text-sm px-4 py-2 rounded-lg transition-colors shadow-sm">
+                    Farmer Login
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-grow">
+        <!-- Hero Section -->
+        <section class="relative pt-10 pb-16 overflow-hidden">
+            <div class="absolute inset-0 bg-[radial-gradient(#cbd5e1_1px,transparent_1px)] [background-size:16px_16px] [mask-image:radial-gradient(ellipse_50%_50%_at_50%_50%,#000_70%,transparent_100%)] opacity-50"></div>
+            
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+                
+                <!-- Early Farmer Special Offer Box -->
+                <div class="max-w-4xl mx-auto mb-8 bg-gradient-to-r from-agro-600 via-emerald-600 to-amber-600 p-0.5 rounded-2xl shadow-xl promo-glow-agro">
+                    <div class="bg-white rounded-[15px] p-5 sm:p-6 text-left flex flex-col md:flex-row items-center justify-between gap-6">
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 rounded-2xl bg-amber-100 text-amber-700 flex items-center justify-center shrink-0 text-2xl font-black shadow-inner">
+                                <i class="fa-solid fa-seedling"></i>
+                            </div>
+                            <div>
+                                <div class="flex items-center gap-2 flex-wrap">
+                                    <span class="bg-amber-100 text-amber-800 border border-amber-200 text-[10px] font-black px-2.5 py-0.5 rounded-full uppercase tracking-wider">First 10 Farmers Promotion</span>
+                                    <span class="text-xs text-slate-500 font-semibold"><i class="fa-solid fa-user-check text-agro-600"></i> Requires Admin Verification</span>
+                                </div>
+                                <h2 class="text-lg sm:text-xl font-extrabold text-slate-900 mt-1">
+                                    100% FREE 1-Year Farmer Plus Subscription
+                                </h2>
+                                <p class="text-xs sm:text-sm text-slate-600 mt-1">
+                                    Sell up to 20 products, manage Digital Khata, and chat with buyers for 12 months free. Coupon <code class="font-mono text-amber-800 bg-amber-50 px-1.5 py-0.5 rounded font-bold">FARMER100</code> is approved by Nilopasal Admin.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="shrink-0 text-center md:text-right w-full md:w-auto border-t md:border-t-0 border-slate-100 pt-4 md:pt-0">
+                            <div class="text-xs font-bold text-slate-500 mb-1">Coupon Spots Remaining:</div>
+                            <div class="inline-flex items-center gap-1.5 bg-amber-50 border border-amber-200 px-3 py-1 rounded-full text-amber-800 text-xs font-extrabold mb-3">
+                                <span class="w-2 h-2 rounded-full bg-agro-500 animate-ping"></span>
+                                <span id="spots-left-count">6 of 10 Spots Available</span>
+                            </div>
+                            <button onclick="openCouponModal()" class="w-full md:w-auto bg-gradient-to-r from-agro-700 to-emerald-700 hover:from-agro-800 hover:to-emerald-800 text-white font-extrabold text-xs px-5 py-2.5 rounded-xl transition-all shadow-md flex items-center justify-center gap-2">
+                                <i class="fa-solid fa-ticket"></i> Apply For Free Coupon
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="inline-flex items-center gap-2 bg-agro-50 border border-agro-200 rounded-full px-3.5 py-1 text-xs font-bold text-agro-800 mb-4">
+                    <i class="fa-solid fa-tractor text-agro-600"></i>
+                    Transparent Yearly Plans for Nepali Farmers & Agro Enterprises
+                </div>
+                <h1 class="text-3xl sm:text-5xl font-extrabold text-slate-900 tracking-tight max-w-3xl mx-auto leading-tight">
+                    Connect Farm Fresh Produce Directly To Buyers Across Nepal
+                </h1>
+                <p class="mt-4 text-base sm:text-lg text-slate-600 max-w-2xl mx-auto">
+                    From small family farms to large agricultural cooperatives, choose a plan that fits your harvest size, bulk order needs, and digital ledger tracking.
+                </p>
+
+                <!-- Billing Frequency View Banner -->
+                <div class="mt-8 flex items-center justify-center gap-3 text-xs sm:text-sm font-semibold text-slate-600 bg-white/80 backdrop-blur-sm border border-slate-200 rounded-2xl max-w-md mx-auto py-2.5 px-4 shadow-sm">
+                    <span class="flex items-center gap-1.5 text-agro-800 font-bold">
+                        <i class="fa-solid fa-calendar-check text-agro-600"></i> Simple Yearly Billing
+                    </span>
+                    <span class="text-slate-300">|</span>
+                    <span class="text-slate-500">Includes monthly cost breakdown for easy budgeting</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Interactive Crop Listing Calculator -->
+        <section class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 -mt-4 mb-16 relative z-20">
+            <div class="bg-white rounded-2xl border border-slate-200/90 shadow-xl p-6 sm:p-8">
+                <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 pb-6 border-b border-slate-100">
+                    <div>
+                        <div class="flex items-center gap-2">
+                            <h2 class="text-xl font-bold text-slate-900">Crop Listing Estimator for Farmers</h2>
+                            <span class="bg-agro-50 text-agro-800 text-xs font-semibold px-2 py-0.5 rounded border border-agro-200">Smart Tool</span>
+                        </div>
+                        <p class="text-xs sm:text-sm text-slate-500 mt-1">Calculate total product listings based on crop types, packaging sizes (e.g. 5kg, 25kg bags), and quality grades.</p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
+                    <!-- Input 1: Crop Types -->
+                    <div class="bg-slate-50 p-4 rounded-xl border border-slate-200">
+                        <label for="calc-crops" class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">
+                            1. Crop / Produce Types
+                        </label>
+                        <input type="number" id="calc-crops" value="3" min="1" max="100" oninput="calculateFarmerProducts()" class="w-full bg-white border border-slate-300 rounded-lg px-3 py-2 text-slate-900 font-bold focus:ring-2 focus:ring-agro-500 focus:outline-none">
+                        <p class="text-[11px] text-slate-500 mt-1">e.g. Rice, Apples, Cardamom</p>
+                    </div>
+
+                    <!-- Input 2: Bag / Package Sizes -->
+                    <div class="bg-slate-50 p-4 rounded-xl border border-slate-200">
+                        <label for="calc-packages" class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">
+                            2. Packaging / Bag Sizes
+                        </label>
+                        <input type="number" id="calc-packages" value="2" min="1" max="10" oninput="calculateFarmerProducts()" class="w-full bg-white border border-slate-300 rounded-lg px-3 py-2 text-slate-900 font-bold focus:ring-2 focus:ring-agro-500 focus:outline-none">
+                        <p class="text-[11px] text-slate-500 mt-1">e.g. 5kg, 25kg, 50kg sacks</p>
+                    </div>
+
+                    <!-- Input 3: Quality Grades -->
+                    <div class="bg-slate-50 p-4 rounded-xl border border-slate-200">
+                        <label for="calc-grades" class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">
+                            3. Quality / Grade Options
+                        </label>
+                        <input type="number" id="calc-grades" value="2" min="1" max="10" oninput="calculateFarmerProducts()" class="w-full bg-white border border-slate-300 rounded-lg px-3 py-2 text-slate-900 font-bold focus:ring-2 focus:ring-agro-500 focus:outline-none">
+                        <p class="text-[11px] text-slate-500 mt-1">e.g. Grade A (Export), Grade B</p>
+                    </div>
+                </div>
+
+                <!-- Calculator Output Banner -->
+                <div class="mt-6 bg-slate-900 text-white p-4 sm:p-5 rounded-xl flex flex-col sm:flex-row items-center justify-between gap-4">
+                    <div class="flex items-center gap-4 text-center sm:text-left">
+                        <div class="w-12 h-12 rounded-lg bg-agro-600 flex items-center justify-center shrink-0 text-white font-extrabold text-xl shadow-md">
+                            <i class="fa-solid fa-basket-shopping"></i>
+                        </div>
+                        <div>
+                            <div class="text-xs text-slate-400 font-medium">Estimated Catalog Size:</div>
+                            <div class="text-xl font-extrabold flex items-center gap-2 justify-center sm:justify-start">
+                                <span id="calculated-product-count" class="text-amber-400 text-2xl">12</span> Active Listings
+                                <span class="text-xs font-normal text-slate-400">(<span id="calc-crop-formula">3 crops × 2 sizes × 2 grades</span>)</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-center sm:text-right shrink-0">
+                        <div class="text-xs text-slate-400 mb-1">Recommended Plan:</div>
+                        <span id="recommended-agro-plan" class="bg-agro-600 text-white text-xs font-extrabold px-3 py-1 rounded-full uppercase tracking-wide">
+                            Farmer Plus Plan (Qualifies for FARMER100 Free Coupon!)
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Subscription Cards Section -->
+        <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+
+                <!-- Plan 1: FREE FARMER -->
+                <div class="bg-white rounded-2xl border-2 border-slate-200 agro-card-shadow p-6 flex flex-col justify-between relative transition-all duration-300 hover:-translate-y-1">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-xs font-extrabold tracking-wider text-slate-500 uppercase">FREE FARMER</span>
+                            <span class="bg-slate-100 text-slate-700 text-[11px] font-semibold px-2 py-0.5 rounded">Starter</span>
+                        </div>
+                        <h3 class="text-2xl font-bold text-slate-900">Up to 5 Products</h3>
+                        <p class="text-xs text-slate-500 mt-1 min-h-[32px]">Perfect for individual local farmers starting out online.</p>
+
+                        <!-- Price Section -->
+                        <div class="my-6">
+                            <div class="flex items-baseline">
+                                <span class="text-3xl font-black text-slate-900">Rs. 0</span>
+                                <span class="text-slate-500 text-xs ml-1 font-semibold">/ year</span>
+                            </div>
+                            <div class="text-[11px] text-slate-400 mt-1">Forever Free for Farmers</div>
+                        </div>
+
+                        <!-- Included Features -->
+                        <div class="space-y-3 pt-4 border-t border-slate-100 text-xs text-slate-700">
+                            <div class="flex items-center gap-2 font-medium">
+                                <i class="fa-solid fa-check text-emerald-500"></i>
+                                Product listing (Up to 5)
+                            </div>
+                            <div class="flex items-center gap-2 font-medium">
+                                <i class="fa-solid fa-check text-emerald-500"></i>
+                                Basic Farmer Profile
+                            </div>
+                            <div class="flex items-center gap-2 font-medium">
+                                <i class="fa-solid fa-check text-emerald-500"></i>
+                                Receive Customer Inquiries
+                            </div>
+                            <div class="flex items-center gap-2 font-medium">
+                                <i class="fa-solid fa-check text-emerald-500"></i>
+                                Basic Order Management
+                            </div>
+                        </div>
+                    </div>
+
+                    <button onclick="openCheckoutModal('Free Farmer', 0)" class="mt-8 w-full py-2.5 px-4 bg-slate-900 hover:bg-slate-800 text-white rounded-xl font-bold text-xs transition-colors shadow-sm">
+                        Get Started Free
+                    </button>
+                </div>
+
+                <!-- Plan 2: FARMER PLUS -->
+                <div class="bg-white rounded-2xl border-2 border-amber-300 agro-card-shadow p-6 flex flex-col justify-between relative transition-all duration-300 hover:-translate-y-1">
+                    <div class="absolute -top-3.5 left-1/2 transform -translate-x-1/2 bg-amber-500 text-white text-[10px] font-black uppercase tracking-wider px-2.5 py-0.5 rounded-full shadow-sm flex items-center gap-1">
+                        <i class="fa-solid fa-gift"></i> Coupon Eligible
+                    </div>
+
+                    <div>
+                        <div class="flex items-center justify-between mb-4 mt-1">
+                            <span class="text-xs font-extrabold tracking-wider text-earth-700 uppercase">FARMER PLUS</span>
+                            <span class="bg-amber-50 text-amber-800 text-[11px] font-semibold px-2 py-0.5 rounded border border-amber-200">Active Growers</span>
+                        </div>
+                        <h3 class="text-2xl font-bold text-slate-900">Up to 20 Products</h3>
+                        <p class="text-xs text-slate-500 mt-1 min-h-[32px]">Designed for active growers with multiple crops & varieties.</p>
+
+                        <!-- Price Section -->
+                        <div class="my-6">
+                            <div class="flex items-baseline">
+                                <span class="text-xs text-slate-500 font-medium mr-1">Rs.</span>
+                                <span class="text-3xl font-black text-slate-900">2,990</span>
+                                <span class="text-slate-500 text-xs ml-1 font-semibold">/ year</span>
+                            </div>
+                            <div class="text-[11px] text-agro-700 font-semibold mt-1">Approx. Rs. 249 / month</div>
+                        </div>
+
+                        <!-- Included Features -->
+                        <div class="space-y-3 pt-4 border-t border-slate-100 text-xs text-slate-700">
+                            <div class="flex items-center gap-2 font-semibold text-slate-900">
+                                <i class="fa-solid fa-check text-emerald-500"></i>
+                                Up to 20 products
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <i class="fa-solid fa-check text-emerald-500"></i>
+                                Stock Inventory Tracking
+                            </div>
+                            <div class="flex items-center gap-2 font-bold text-agro-800">
+                                <i class="fa-solid fa-check text-emerald-500"></i>
+                                Digital Khata Ledger
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <i class="fa-solid fa-check text-emerald-500"></i>
+                                Direct Customer Chat
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <i class="fa-solid fa-check text-emerald-500"></i>
+                                Full Order Management
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <i class="fa-solid fa-check text-emerald-500"></i>
+                                Business Profile & Promotion
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="space-y-2 mt-8">
+                        <button onclick="openCheckoutModal('Farmer Plus', 2990)" class="w-full py-2.5 px-4 bg-agro-700 hover:bg-agro-800 text-white rounded-xl font-bold text-xs transition-colors shadow-sm">
+                            Choose Farmer Plus
+                        </button>
+                        <button onclick="openCouponModal()" class="w-full py-2 px-3 bg-amber-50 hover:bg-amber-100 text-amber-800 border border-amber-200 rounded-xl font-bold text-[11px] transition-colors flex items-center justify-center gap-1.5">
+                            <i class="fa-solid fa-ticket text-amber-600"></i> Claim Free Coupon Code
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Plan 3: COMMERCIAL AGRO (Most Popular) -->
+                <div class="bg-white rounded-2xl border-2 border-agro-600 popular-agro-shadow p-6 flex flex-col justify-between relative transition-all duration-300 hover:-translate-y-1 transform scale-[1.02]">
+                    <!-- Popular Badge -->
+                    <div class="absolute -top-3.5 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-agro-600 to-emerald-600 text-white text-[11px] font-black uppercase tracking-widest px-3 py-0.5 rounded-full shadow-md flex items-center gap-1">
+                        <i class="fa-solid fa-star text-amber-300"></i> Most Popular
+                    </div>
+
+                    <div>
+                        <div class="flex items-center justify-between mb-4 mt-1">
+                            <span class="text-xs font-extrabold tracking-wider text-agro-700 uppercase">COMMERCIAL AGRO</span>
+                            <span class="bg-agro-50 text-agro-800 text-[11px] font-semibold px-2 py-0.5 rounded border border-agro-200">Wholesale</span>
+                        </div>
+                        <h3 class="text-2xl font-bold text-slate-900">Up to 50 Products</h3>
+                        <p class="text-xs text-slate-500 mt-1 min-h-[32px]">Ideal for commercial farms, tea estates & wholesale traders.</p>
+
+                        <!-- Price Section -->
+                        <div class="my-6">
+                            <div class="flex items-baseline">
+                                <span class="text-xs text-slate-500 font-medium mr-1">Rs.</span>
+                                <span class="text-3xl font-black text-slate-900">6,000</span>
+                                <span class="text-slate-500 text-xs ml-1 font-semibold">/ year</span>
+                            </div>
+                            <div class="text-[11px] text-agro-700 font-semibold mt-1">Approx. Rs. 500 / month</div>
+                        </div>
+
+                        <!-- Included Features -->
+                        <div class="space-y-3 pt-4 border-t border-slate-100 text-xs text-slate-700">
+                            <div class="flex items-center gap-2 font-bold text-slate-900">
+                                <i class="fa-solid fa-circle-check text-agro-600"></i>
+                                Up to 50 products
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <i class="fa-solid fa-check text-emerald-500"></i>
+                                Inventory Management & Khata
+                            </div>
+                            <div class="flex items-center gap-2 font-bold text-slate-900">
+                                <i class="fa-solid fa-check text-emerald-500"></i>
+                                Bulk & Wholesale Orders
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <i class="fa-solid fa-check text-emerald-500"></i>
+                                Wholesale Tiered Pricing
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <i class="fa-solid fa-check text-emerald-500"></i>
+                                Sales Analytics Dashboard
+                            </div>
+                            <div class="flex items-center gap-2 font-bold text-amber-700">
+                                <i class="fa-solid fa-check text-amber-500"></i>
+                                Featured Search Listing
+                            </div>
+                        </div>
+                    </div>
+
+                    <button onclick="openCheckoutModal('Commercial Agro', 6000)" class="mt-8 w-full py-3 px-4 bg-agro-600 hover:bg-agro-700 text-white rounded-xl font-bold text-xs transition-colors shadow-md shadow-agro-600/30">
+                        Select Commercial Agro
+                    </button>
+                </div>
+
+                <!-- Plan 4: AGRO BUSINESS PRO -->
+                <div class="bg-slate-900 text-white rounded-2xl border border-slate-800 agro-card-shadow p-6 flex flex-col justify-between relative transition-all duration-300 hover:-translate-y-1">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-xs font-extrabold tracking-wider text-amber-400 uppercase">AGRO BUSINESS PRO</span>
+                            <span class="bg-slate-800 text-slate-300 text-[11px] font-semibold px-2 py-0.5 rounded border border-slate-700">Cooperatives</span>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white">Up to 100 Products</h3>
+                        <p class="text-xs text-slate-400 mt-1 min-h-[32px]">Tailored for large agricultural cooperatives & seed/fertilizer brands.</p>
+
+                        <!-- Price Section -->
+                        <div class="my-6">
+                            <div class="flex items-baseline">
+                                <span class="text-xs text-slate-400 font-medium mr-1">Rs.</span>
+                                <span class="text-3xl font-black text-white">10,000</span>
+                                <span class="text-slate-400 text-xs ml-1 font-semibold">/ year</span>
+                            </div>
+                            <div class="text-[11px] text-amber-400 font-semibold mt-1">Approx. Rs. 833 / month</div>
+                        </div>
+
+                        <!-- Included Features -->
+                        <div class="space-y-3 pt-4 border-t border-slate-800 text-xs text-slate-300">
+                            <div class="flex items-center gap-2 font-bold text-white">
+                                <i class="fa-solid fa-check text-amber-400"></i>
+                                Up to 100 products
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <i class="fa-solid fa-check text-amber-400"></i>
+                                Advanced Inventory Suite
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <i class="fa-solid fa-check text-amber-400"></i>
+                                Multiple Product Categories
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <i class="fa-solid fa-check text-amber-400"></i>
+                                Wholesale & B2B Order Flow
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <i class="fa-solid fa-check text-amber-400"></i>
+                                In-Depth Business Analytics
+                            </div>
+                            <div class="flex items-center gap-2 font-bold text-amber-300">
+                                <i class="fa-solid fa-check text-amber-400"></i>
+                                Manufacturer & Brand Profile
+                            </div>
+                        </div>
+                    </div>
+
+                    <button onclick="openCheckoutModal('Agro Business Pro', 10000)" class="mt-8 w-full py-2.5 px-4 bg-white hover:bg-slate-100 text-slate-900 rounded-xl font-bold text-xs transition-colors shadow-sm">
+                        Get Agro Business Pro
+                    </button>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Admin Application Tracker Preview -->
+        <section id="application-status-section" class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 my-10 hidden">
+            <div class="bg-white rounded-2xl border-2 border-agro-500 p-6 shadow-xl relative">
+                <div class="flex items-center justify-between border-b border-slate-100 pb-4 mb-4">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-xl bg-agro-50 text-agro-700 flex items-center justify-center font-bold text-lg">
+                            <i class="fa-solid fa-clipboard-check"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-base font-bold text-slate-900">Farmer Coupon Verification Status</h3>
+                            <p class="text-xs text-slate-500">Tracking code: <strong class="text-agro-800 font-mono">FARMER100</strong></p>
+                        </div>
+                    </div>
+                    <span id="tracker-status-badge" class="bg-amber-100 text-amber-800 border border-amber-300 text-xs font-extrabold px-3 py-1 rounded-full flex items-center gap-1.5">
+                        <i class="fa-solid fa-hourglass-half animate-spin"></i> Pending Admin Verification
+                    </span>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs">
+                    <div class="bg-slate-50 p-3 rounded-lg border border-slate-200">
+                        <span class="text-slate-400 block font-semibold">Farmer / Farm Name:</span>
+                        <strong id="tracker-farm-name" class="text-slate-800 text-sm">Kathmandu Organic Agro</strong>
+                    </div>
+                    <div class="bg-slate-50 p-3 rounded-lg border border-slate-200">
+                        <span class="text-slate-400 block font-semibold">Claimed Plan:</span>
+                        <strong class="text-slate-800 text-sm">1-Year Farmer Plus (20 Products)</strong>
+                    </div>
+                    <div class="bg-slate-50 p-3 rounded-lg border border-slate-200">
+                        <span class="text-slate-400 block font-semibold">Total Discount:</span>
+                        <strong class="text-agro-700 text-sm font-extrabold">100% FREE (Rs. 2,990 Saved)</strong>
+                    </div>
+                </div>
+
+                <!-- Admin Simulator Controls -->
+                <div class="mt-5 pt-4 border-t border-slate-100 bg-slate-50 -mx-6 -mb-6 p-4 rounded-b-2xl flex flex-col sm:flex-row items-center justify-between gap-3 text-xs">
+                    <span class="text-slate-500 font-semibold flex items-center gap-1.5">
+                        <i class="fa-solid fa-sliders text-agro-600"></i> Admin Verification Simulator:
+                    </span>
+                    <div class="flex items-center gap-2">
+                        <button onclick="setAdminStatus('pending')" class="px-3 py-1.5 bg-amber-100 hover:bg-amber-200 text-amber-900 rounded-lg font-bold transition-colors">
+                            Set: Pending
+                        </button>
+                        <button onclick="setAdminStatus('approved')" class="px-3 py-1.5 bg-agro-700 hover:bg-agro-800 text-white rounded-lg font-bold transition-colors shadow-sm">
+                            Set: Approved
+                        </button>
+                        <button onclick="setAdminStatus('rejected')" class="px-3 py-1.5 bg-slate-200 hover:bg-slate-300 text-slate-700 rounded-lg font-bold transition-colors">
+                            Set: Rejected
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Detailed Feature Matrix Section -->
+        <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 my-16">
+            <div class="text-center mb-10">
+                <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900">Farmer Plan Feature Matrix</h2>
+                <p class="text-sm text-slate-500 mt-2">Compare capabilities across all 4 agro vendor tiers</p>
+            </div>
+
+            <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-x-auto">
+                <table class="w-full text-left text-xs border-collapse">
+                    <thead>
+                        <tr class="bg-slate-50 border-b border-slate-200 text-slate-700 font-bold uppercase tracking-wider">
+                            <th class="p-4 w-1/3">Platform Features</th>
+                            <th class="p-4 text-center">Free Farmer</th>
+                            <th class="p-4 text-center text-agro-800 bg-agro-50/50">Farmer Plus</th>
+                            <th class="p-4 text-center text-agro-800">Commercial Agro</th>
+                            <th class="p-4 text-center">Agro Business Pro</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-100 text-slate-700">
+                        <tr>
+                            <td class="p-4 font-semibold text-slate-900">Max Product Listings</td>
+                            <td class="p-4 text-center font-bold">5 Products</td>
+                            <td class="p-4 text-center font-bold text-agro-700 bg-agro-50/30">20 Products</td>
+                            <td class="p-4 text-center font-bold text-agro-800">50 Products</td>
+                            <td class="p-4 text-center font-bold">100 Products</td>
+                        </tr>
+                        <tr>
+                            <td class="p-4 font-semibold text-slate-900">Digital Khata (Buyer Ledger)</td>
+                            <td class="p-4 text-center"><i class="fa-solid fa-minus text-slate-300"></i></td>
+                            <td class="p-4 text-center bg-agro-50/30"><i class="fa-solid fa-circle-check text-agro-600 text-base"></i></td>
+                            <td class="p-4 text-center"><i class="fa-solid fa-circle-check text-agro-600 text-base"></i></td>
+                            <td class="p-4 text-center"><i class="fa-solid fa-circle-check text-agro-600 text-base"></i></td>
+                        </tr>
+                        <tr>
+                            <td class="p-4 font-semibold text-slate-900">Direct Customer Chat</td>
+                            <td class="p-4 text-center"><i class="fa-solid fa-minus text-slate-300"></i></td>
+                            <td class="p-4 text-center bg-agro-50/30"><i class="fa-solid fa-circle-check text-agro-600 text-base"></i></td>
+                            <td class="p-4 text-center"><i class="fa-solid fa-circle-check text-agro-600 text-base"></i></td>
+                            <td class="p-4 text-center"><i class="fa-solid fa-circle-check text-agro-600 text-base"></i></td>
+                        </tr>
+                        <tr>
+                            <td class="p-4 font-semibold text-slate-900">Wholesale & Bulk Orders</td>
+                            <td class="p-4 text-center"><i class="fa-solid fa-minus text-slate-300"></i></td>
+                            <td class="p-4 text-center bg-agro-50/30"><i class="fa-solid fa-minus text-slate-300"></i></td>
+                            <td class="p-4 text-center"><i class="fa-solid fa-circle-check text-agro-600 text-base"></i></td>
+                            <td class="p-4 text-center"><i class="fa-solid fa-circle-check text-agro-600 text-base"></i></td>
+                        </tr>
+                        <tr>
+                            <td class="p-4 font-semibold text-slate-900">Featured Product Visibility</td>
+                            <td class="p-4 text-center"><i class="fa-solid fa-minus text-slate-300"></i></td>
+                            <td class="p-4 text-center bg-agro-50/30"><i class="fa-solid fa-minus text-slate-300"></i></td>
+                            <td class="p-4 text-center"><i class="fa-solid fa-circle-check text-amber-500 text-base"></i></td>
+                            <td class="p-4 text-center"><i class="fa-solid fa-circle-check text-amber-500 text-base"></i></td>
+                        </tr>
+                        <tr>
+                            <td class="p-4 font-semibold text-slate-900">Business Analytics</td>
+                            <td class="p-4 text-center"><i class="fa-solid fa-minus text-slate-300"></i></td>
+                            <td class="p-4 text-center bg-agro-50/30"><i class="fa-solid fa-minus text-slate-300"></i></td>
+                            <td class="p-4 text-center"><i class="fa-solid fa-circle-check text-agro-600 text-base"></i></td>
+                            <td class="p-4 text-center font-bold text-slate-900">Advanced Analytics</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section id="faq" class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 my-20">
+            <div class="text-center mb-10">
+                <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900">Frequently Asked Farmer Questions</h2>
+                <p class="text-sm text-slate-500 mt-2">Common queries from farmers, cooperatives, and agricultural suppliers</p>
+            </div>
+
+            <div class="space-y-4">
+                <!-- FAQ Item 0: Special Coupon -->
+                <div class="bg-white border-2 border-amber-200 rounded-xl overflow-hidden shadow-sm">
+                    <button onclick="toggleFaq(0)" class="w-full text-left px-6 py-4 font-bold text-amber-900 flex justify-between items-center hover:bg-amber-50/50 text-sm">
+                        <span class="flex items-center gap-2">
+                            <i class="fa-solid fa-ticket text-amber-600"></i>
+                            How do I get the Free 1-Year Farmer Plus Plan (FARMER100)?
+                        </span>
+                        <i id="faq-icon-0" class="fa-solid fa-chevron-down text-slate-400 transition-transform"></i>
+                    </button>
+                    <div id="faq-answer-0" class="hidden px-6 pb-4 text-xs text-slate-600 border-t border-slate-100 pt-3 leading-relaxed">
+                        The first 10 verified Nepali farmers who submit an application will receive a 100% discount coupon (<strong class="font-mono">FARMER100</strong>) for 1 full year of the Farmer Plus plan (Rs. 2,990 value). Each application is reviewed by Nilopasal Admin to confirm agricultural vendor status before coupon activation.
+                    </div>
+                </div>
+
+                <!-- FAQ Item 1 -->
+                <div class="bg-white border border-slate-200 rounded-xl overflow-hidden shadow-sm">
+                    <button onclick="toggleFaq(1)" class="w-full text-left px-6 py-4 font-bold text-slate-800 flex justify-between items-center hover:bg-slate-50 text-sm">
+                        <span>How does Digital Khata benefit seasonal produce farmers?</span>
+                        <i id="faq-icon-1" class="fa-solid fa-chevron-down text-slate-400 transition-transform"></i>
+                    </button>
+                    <div id="faq-answer-1" class="hidden px-6 pb-4 text-xs text-slate-600 border-t border-slate-100 pt-3 leading-relaxed">
+                        Digital Khata allows you to track buyer credit, advance payments, and installment records digitally. You can send automated SMS/WhatsApp payment reminders to buyers or wholesalers after harvest deliveries.
+                    </div>
+                </div>
+
+                <!-- FAQ Item 2 -->
+                <div class="bg-white border border-slate-200 rounded-xl overflow-hidden shadow-sm">
+                    <button onclick="toggleFaq(2)" class="w-full text-left px-6 py-4 font-bold text-slate-800 flex justify-between items-center hover:bg-slate-50 text-sm">
+                        <span>What counts as a "Product" listing for agricultural goods?</span>
+                        <i id="faq-icon-2" class="fa-solid fa-chevron-down text-slate-400 transition-transform"></i>
+                    </button>
+                    <div id="faq-answer-2" class="hidden px-6 pb-4 text-xs text-slate-600 border-t border-slate-100 pt-3 leading-relaxed">
+                        Each unique crop variety or package variation counts as an active product. For example, "Illam Tea - Orthodox 250g" and "Illam Tea - Orthodox 1kg" count as 2 listings under your product limit.
+                    </div>
+                </div>
+
+                <!-- FAQ Item 3 -->
+                <div class="bg-white border border-slate-200 rounded-xl overflow-hidden shadow-sm">
+                    <button onclick="toggleFaq(3)" class="w-full text-left px-6 py-4 font-bold text-slate-800 flex justify-between items-center hover:bg-slate-50 text-sm">
+                        <span>Can I update my product list during harvest off-seasons?</span>
+                        <i id="faq-icon-3" class="fa-solid fa-chevron-down text-slate-400 transition-transform"></i>
+                    </button>
+                    <div id="faq-answer-3" class="hidden px-6 pb-4 text-xs text-slate-600 border-t border-slate-100 pt-3 leading-relaxed">
+                        Yes! You can mark items as "Out of Season" or "Archived" without losing your product page reviews. Archived items do not count toward your active product listing cap.
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-slate-400 border-t border-slate-800 text-xs py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div>
+                <div class="flex items-center gap-2 text-white font-bold text-base mb-3">
+                    <div class="w-7 h-7 rounded bg-agro-600 flex items-center justify-center text-white text-sm font-black">
+                        <i class="fa-solid fa-wheat-awn"></i>
+                    </div>
+                    NILOPASAL FARMER
+                </div>
+                <p class="text-slate-400 leading-relaxed">
+                    Connecting farmers, growers, and agricultural cooperatives across Nepal directly with wholesale and retail buyers.
+                </p>
+            </div>
+            <div>
+                <h4 class="text-white font-bold mb-3">Farmer Navigation</h4>
+                <ul class="space-y-2">
+                    <li><a href="#" class="hover:text-white transition-colors">Farmer Plans</a></li>
+                    <li><a href="#" onclick="openCouponModal()" class="hover:text-amber-300 transition-colors text-amber-400 font-semibold">Free Coupon Offer (FARMER100)</a></li>
+                    <li><a href="#" onclick="openCalculatorModal()" class="hover:text-white transition-colors">Crop Listing Estimator</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors">Digital Khata Guide</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-white font-bold mb-3">Support & Help</h4>
+                <ul class="space-y-2">
+                    <li><a href="#" class="hover:text-white transition-colors">Agricultural Listing Guidelines</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors">Terms & Verification</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors">Privacy Policy</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors">Farmer Support Desk</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-white font-bold mb-3">Nilopasal Nepal</h4>
+                <p class="leading-relaxed">
+                    Kathmandu / Pokhara / Biratnagar, Nepal<br>
+                    Email: farmers@nilopasal.com.np<br>
+                    Phone: +977-1-4XXXXXX
+                </p>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 mt-8 border-t border-slate-800 text-center text-slate-500">
+            &copy; 2026 Nilopasal Platform. Dedicated to Nepal's Agriculture Community.
+        </div>
+    </footer>
+
+    <!-- Checkout Modal -->
+    <div id="checkout-modal" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl max-w-md w-full p-6 shadow-2xl relative border border-slate-100">
+            <button onclick="closeCheckoutModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+            
+            <div class="text-center mb-5">
+                <div class="w-12 h-12 bg-agro-50 text-agro-700 rounded-full flex items-center justify-center mx-auto mb-2 text-xl font-bold">
+                    <i class="fa-solid fa-tractor"></i>
+                </div>
+                <h3 class="text-lg font-bold text-slate-900">Activate Farmer Subscription</h3>
+                <p class="text-xs text-slate-500">Selected Plan: <strong id="modal-plan-name" class="text-agro-800">Farmer Plus</strong></p>
+            </div>
+
+            <form onsubmit="handleCheckoutSubmit(event)" class="space-y-3.5 text-left text-xs">
+                <div>
+                    <label class="block font-bold text-slate-700 mb-1">Farm / Cooperative Name *</label>
+                    <input type="text" id="checkout-farm-name" placeholder="e.g. Pokhara Valley Organic Farm" required class="w-full border border-slate-300 rounded-lg px-3 py-2 text-xs focus:ring-2 focus:ring-agro-500 focus:outline-none">
+                </div>
+                <div>
+                    <label class="block font-bold text-slate-700 mb-1">Phone Number *</label>
+                    <input type="tel" placeholder="+977 98XXXXXXXX" required class="w-full border border-slate-300 rounded-lg px-3 py-2 text-xs focus:ring-2 focus:ring-agro-500 focus:outline-none">
+                </div>
+
+                <!-- Promo Code -->
+                <div>
+                    <label class="block font-bold text-slate-700 mb-1">Coupon / Promo Code</label>
+                    <div class="flex gap-2">
+                        <input type="text" id="checkout-promo-input" placeholder="Enter code (e.g. FARMER100)" class="w-full border border-slate-300 rounded-lg px-3 py-2 text-xs uppercase font-mono focus:ring-2 focus:ring-agro-500 focus:outline-none">
+                        <button type="button" onclick="applyCheckoutPromo()" class="bg-slate-800 text-white font-bold px-3 py-2 rounded-lg hover:bg-slate-700 transition-colors">
+                            Apply
+                        </button>
+                    </div>
+                    <p id="checkout-promo-msg" class="text-[11px] mt-1 font-semibold hidden"></p>
+                </div>
+
+                <!-- Payment Method Selection -->
+                <div id="payment-methods-box">
+                    <label class="block font-bold text-slate-700 mb-1">Select Payment Gateway</label>
+                    <div class="grid grid-cols-2 gap-2 text-[11px]">
+                        <label class="border border-slate-200 rounded-lg p-2 flex items-center gap-2 cursor-pointer hover:bg-slate-50">
+                            <input type="radio" name="payment" value="esewa" checked class="text-agro-600">
+                            <span class="font-bold text-emerald-700">eSewa Wallet</span>
+                        </label>
+                        <label class="border border-slate-200 rounded-lg p-2 flex items-center gap-2 cursor-pointer hover:bg-slate-50">
+                            <input type="radio" name="payment" value="khalti" class="text-agro-600">
+                            <span class="font-bold text-purple-700">Khalti Wallet</span>
+                        </label>
+                        <label class="border border-slate-200 rounded-lg p-2 flex items-center gap-2 cursor-pointer hover:bg-slate-50">
+                            <input type="radio" name="payment" value="fonepay" class="text-agro-600">
+                            <span class="font-bold text-red-600">Fonepay QR</span>
+                        </label>
+                        <label class="border border-slate-200 rounded-lg p-2 flex items-center gap-2 cursor-pointer hover:bg-slate-50">
+                            <input type="radio" name="payment" value="bank" class="text-agro-600">
+                            <span class="font-bold text-slate-700">Bank Transfer</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="bg-slate-50 p-3 rounded-xl border border-slate-200 flex justify-between items-center mt-2">
+                    <span class="text-slate-500 font-semibold">Total Payable Amount:</span>
+                    <strong id="modal-plan-price" class="text-base text-agro-800 font-black">Rs. 2,990 / year</strong>
+                </div>
+
+                <button type="submit" class="w-full py-3 bg-agro-700 hover:bg-agro-800 text-white font-extrabold rounded-xl shadow-md transition-colors">
+                    Confirm & Proceed to Onboarding
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Free Coupon Claim Modal -->
+    <div id="coupon-modal" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl max-w-lg w-full p-6 sm:p-7 shadow-2xl relative border border-slate-100 overflow-y-auto max-h-[90vh]">
+            <button onclick="closeCouponModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+
+            <div class="flex items-center gap-3 mb-4">
+                <div class="w-12 h-12 rounded-2xl bg-amber-100 text-amber-700 flex items-center justify-center font-bold text-xl shrink-0">
+                    <i class="fa-solid fa-ticket"></i>
+                </div>
+                <div>
+                    <span class="bg-amber-100 text-amber-800 text-[10px] font-black px-2 py-0.5 rounded uppercase tracking-wider">
+                        First 10 Farmers Promotion
+                    </span>
+                    <h3 class="text-lg font-extrabold text-slate-900">Claim 1-Year Free Farmer Plus Plan</h3>
+                </div>
+            </div>
+
+            <div class="bg-amber-50 border border-amber-200 rounded-xl p-3 text-xs text-amber-900 mb-4 flex items-start gap-2">
+                <i class="fa-solid fa-circle-info text-amber-600 text-sm mt-0.5 shrink-0"></i>
+                <div>
+                    <strong>Admin Verification Requirement:</strong>
+                    Coupon <code class="font-mono bg-amber-100 px-1 py-0.5 rounded font-bold">FARMER100</code> is validated manually by Nilopasal Admin to confirm authentic Nepali farming operations.
+                </div>
+            </div>
+
+            <form onsubmit="submitFarmerCoupon(event)" class="space-y-3.5 text-left text-xs">
+                <div>
+                    <label class="block font-bold text-slate-700 mb-1">Farm / Business Name *</label>
+                    <input type="text" id="claim-farm-name" placeholder="e.g. Chitwan Organic Produce" required class="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-amber-500 focus:outline-none">
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div>
+                        <label class="block font-bold text-slate-700 mb-1">Contact Person *</label>
+                        <input type="text" placeholder="Full Name" required class="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-amber-500 focus:outline-none">
+                    </div>
+                    <div>
+                        <label class="block font-bold text-slate-700 mb-1">Mobile Phone *</label>
+                        <input type="tel" placeholder="+977 98XXXXXXXX" required class="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-amber-500 focus:outline-none">
+                    </div>
+                </div>
+                <div>
+                    <label class="block font-bold text-slate-700 mb-1">Farm Location (District / Local Municipality) *</label>
+                    <input type="text" placeholder="e.g. Kavre, Panchkhal Ward 4" required class="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-amber-500 focus:outline-none">
+                </div>
+                <div>
+                    <label class="block font-bold text-slate-700 mb-1">Primary Produce Category</label>
+                    <select class="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-amber-500 focus:outline-none">
+                        <option>Fresh Vegetables & Fruits</option>
+                        <option>Grains, Rice & Pulses</option>
+                        <option>Tea, Coffee & Spices</option>
+                        <option>Dairy, Honey & Eggs</option>
+                        <option>Seeds, Saplings & Fertilizer</option>
+                    </select>
+                </div>
+
+                <!-- Coupon Applied Display -->
+                <div class="bg-amber-50 p-3 rounded-xl border border-amber-200 flex justify-between items-center">
+                    <div>
+                        <span class="text-amber-900 font-bold block">Coupon Auto-Applied:</span>
+                        <code class="text-amber-800 font-extrabold text-sm font-mono">FARMER100</code>
+                    </div>
+                    <div class="text-right">
+                        <span class="line-through text-slate-400">Rs. 2,990 / yr</span>
+                        <span class="block text-sm font-extrabold text-agro-700">100% FREE</span>
+                    </div>
+                </div>
+
+                <button type="submit" class="w-full py-3 bg-amber-600 hover:bg-amber-700 text-white font-extrabold rounded-xl shadow-md transition-colors flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-paper-plane"></i> Submit For Admin Approval
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        let couponSpots = 6;
+        let selectedPlanCost = 2990;
+
+        // Crop Calculator Function
+        function calculateFarmerProducts() {
+            const crops = parseInt(document.getElementById('calc-crops').value) || 0;
+            const packages = parseInt(document.getElementById('calc-packages').value) || 0;
+            const grades = parseInt(document.getElementById('calc-grades').value) || 0;
+
+            const total = crops * packages * grades;
+
+            document.getElementById('calculated-product-count').textContent = total;
+            document.getElementById('calc-crop-formula').textContent = `${crops} crops × ${packages} sizes × ${grades} grades`;
+
+            const badge = document.getElementById('recommended-agro-plan');
+
+            if (total <= 5) {
+                badge.textContent = 'Free Farmer Plan (Up to 5 Products)';
+                badge.className = 'bg-slate-700 text-white text-xs font-extrabold px-3 py-1 rounded-full uppercase tracking-wide';
+            } else if (total <= 20) {
+                badge.textContent = 'Farmer Plus Plan (Qualifies for FARMER100 Coupon!)';
+                badge.className = 'bg-amber-500 text-slate-900 text-xs font-extrabold px-3 py-1 rounded-full uppercase tracking-wide';
+            } else if (total <= 50) {
+                badge.textContent = 'Commercial Agro Plan (Up to 50 Products)';
+                badge.className = 'bg-agro-600 text-white text-xs font-extrabold px-3 py-1 rounded-full uppercase tracking-wide';
+            } else {
+                badge.textContent = 'Agro Business Pro Plan (Up to 100 Products)';
+                badge.className = 'bg-slate-900 text-amber-400 text-xs font-extrabold px-3 py-1 rounded-full uppercase tracking-wide';
+            }
+        }
+
+        // Checkout Modal Functions
+        function openCheckoutModal(planName, price) {
+            selectedPlanCost = price;
+            document.getElementById('modal-plan-name').textContent = planName;
+            document.getElementById('modal-plan-price').textContent = price === 0 ? "Rs. 0 / Year (Free)" : `Rs. ${price.toLocaleString()} / year`;
+            document.getElementById('checkout-modal').classList.remove('hidden');
+        }
+
+        function closeCheckoutModal() {
+            document.getElementById('checkout-modal').classList.add('hidden');
+        }
+
+        function applyCheckoutPromo() {
+            const input = document.getElementById('checkout-promo-input').value.trim().toUpperCase();
+            const msg = document.getElementById('checkout-promo-msg');
+
+            if (input === 'FARMER100') {
+                msg.textContent = '✓ Valid Coupon Code! 100% OFF Farmer Plus (Pending Admin Approval)';
+                msg.className = 'text-[11px] mt-1 font-semibold text-agro-700 block';
+                document.getElementById('modal-plan-price').innerHTML = '<span class="line-through text-slate-400 text-xs">Rs. 2,990</span> <span class="text-agro-700 font-black">FREE (1 Yr)</span>';
+            } else if (input === '') {
+                msg.textContent = 'Please enter a valid coupon code.';
+                msg.className = 'text-[11px] mt-1 font-semibold text-red-500 block';
+            } else {
+                msg.textContent = 'Invalid promo code. Enter FARMER100 for the free offer.';
+                msg.className = 'text-[11px] mt-1 font-semibold text-red-500 block';
+            }
+        }
+
+        // Coupon Claim Modal Functions
+        function openCouponModal() {
+            document.getElementById('coupon-modal').classList.remove('hidden');
+        }
+
+        function closeCouponModal() {
+            document.getElementById('coupon-modal').classList.add('hidden');
+        }
+
+        function openCalculatorModal() {
+            window.scrollTo({ top: 300, behavior: 'smooth' });
+        }
+
+        function submitFarmerCoupon(event) {
+            event.preventDefault();
+            const farmName = document.getElementById('claim-farm-name').value || "Your Organic Farm";
+
+            if (couponSpots > 1) {
+                couponSpots--;
+                document.getElementById('spots-left-count').textContent = `${couponSpots} of 10 Spots Available`;
+            }
+
+            closeCouponModal();
+
+            // Display Application Tracker Section
+            document.getElementById('tracker-farm-name').textContent = farmName;
+            document.getElementById('application-status-section').classList.remove('hidden');
+            document.getElementById('application-status-section').scrollIntoView({ behavior: 'smooth' });
+
+            setAdminStatus('pending');
+        }
+
+        // Admin Simulation Controls
+        function setAdminStatus(status) {
+            const badge = document.getElementById('tracker-status-badge');
+
+            if (status === 'pending') {
+                badge.className = 'bg-amber-100 text-amber-800 border border-amber-300 text-xs font-extrabold px-3 py-1 rounded-full flex items-center gap-1.5';
+                badge.innerHTML = '<i class="fa-solid fa-hourglass-half animate-spin"></i> Pending Admin Verification';
+            } else if (status === 'approved') {
+                badge.className = 'bg-agro-100 text-agro-800 border border-agro-300 text-xs font-extrabold px-3 py-1 rounded-full flex items-center gap-1.5 animate-pulse';
+                badge.innerHTML = '<i class="fa-solid fa-circle-check text-agro-600"></i> Approved by Nilopasal Admin';
+            } else if (status === 'rejected') {
+                badge.className = 'bg-rose-100 text-rose-800 border border-rose-300 text-xs font-extrabold px-3 py-1 rounded-full flex items-center gap-1.5';
+                badge.innerHTML = '<i class="fa-solid fa-circle-xmark text-rose-600"></i> Verification Failed';
+            }
+        }
+
+        function handleCheckoutSubmit(event) {
+            event.preventDefault();
+            const farm = document.getElementById('checkout-farm-name').value;
+            alert(`Thank you! Subscription request for "${farm}" submitted. Our Nilopasal Agro support team will contact you for verification.`);
+            closeCheckoutModal();
+        }
+
+        // FAQ Toggle
+        function toggleFaq(id) {
+            const answer = document.getElementById(`faq-answer-${id}`);
+            const icon = document.getElementById(`faq-icon-${id}`);
+
+            if (answer.classList.contains('hidden')) {
+                answer.classList.remove('hidden');
+                icon.classList.add('rotate-180');
+            } else {
+                answer.classList.add('hidden');
+                icon.classList.remove('rotate-180');
+            }
+        }
+
+        // Run initial calculation
+        calculateFarmerProducts();
+    </script>
+</body>
+</html>

@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full bg-slate-50">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vendor Dashboard — Nilopasal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'] },
+                    colors: {
+                        nilo: {
+                            500: '#0d3b66',
+                            600: '#0a2e52',
+                            700: '#07213d'
+                        }
+                    }
+                }
+            }
+        };
+    </script>
+    <style>
+        ::-webkit-scrollbar { width: 7px; height: 7px; }
+        ::-webkit-scrollbar-track { background: #f1f5f9; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 999px; }
+        .locked-panel {
+            background-image: radial-gradient(circle at top right, rgba(37, 99, 235, .08), transparent 34rem);
+        }
+    </style>
+</head>
+<body class="min-h-full bg-slate-100 font-sans text-slate-800 antialiased">
+    <div class="flex min-h-screen">
+        <aside class="hidden lg:flex w-72 shrink-0 flex-col justify-between bg-slate-950 text-slate-300">
+            <div>
+                <div class="flex h-20 items-center gap-3 border-b border-slate-800 px-6">
+                    <div class="flex h-11 w-11 items-center justify-center rounded-2xl bg-blue-600 text-xl font-black text-white shadow-lg shadow-blue-500/20">N</div>
+                    <div>
+                        <p class="text-lg font-black tracking-wide text-white">NILOPASAL</p>
+                        <p class="text-[11px] font-bold uppercase tracking-[0.18em] text-blue-400">Vendor Console</p>
+                    </div>
+                </div>
+
+                <div class="p-4">
+                    <div class="rounded-2xl border border-amber-400/30 bg-amber-400/10 p-4">
+                        <div class="flex items-start gap-3">
+                            <div class="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-amber-400/20 text-amber-300">
+                                <i class="fa-solid fa-lock"></i>
+                            </div>
+                            <div>
+                                <p class="text-sm font-extrabold text-white">Subscription required</p>
+                                <p class="mt-1 text-xs leading-5 text-slate-400">Real store data appears only after an active vendor subscription and account verification.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <nav class="space-y-1 px-3">
+                    <a href="#overview" class="flex items-center gap-3 rounded-xl bg-blue-600 px-4 py-3 text-sm font-bold text-white shadow-lg shadow-blue-950/30">
+                        <i class="fa-solid fa-table-columns w-5 text-center"></i>
+                        Overview
+                    </a>
+                    <a href="#subscription" class="flex items-center gap-3 rounded-xl px-4 py-3 text-sm font-semibold text-slate-300 hover:bg-slate-900 hover:text-white">
+                        <i class="fa-solid fa-crown w-5 text-center text-amber-300"></i>
+                        Subscription
+                    </a>
+                    <a href="#locked-modules" class="flex items-center gap-3 rounded-xl px-4 py-3 text-sm font-semibold text-slate-300 hover:bg-slate-900 hover:text-white">
+                        <i class="fa-solid fa-shield-halved w-5 text-center text-emerald-300"></i>
+                        Locked Modules
+                    </a>
+                    <a href="./vendor-subscription-plans.html" class="mt-3 flex items-center justify-between rounded-xl bg-white px-4 py-3 text-sm font-black text-slate-950 hover:bg-blue-50">
+                        View Plans
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </nav>
+            </div>
+
+            <div class="border-t border-slate-800 p-4">
+                <p class="text-xs font-semibold text-slate-400">No vendor profile loaded</p>
+                <p class="mt-1 text-[11px] text-slate-500">Sign in and subscribe to connect your real store.</p>
+            </div>
+        </aside>
+
+        <main class="flex-1">
+            <header class="sticky top-0 z-20 border-b border-slate-200 bg-white/95 px-4 py-4 shadow-sm backdrop-blur sm:px-6 lg:px-8">
+                <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                    <div class="flex items-center gap-3">
+                        <div class="flex h-10 w-10 items-center justify-center rounded-2xl bg-blue-600 text-lg font-black text-white lg:hidden">N</div>
+                        <div>
+                            <p class="text-xs font-bold uppercase tracking-[0.18em] text-blue-600">Nilopasal Vendor</p>
+                            <h1 class="text-xl font-black tracking-tight text-slate-950 sm:text-2xl">Dashboard access is locked</h1>
+                        </div>
+                    </div>
+                    <div class="flex flex-wrap items-center gap-2">
+                        <a href="./vendor-subscription-plans.html" class="inline-flex items-center gap-2 rounded-xl bg-blue-600 px-4 py-2.5 text-sm font-extrabold text-white shadow-lg shadow-blue-600/20 hover:bg-blue-700">
+                            <i class="fa-solid fa-crown"></i>
+                            Subscribe
+                        </a>
+                        <a href="./contact.html" class="inline-flex items-center gap-2 rounded-xl bg-slate-900 px-4 py-2.5 text-sm font-extrabold text-white hover:bg-slate-800">
+                            <i class="fa-solid fa-headset text-emerald-300"></i>
+                            Contact Support
+                        </a>
+                    </div>
+                </div>
+            </header>
+
+            <div class="space-y-6 p-4 sm:p-6 lg:p-8">
+                <section id="overview" class="overflow-hidden rounded-[1.5rem] bg-gradient-to-r from-slate-950 via-nilo-600 to-indigo-950 p-6 text-white shadow-xl sm:p-8">
+                    <div class="grid gap-8 lg:grid-cols-[1.3fr_.7fr] lg:items-center">
+                        <div>
+                            <span class="inline-flex items-center gap-2 rounded-full border border-amber-300/30 bg-amber-300/15 px-3 py-1 text-xs font-extrabold uppercase tracking-wide text-amber-200">
+                                <i class="fa-solid fa-lock"></i>
+                                Real data protected
+                            </span>
+                            <h2 class="mt-4 max-w-3xl text-3xl font-black tracking-tight sm:text-4xl">Subscribe to unlock live vendor billing, orders, inventory, and Khata data.</h2>
+                            <p class="mt-3 max-w-2xl text-sm leading-6 text-slate-300">
+                                This page no longer shows demo revenue, placeholder invoices, placeholder buyer names, or example PAN numbers. Once a vendor subscription is active, Nilopasal can connect the verified store account and show real operational data.
+                            </p>
+                            <div class="mt-6 flex flex-wrap gap-3">
+                                <a href="./vendor-subscription-plans.html" class="inline-flex items-center gap-2 rounded-xl bg-white px-5 py-3 text-sm font-black text-slate-950 hover:bg-blue-50">
+                                    Choose Vendor Plan
+                                    <i class="fa-solid fa-arrow-right"></i>
+                                </a>
+                                <a href="./farmer-vendor-subscription-plans.html" class="inline-flex items-center gap-2 rounded-xl border border-white/20 bg-white/10 px-5 py-3 text-sm font-black text-white hover:bg-white/15">
+                                    Farmer Plans
+                                    <i class="fa-solid fa-leaf text-emerald-300"></i>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="rounded-3xl border border-white/10 bg-white/10 p-5 backdrop-blur">
+                            <p class="text-xs font-bold uppercase tracking-[0.18em] text-blue-100">Access status</p>
+                            <div class="mt-4 space-y-3 text-sm">
+                                <div class="flex items-center justify-between rounded-2xl bg-white/10 px-4 py-3">
+                                    <span class="font-semibold">Subscription</span>
+                                    <span class="rounded-full bg-amber-300/20 px-3 py-1 text-xs font-black text-amber-200">Required</span>
+                                </div>
+                                <div class="flex items-center justify-between rounded-2xl bg-white/10 px-4 py-3">
+                                    <span class="font-semibold">Vendor verification</span>
+                                    <span class="rounded-full bg-slate-100/10 px-3 py-1 text-xs font-black text-slate-200">Not connected</span>
+                                </div>
+                                <div class="flex items-center justify-between rounded-2xl bg-white/10 px-4 py-3">
+                                    <span class="font-semibold">Live data</span>
+                                    <span class="rounded-full bg-rose-300/20 px-3 py-1 text-xs font-black text-rose-100">Hidden</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="grid gap-4 sm:grid-cols-2 xl:grid-cols-4" aria-label="Locked real data modules">
+                    <article class="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm">
+                        <div class="flex items-start justify-between">
+                            <div>
+                                <p class="text-xs font-bold uppercase tracking-wide text-slate-400">Revenue</p>
+                                <p class="mt-2 text-2xl font-black text-slate-400">Locked</p>
+                            </div>
+                            <div class="flex h-11 w-11 items-center justify-center rounded-2xl bg-slate-100 text-slate-500">
+                                <i class="fa-solid fa-chart-line"></i>
+                            </div>
+                        </div>
+                        <p class="mt-4 text-sm leading-6 text-slate-500">Monthly revenue appears from real orders after subscription activation.</p>
+                    </article>
+                    <article class="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm">
+                        <div class="flex items-start justify-between">
+                            <div>
+                                <p class="text-xs font-bold uppercase tracking-wide text-slate-400">VAT / PAN invoices</p>
+                                <p class="mt-2 text-2xl font-black text-slate-400">Locked</p>
+                            </div>
+                            <div class="flex h-11 w-11 items-center justify-center rounded-2xl bg-slate-100 text-slate-500">
+                                <i class="fa-solid fa-receipt"></i>
+                            </div>
+                        </div>
+                        <p class="mt-4 text-sm leading-6 text-slate-500">Tax invoices are generated only from a verified subscribed vendor account.</p>
+                    </article>
+                    <article class="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm">
+                        <div class="flex items-start justify-between">
+                            <div>
+                                <p class="text-xs font-bold uppercase tracking-wide text-slate-400">Digital Khata</p>
+                                <p class="mt-2 text-2xl font-black text-slate-400">Locked</p>
+                            </div>
+                            <div class="flex h-11 w-11 items-center justify-center rounded-2xl bg-slate-100 text-slate-500">
+                                <i class="fa-solid fa-book-bookmark"></i>
+                            </div>
+                        </div>
+                        <p class="mt-4 text-sm leading-6 text-slate-500">Customer credit balances stay empty until real vendor records are connected.</p>
+                    </article>
+                    <article class="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm">
+                        <div class="flex items-start justify-between">
+                            <div>
+                                <p class="text-xs font-bold uppercase tracking-wide text-slate-400">Inventory</p>
+                                <p class="mt-2 text-2xl font-black text-slate-400">Locked</p>
+                            </div>
+                            <div class="flex h-11 w-11 items-center justify-center rounded-2xl bg-slate-100 text-slate-500">
+                                <i class="fa-solid fa-boxes-stacked"></i>
+                            </div>
+                        </div>
+                        <p class="mt-4 text-sm leading-6 text-slate-500">Stock, low inventory, and catalogue data require an active plan.</p>
+                    </article>
+                </section>
+
+                <section id="subscription" class="grid gap-6 lg:grid-cols-[.9fr_1.1fr]">
+                    <div class="rounded-[1.5rem] border border-slate-200 bg-white p-6 shadow-sm">
+                        <p class="text-xs font-black uppercase tracking-[0.2em] text-blue-600">Next step</p>
+                        <h2 class="mt-2 text-2xl font-black tracking-tight text-slate-950">Activate a vendor subscription</h2>
+                        <p class="mt-3 text-sm leading-6 text-slate-600">
+                            Nilopasal will show only verified, live business information here. To unlock this dashboard, choose a subscription plan and complete store verification.
+                        </p>
+                        <div class="mt-6 space-y-3">
+                            <a href="./vendor-subscription-plans.html" class="flex items-center justify-between rounded-2xl border border-blue-200 bg-blue-50 px-4 py-4 text-blue-900 hover:bg-blue-100">
+                                <span>
+                                    <strong class="block text-sm font-black">Retailer, reseller, manufacturer, or bulk buyer</strong>
+                                    <small class="mt-1 block text-xs font-semibold text-blue-700">Open standard vendor plans</small>
+                                </span>
+                                <i class="fa-solid fa-arrow-right"></i>
+                            </a>
+                            <a href="./farmer-vendor-subscription-plans.html" class="flex items-center justify-between rounded-2xl border border-emerald-200 bg-emerald-50 px-4 py-4 text-emerald-950 hover:bg-emerald-100">
+                                <span>
+                                    <strong class="block text-sm font-black">Farmer or fresh produce seller</strong>
+                                    <small class="mt-1 block text-xs font-semibold text-emerald-700">Open farmer vendor plans</small>
+                                </span>
+                                <i class="fa-solid fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div id="locked-modules" class="locked-panel rounded-[1.5rem] border border-slate-200 bg-white p-6 shadow-sm">
+                        <div class="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+                            <div>
+                                <p class="text-xs font-black uppercase tracking-[0.2em] text-slate-400">Locked until subscribed</p>
+                                <h2 class="mt-2 text-2xl font-black tracking-tight text-slate-950">Real dashboard modules</h2>
+                            </div>
+                            <span class="inline-flex items-center gap-2 rounded-full bg-amber-100 px-3 py-1 text-xs font-black text-amber-800">
+                                <i class="fa-solid fa-lock"></i>
+                                Protected
+                            </span>
+                        </div>
+                        <div class="mt-5 grid gap-3 sm:grid-cols-2">
+                            <div class="rounded-2xl border border-slate-200 bg-slate-50 p-4">
+                                <i class="fa-solid fa-cash-register text-blue-600"></i>
+                                <p class="mt-2 text-sm font-black text-slate-900">POS tax billing</p>
+                                <p class="mt-1 text-xs leading-5 text-slate-500">Enabled after active plan and tax setup.</p>
+                            </div>
+                            <div class="rounded-2xl border border-slate-200 bg-slate-50 p-4">
+                                <i class="fa-solid fa-bag-shopping text-blue-600"></i>
+                                <p class="mt-2 text-sm font-black text-slate-900">Marketplace orders</p>
+                                <p class="mt-1 text-xs leading-5 text-slate-500">Shows only real customer orders.</p>
+                            </div>
+                            <div class="rounded-2xl border border-slate-200 bg-slate-50 p-4">
+                                <i class="fa-solid fa-book-bookmark text-blue-600"></i>
+                                <p class="mt-2 text-sm font-black text-slate-900">Digital Khata</p>
+                                <p class="mt-1 text-xs leading-5 text-slate-500">Debtors and balances appear only from connected store records.</p>
+                            </div>
+                            <div class="rounded-2xl border border-slate-200 bg-slate-50 p-4">
+                                <i class="fa-solid fa-boxes-stacked text-blue-600"></i>
+                                <p class="mt-2 text-sm font-black text-slate-900">Inventory sync</p>
+                                <p class="mt-1 text-xs leading-5 text-slate-500">Connects to actual vendor products.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="rounded-[1.5rem] border border-slate-200 bg-white p-6 shadow-sm">
+                    <div class="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+                        <div>
+                            <p class="text-xs font-black uppercase tracking-[0.2em] text-slate-400">Current page policy</p>
+                            <h2 class="mt-2 text-xl font-black text-slate-950">Only subscribed account records are displayed</h2>
+                            <p class="mt-2 max-w-3xl text-sm leading-6 text-slate-600">
+                                Vendor names, buyer names, PAN/VAT numbers, invoice IDs, revenue totals, stock levels, debtor balances, and wholesale pricing are intentionally hidden until they come from a real subscribed account.
+                            </p>
+                        </div>
+                        <a href="./index.html" class="inline-flex items-center justify-center gap-2 rounded-xl border border-slate-200 px-4 py-2.5 text-sm font-extrabold text-slate-700 hover:bg-slate-50">
+                            <i class="fa-solid fa-store"></i>
+                            Back to Nilopasal
+                        </a>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+</body>
+</html>
