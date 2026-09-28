@@ -36,14 +36,14 @@ gh repo create nilopasal --public --source=. --remote=origin --push
 
 ## Step 2: Deploy on Render.com (Recommended — 1-Click Setup)
 
-Render provides a managed PostgreSQL database and a Node.js web service in a single dashboard:
+Render provides a managed PostgreSQL database and a Python FastAPI web service in a single dashboard:
 
 1. Go to [https://dashboard.render.com](https://dashboard.render.com) and log in with your GitHub account (`Aalokwagle588`).
 2. Click **New +** -> **Blueprint**.
 3. Select the `nilopasal` repository.
 4. Render will automatically read `render.yaml` and create two services:
    - **`nilopasal-db`**: Managed PostgreSQL 16 database.
-   - **`nilopasal-api`**: Node.js Web Service running `npm run build && npm start`.
+   - **`nilopasal-api`**: Python FastAPI Web Service running Gunicorn + Uvicorn workers.
 5. Click **Apply**.
 6. Once deployed (typically 2-3 minutes), Render will give you a public URL like:
    `https://nilopasal-api.onrender.com`

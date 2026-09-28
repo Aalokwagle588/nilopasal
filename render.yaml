@@ -1,15 +1,17 @@
 services:
-  # Nilopasal Node.js Backend API
+  # Nilopasal Python FastAPI Backend API
   - type: web
     name: nilopasal-api
-    runtime: node
-    rootDir: backend
+    runtime: python
+    rootDir: fastapi_backend
     plan: starter
     region: singapore # Closest low-latency region to Nepal
-    buildCommand: npm ci && npx prisma generate && npm run build
-    startCommand: npx prisma migrate deploy && npm start
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn main:app -k uvicorn.workers.UvicornWorker -b 0.0.0.0:$PORT
     healthCheckPath: /health
     envVars:
+      - key: PYTHON_VERSION
+        value: "3.12.8"
       - key: NODE_ENV
         value: production
       - key: PORT
@@ -26,10 +28,8 @@ services:
         value: "30"
       - key: CORS_ORIGINS
         value: "https://nilopasal.com,https://www.nilopasal.com,https://api.nilopasal.com"
-      - key: TRUST_PROXY
-        value: "true"
-      - key: LOG_LEVEL
-        value: "info"
+      - key: SECRET_KEY
+        generateValue: true
 
 databases:
   # Managed PostgreSQL 16 Database
