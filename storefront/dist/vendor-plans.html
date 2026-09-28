@@ -1,0 +1,1024 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nilopasal.com - Retailer & Vendor Pricing Plans</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Noto+Sans+Devanagari:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        nilo: {
+                            50: '#f0f7ff',
+                            100: '#e0effe',
+                            500: '#0082f6',
+                            600: '#0066cc',
+                            700: '#004da3',
+                            800: '#003366',
+                            900: '#0a1d37',
+                        },
+                        pasal: {
+                            500: '#10b981',
+                            600: '#059669',
+                            700: '#047857',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', '"Noto Sans Devanagari"', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', 'Noto Sans Devanagari', sans-serif;
+            background-color: #f8fafc;
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, #0066cc 0%, #10b981 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .gradient-bg {
+            background: linear-gradient(135deg, #0066cc 0%, #004da3 100%);
+        }
+        .card-shadow {
+            box-shadow: 0 10px 30px -5px rgba(0, 102, 204, 0.08);
+        }
+        .card-shadow-active {
+            box-shadow: 0 20px 40px -10px rgba(0, 102, 204, 0.22);
+        }
+        /* Custom scrollbar for feature table */
+        .custom-scrollbar::-webkit-scrollbar {
+            height: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #f1f5f9;
+            border-radius: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+    </style>
+</head>
+<body class="text-slate-800 antialiased selection:bg-nilo-500 selection:text-white">
+
+    <!-- Navigation Bar -->
+    <header class="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-slate-100 transition-all">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 rounded-xl gradient-bg flex items-center justify-center text-white font-black text-xl shadow-md">
+                    N
+                </div>
+                <div>
+                    <span class="text-2xl font-black tracking-tight text-nilo-900">NILOPASAL<span class="text-pasal-500">.COM</span></span>
+                    <span class="hidden sm:inline-block text-xs font-semibold px-2 py-0.5 bg-nilo-50 text-nilo-700 rounded-full ml-2 border border-nilo-100">Vendor Portal</span>
+                </div>
+            </div>
+            
+            <nav class="hidden md:flex items-center space-x-8 text-sm font-semibold text-slate-600">
+                <a href="#plans" class="text-nilo-600 hover:text-nilo-700 transition">Pricing Plans</a>
+                <a href="#features" class="hover:text-nilo-600 transition">Feature Comparison</a>
+                <a href="#benefits" class="hover:text-nilo-600 transition">Vendor Benefits</a>
+                <a href="#khata-preview" class="hover:text-nilo-600 transition">Digital Khata</a>
+                <a href="#faq" class="hover:text-nilo-600 transition">FAQs</a>
+            </nav>
+
+            <div class="flex items-center space-x-3">
+                <a href="#plans" class="text-sm font-bold text-nilo-700 hover:text-nilo-800 px-4 py-2.5 rounded-lg hover:bg-nilo-50 transition hidden sm:block">
+                    Sign In
+                </a>
+                <a href="#plans" onclick="scrollToPlans('yearly')" class="text-sm font-bold bg-nilo-600 hover:bg-nilo-700 text-white px-5 py-2.5 rounded-xl shadow-md hover:shadow-lg transition flex items-center gap-2">
+                    <span>Join as Retailer</span>
+                    <i class="fa-solid fa-arrow-right text-xs"></i>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative pt-12 pb-20 md:pt-20 md:pb-28 overflow-hidden bg-gradient-to-b from-nilo-50/60 via-slate-50 to-white">
+        <!-- Background decorative blobs -->
+        <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-gradient-to-tr from-nilo-200/40 to-pasal-500/20 rounded-full blur-3xl pointer-events-none -z-10"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-pasal-50 border border-pasal-500/20 text-pasal-700 text-xs sm:text-sm font-bold mb-6 animate-pulse">
+                <span class="flex h-2 w-2 rounded-full bg-pasal-500"></span>
+                🇳🇵 Nepal's #1 Retailer & Wholesale Digital Enablement Platform
+            </div>
+            
+            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900 tracking-tight leading-tight max-w-4xl mx-auto">
+                Grow Your Shop digitally with <span class="gradient-text">Nilopasal Vendor Plans</span>
+            </h1>
+            
+            <p class="mt-6 text-lg sm:text-xl text-slate-600 max-w-2xl mx-auto font-medium">
+                Manage inventory, customer orders, digital khata, and expand your market reach across Nepal with zero hassle.
+            </p>
+
+            <!-- Toggle Switch -->
+            <div class="mt-10 flex items-center justify-center gap-4">
+                <span class="text-sm font-bold text-slate-700">Monthly Billing</span>
+                <button id="billingToggle" onclick="toggleBilling()" class="relative w-16 h-8 bg-nilo-600 rounded-full p-1 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-nilo-500 focus:ring-offset-2" aria-label="Toggle Billing Period">
+                    <div id="toggleDot" class="w-6 h-6 bg-white rounded-full shadow-md transform transition-transform duration-300 translate-x-8"></div>
+                </button>
+                <div class="flex items-center gap-2">
+                    <span class="text-sm font-bold text-slate-900">Yearly Billing</span>
+                    <span class="bg-pasal-500 text-white text-[11px] font-extrabold uppercase px-2 py-0.5 rounded-full shadow-sm">
+                        Save Rs. 1,200
+                    </span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Cards Section -->
+    <section id="plans" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-10 relative z-20 pb-16">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch">
+            
+            <!-- FREE TRIAL CARD -->
+            <div id="card-free" class="bg-white rounded-2xl border border-slate-200 card-shadow p-8 flex flex-col justify-between transition-all hover:border-nilo-300 hover:shadow-xl relative">
+                <div>
+                    <div class="flex justify-between items-center mb-4">
+                        <span class="text-xs font-extrabold uppercase tracking-wider text-slate-500 bg-slate-100 px-3 py-1 rounded-full">Trial Plan</span>
+                        <span class="text-2xl">🆓</span>
+                    </div>
+                    <h3 class="text-2xl font-bold text-slate-900">Free Trial</h3>
+                    <p class="text-slate-500 text-sm mt-1">Try all features risk-free for 30 days. No credit card required.</p>
+                    
+                    <div class="my-6">
+                        <div class="flex items-baseline">
+                            <span class="text-4xl font-extrabold text-slate-900">FREE</span>
+                        </div>
+                        <span class="text-xs font-semibold text-slate-500 block mt-1">Duration: 1 Month Access</span>
+                    </div>
+
+                    <div class="border-t border-slate-100 pt-6 space-y-3.5">
+                        <div class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Key Included Features</div>
+                        <div class="flex items-center gap-3 text-sm text-slate-700">
+                            <i class="fa-solid fa-circle-check text-pasal-500 text-base"></i>
+                            <span>Vendor Store & Profile Page</span>
+                        </div>
+                        <div class="flex items-center gap-3 text-sm text-slate-700">
+                            <i class="fa-solid fa-circle-check text-pasal-500 text-base"></i>
+                            <span>Product Catalog & Price Management</span>
+                        </div>
+                        <div class="flex items-center gap-3 text-sm text-slate-700">
+                            <i class="fa-solid fa-circle-check text-pasal-500 text-base"></i>
+                            <span>Stock In / Stock Out & Alerts</span>
+                        </div>
+                        <div class="flex items-center gap-3 text-sm text-slate-700">
+                            <i class="fa-solid fa-circle-check text-pasal-500 text-base"></i>
+                            <span>Digital Khata & Due Tracking</span>
+                        </div>
+                        <div class="flex items-center gap-3 text-sm text-slate-400 line-through">
+                            <i class="fa-solid fa-circle-xmark text-slate-300 text-base"></i>
+                            <span>Featured Store/Product Badge</span>
+                        </div>
+                    </div>
+                </div>
+
+                <button onclick="selectPlan('Free Trial')" class="mt-8 w-full py-3.5 px-4 rounded-xl border-2 border-nilo-600 text-nilo-600 font-bold hover:bg-nilo-50 transition text-center focus:ring-2 focus:ring-nilo-500">
+                    Start 1 Month Free Trial
+                </button>
+            </div>
+
+            <!-- MONTHLY CARD -->
+            <div id="card-monthly" class="bg-white rounded-2xl border border-slate-200 card-shadow p-8 flex flex-col justify-between transition-all hover:border-nilo-400 hover:shadow-xl relative">
+                <div>
+                    <div class="flex justify-between items-center mb-4">
+                        <span class="text-xs font-extrabold uppercase tracking-wider text-nilo-700 bg-nilo-50 px-3 py-1 rounded-full border border-nilo-100">Flexible</span>
+                        <span class="text-2xl">🔵</span>
+                    </div>
+                    <h3 class="text-2xl font-bold text-slate-900">Monthly Plan</h3>
+                    <p class="text-slate-500 text-sm mt-1">Pay-as-you-go flexibility for growing retail businesses.</p>
+                    
+                    <div class="my-6">
+                        <div class="flex items-baseline gap-1">
+                            <span class="text-2xl font-bold text-slate-700">Rs.</span>
+                            <span class="text-4xl font-extrabold text-slate-900">600</span>
+                            <span class="text-slate-500 text-sm font-semibold">/ month</span>
+                        </div>
+                        <span class="text-xs font-semibold text-slate-500 block mt-1">Billed month-to-month</span>
+                    </div>
+
+                    <div class="border-t border-slate-100 pt-6 space-y-3.5">
+                        <div class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Includes Everything +</div>
+                        <div class="flex items-center gap-3 text-sm text-slate-700 font-medium">
+                            <i class="fa-solid fa-circle-check text-pasal-500 text-base"></i>
+                            <span>Unrestricted Catalog Listings</span>
+                        </div>
+                        <div class="flex items-center gap-3 text-sm text-slate-700">
+                            <i class="fa-solid fa-circle-check text-pasal-500 text-base"></i>
+                            <span>Full Order & Inventory Suite</span>
+                        </div>
+                        <div class="flex items-center gap-3 text-sm text-slate-700">
+                            <i class="fa-solid fa-circle-check text-pasal-500 text-base"></i>
+                            <span>Customer Direct Chat & Khata</span>
+                        </div>
+                        <div class="flex items-center gap-3 text-sm text-slate-700 font-semibold text-nilo-700">
+                            <i class="fa-solid fa-star text-amber-500 text-base"></i>
+                            <span>Featured Store & Product Listing</span>
+                        </div>
+                    </div>
+                </div>
+
+                <button onclick="selectPlan('Monthly')" class="mt-8 w-full py-3.5 px-4 rounded-xl bg-nilo-600 hover:bg-nilo-700 text-white font-bold transition shadow-md hover:shadow-lg text-center focus:ring-2 focus:ring-nilo-500">
+                    Subscribe Monthly
+                </button>
+            </div>
+
+            <!-- YEARLY CARD (POPULAR / BEST VALUE) -->
+            <div id="card-yearly" class="bg-gradient-to-b from-slate-900 to-nilo-900 text-white rounded-2xl card-shadow-active p-8 flex flex-col justify-between transition-all transform md:-translate-y-2 relative border-2 border-pasal-500">
+                
+                <!-- Badge -->
+                <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-pasal-500 text-white text-xs font-extrabold uppercase px-4 py-1.5 rounded-full shadow-lg tracking-wider flex items-center gap-1.5">
+                    <i class="fa-solid fa-crown text-amber-300"></i> BEST VALUE (SAVE RS. 1,200)
+                </div>
+
+                <div>
+                    <div class="flex justify-between items-center mb-4 mt-2">
+                        <span class="text-xs font-extrabold uppercase tracking-wider text-pasal-400 bg-pasal-950/80 px-3 py-1 rounded-full border border-pasal-500/30">Annual Saver</span>
+                        <span class="text-2xl">🟢</span>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white">Yearly Plan</h3>
+                    <p class="text-slate-300 text-sm mt-1">Maximum savings for long-term retail success.</p>
+                    
+                    <div class="my-6">
+                        <div class="flex items-baseline gap-1">
+                            <span class="text-2xl font-bold text-pasal-400">Rs.</span>
+                            <span class="text-5xl font-extrabold text-white">6,000</span>
+                            <span class="text-slate-300 text-sm font-semibold">/ year</span>
+                        </div>
+                        <div class="mt-2 flex items-center gap-2">
+                            <span class="text-xs font-bold text-pasal-400 bg-pasal-500/20 px-2 py-0.5 rounded border border-pasal-500/40">Equivalent to Rs. 500/mo</span>
+                            <span class="text-xs text-slate-400 line-through">Rs. 7,200</span>
+                        </div>
+                    </div>
+
+                    <div class="border-t border-slate-800 pt-6 space-y-3.5">
+                        <div class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">All Features Included</div>
+                        <div class="flex items-center gap-3 text-sm text-slate-200">
+                            <i class="fa-solid fa-circle-check text-pasal-400 text-base"></i>
+                            <span>Complete Digital Storefront & Catalog</span>
+                        </div>
+                        <div class="flex items-center gap-3 text-sm text-slate-200">
+                            <i class="fa-solid fa-circle-check text-pasal-400 text-base"></i>
+                            <span>Advanced Inventory & Stock Alerts</span>
+                        </div>
+                        <div class="flex items-center gap-3 text-sm text-slate-200">
+                            <i class="fa-solid fa-circle-check text-pasal-400 text-base"></i>
+                            <span>Full Digital Khata & Customer Analytics</span>
+                        </div>
+                        <div class="flex items-center gap-3 text-sm text-slate-200">
+                            <i class="fa-solid fa-circle-check text-pasal-400 text-base"></i>
+                            <span>Priority Support & Nilopasal Badge</span>
+                        </div>
+                        <div class="flex items-center gap-3 text-sm font-bold text-pasal-300">
+                            <i class="fa-solid fa-star text-amber-400 text-base"></i>
+                            <span>Priority Featured Store Placement</span>
+                        </div>
+                    </div>
+                </div>
+
+                <button onclick="selectPlan('Yearly')" class="mt-8 w-full py-4 px-4 rounded-xl bg-pasal-500 hover:bg-pasal-600 text-white font-extrabold transition shadow-lg hover:shadow-pasal-500/30 text-center focus:ring-2 focus:ring-pasal-400">
+                    Get Yearly Discount (Save Rs. 1,200)
+                </button>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Interactive Calculator Banner -->
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-20">
+        <div class="bg-gradient-to-r from-nilo-800 via-nilo-700 to-nilo-900 rounded-3xl p-8 sm:p-12 text-white shadow-2xl relative overflow-hidden">
+            <div class="absolute -right-10 -bottom-10 w-80 h-80 bg-pasal-500/20 rounded-full blur-3xl pointer-events-none"></div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative z-10">
+                <div class="lg:col-span-7">
+                    <span class="text-xs font-bold uppercase tracking-wider px-3 py-1 bg-pasal-500 text-white rounded-full">Vendor ROI Calculator</span>
+                    <h2 class="text-2xl sm:text-3xl font-extrabold mt-3">See how much time and money Nilopasal saves your business</h2>
+                    <p class="text-slate-300 mt-2 text-sm sm:text-base">Calculate your estimated monthly savings from digitized inventory management and reduced credit dues losses.</p>
+
+                    <div class="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-300 mb-1">Monthly Shop Revenue (Rs.)</label>
+                            <input type="number" id="monthlyRevenue" value="150000" oninput="calculateSavings()" class="w-full bg-nilo-900/80 border border-nilo-500/40 rounded-xl px-4 py-2.5 text-white font-bold focus:outline-none focus:border-pasal-400">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-300 mb-1">Uncollected Credit / Udharo (%)</label>
+                            <input type="range" id="udharoPercent" min="1" max="15" value="5" oninput="calculateSavings()" class="w-full accent-pasal-500 mt-3">
+                            <span id="udharoVal" class="text-xs text-pasal-300 font-bold">5% average credit loss</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-5 bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/10 text-center lg:text-left">
+                    <div class="text-xs text-slate-300 font-semibold">Estimated Monthly Recovery with Digital Khata:</div>
+                    <div id="savingsResult" class="text-3xl sm:text-4xl font-extrabold text-pasal-400 mt-1">Rs. 5,250 / mo</div>
+                    <p class="text-xs text-slate-300 mt-2">Plus 15+ hours saved monthly in paper ledger bookkeeping.</p>
+                    <button onclick="scrollToPlans('yearly')" class="mt-4 w-full bg-white text-nilo-900 font-bold py-2.5 rounded-xl hover:bg-slate-100 transition text-sm">
+                        Start Digitalization Today
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Feature Matrix Table Section -->
+    <section id="features" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl font-extrabold text-slate-900">Comprehensive Plan Comparison</h2>
+            <p class="text-slate-600 mt-2">Every plan gives you full features to run your business digitally with transparency.</p>
+
+            <!-- Table Filter Pills -->
+            <div class="flex flex-wrap justify-center gap-2 mt-6">
+                <button onclick="filterTable('all')" class="filter-btn active-filter px-4 py-2 rounded-full text-xs font-bold transition bg-nilo-600 text-white" data-cat="all">All Features</button>
+                <button onclick="filterTable('store')" class="filter-btn px-4 py-2 rounded-full text-xs font-bold transition bg-slate-100 text-slate-600 hover:bg-slate-200" data-cat="store">Store & Catalog</button>
+                <button onclick="filterTable('inventory')" class="filter-btn px-4 py-2 rounded-full text-xs font-bold transition bg-slate-100 text-slate-600 hover:bg-slate-200" data-cat="inventory">Inventory</button>
+                <button onclick="filterTable('orders')" class="filter-btn px-4 py-2 rounded-full text-xs font-bold transition bg-slate-100 text-slate-600 hover:bg-slate-200" data-cat="orders">Orders & Chat</button>
+                <button onclick="filterTable('khata')" class="filter-btn px-4 py-2 rounded-full text-xs font-bold transition bg-slate-100 text-slate-600 hover:bg-slate-200" data-cat="khata">Digital Khata</button>
+            </div>
+        </div>
+
+        <!-- Matrix Table Container -->
+        <div class="bg-white rounded-2xl border border-slate-200 card-shadow overflow-hidden">
+            <div class="overflow-x-auto custom-scrollbar">
+                <table class="w-full text-left border-collapse min-w-[700px]">
+                    <thead>
+                        <tr class="bg-slate-50 border-b border-slate-200">
+                            <th class="p-5 font-bold text-slate-800 text-base w-1/3">Feature Details</th>
+                            <th class="p-5 font-bold text-slate-800 text-center w-1/5">
+                                <div class="text-sm font-extrabold">🆓 FREE TRIAL</div>
+                                <div class="text-xs font-normal text-slate-500">1 Month</div>
+                            </th>
+                            <th class="p-5 font-bold text-nilo-700 text-center w-1/5 bg-nilo-50/50">
+                                <div class="text-sm font-extrabold">🔵 MONTHLY</div>
+                                <div class="text-xs font-normal text-slate-500">Rs. 600 / mo</div>
+                            </th>
+                            <th class="p-5 font-bold text-pasal-700 text-center w-1/5 bg-pasal-50/50">
+                                <div class="text-sm font-extrabold">🟢 YEARLY ⭐</div>
+                                <div class="text-xs font-normal text-slate-500">Rs. 6,000 / yr</div>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-100 text-sm" id="featureTableBody">
+                        
+                        <!-- CATEGORY: STORE -->
+                        <tr class="bg-slate-50/80 feature-row" data-category="store">
+                            <td colspan="4" class="px-5 py-2.5 font-extrabold text-xs text-nilo-800 uppercase tracking-wider">
+                                <i class="fa-solid fa-store mr-2"></i> Vendor Storefront & Catalog Management
+                            </td>
+                        </tr>
+                        <tr class="hover:bg-slate-50/50 feature-row" data-category="store">
+                            <td class="px-5 py-4 font-semibold text-slate-800 flex items-center justify-between">
+                                <span>Vendor Store / Profile Creation</span>
+                                <i class="fa-solid fa-circle-info text-slate-400 text-xs cursor-pointer hover:text-nilo-600" title="Custom URL page displaying your shop details, logo, and phone number"></i>
+                            </td>
+                            <td class="px-5 py-4 text-center"><i class="fa-solid fa-check text-pasal-500 text-lg"></i></td>
+                            <td class="px-5 py-4 text-center bg-nilo-50/30"><i class="fa-solid fa-check text-pasal-500 text-lg"></i></td>
+                            <td class="px-5 py-4 text-center bg-pasal-50/30"><i class="fa-solid fa-check text-pasal-500 text-lg"></i></td>
+                        </tr>
+                        <tr class="hover:bg-slate-50/50 feature-row" data-category="store">
+                            <td class="px-5 py-4 font-semibold text-slate-800">Product Listing Capabilities</td>
+                            <td class="px-5 py-4 text-center"><i class="fa-solid fa-check text-pasal-500 text-lg"></i></td>
+                            <td class="px-5 py-4 text-center bg-nilo-50/30"><i class="fa-solid fa-check text-pasal-500 text-lg"></i></td>
+                            <td class="px-5 py-4 text-center bg-pasal-50/30"><i class="fa-solid fa-check text-pasal-500 text-lg"></i></td>
+                        </tr>
+                        <tr class="hover:bg-slate-50/50 feature-row" data-category="store">
+                            <td class="px-5 py-4 font-semibold text-slate-800">Product Photos & Details Upload</td>
+                            <td class="px-5 py-4 text-center"><i class="fa-solid fa-check text-pasal-500 text-lg"></i></td>
+                            <td class="px-5 py-4 text-center bg-nilo-50/30"><i class="fa-solid fa-check text-pasal-500 text-lg"></i></td>
+                            <td class="px-5 py-4 text-center bg-pasal-50/30"><i class="fa-solid fa-check text-pasal-500 text-lg"></i></td>
+                        </tr>
+                        <tr class="hover:bg-slate-50/50 feature-row" data-category="store">
+                            <td class="px-5 py-4 font-semibold text-slate-800">Product & Dynamic Price Management</td>
+                            <td class="px-5 py-4 text-center"><i class="fa-solid fa-check text-pasal-500 text-lg"></i></td>
+                            <td class="px-5 py-4 text-center bg-nilo-50/30"><i class="fa-solid fa-check text-pasal-500 text-lg"></i></td>
+                            <td class="px-5 py-4 text-center bg-pasal-50/30"><i class="fa-solid fa-check text-pasal-500 text-lg"></i></td>
+                        </tr>
+
+                        <!-- CATEGORY: INVENTORY -->
+                        <tr class="bg-slate-50/80 feature-row" data-category="inventory">
+                            <td colspan="4" class="px-5 py-2.5 font-extrabold text-xs text-nilo-800 uppercase tracking-wider">
+                                <i class="fa-solid fa-boxes-stacked mr-2"></i> Inventory & Stock Control
+                            </td>
+                        </tr>
+                        <tr class="hover:bg-slate-50/50 feature-row" data-category="inventory">
+                            <td class="px-5 py-4 font-semibold text-slate-800">Inventory Management System</td>
+                            <td class="px-5 py-4 text-center"><i class="fa-solid fa-check text-pasal-500 text-lg"></i></td>
+                            <td class="px-5 py-4 text-center bg-nilo-50/30"><i class="fa-solid fa-check text-pasal-500 text-lg"></i></td>
+                            <td class="px-5 py-4 text-center bg-pasal-50/30"><i class="fa-solid fa-check text-pasal-500 text-lg"></i></td>
+                        </tr>
+                        <tr class="hover:bg-slate-50/50 feature-row" data-category="inventory">
+                            <td class="px-5 py-4 font-semibold text-slate-800">Stock In / Stock Out Logging</td>
+                            <td class="px-5 py-4 text-center"><i class="fa-solid fa-check text-pasal-500 text-lg"></i></td>
+                            <td class="px-5 py-4 text-center bg-nilo-50/30"><i class="fa-solid fa-check text-pasal-500 text-lg"></i></td>
+                            <td class="px-5 py-4 text-center bg-pasal-50/30"><i class="fa-solid fa-check text-pasal-500 text-lg"></i></td>
+                        </tr>
+                        <tr class="hover:bg-slate-50/50 feature-row" data-category="inventory">
+                            <td class="px-5 py-4 font-semibold text-slate-800">Stock Quantity Live Tracking</td>
+                            <td class="px-5 py-4 text-center"><i class="fa-solid fa-check text-pasal-500 text-lg"></i></td>
+                            <td class="px-5 py-4 text-center bg-nilo-50/30"><i class="fa-solid fa-check text-pasal-500 text-lg"></i></td>
+                            <td class="px-5 py-4 text-center bg-pasal-50/30"><i class="fa-solid fa-check text-pasal-500 text-lg"></i></td>
+                        </tr>
+                        <tr class="hover:bg-slate-50/50 feature-row" data-category="inventory">
+                            <td class="px-5 py-4 font-semibold text-slate-800">Low Stock Automated Alert</td>
+                            <td class="px-5 py-4 text-center"><i class="fa-solid fa-check text-pasal-500 text-lg"></i></td>
+                            <td class="px-5 py-4 text-center bg-nilo-50/30"><i class="fa-solid fa-check text-pasal-500 text-lg"></i></td>
+                            <td class="px-5 py-4 text-center bg-pasal-50/30"><i class="fa-solid fa-check text-pasal-500 text-lg"></i></td>
+                        </tr>
+                        <tr class="hover:bg-slate-50/50 feature-row" data-category="inventory">
+                            <td class="px-5 py-4 font-semibold text-slate-800">Out-of-Stock Auto Management</td>
+                            <td class="px-5 py-4 text-center"><i class="fa-solid fa-check text-pasal-500 text-lg"></i></td>
+                            <td class="px-5 py-4 text-center bg-nilo-50/30"><i class="fa-solid fa-check text-pasal-500 text-lg"></i></td>
+                            <td class="px-5 py-4 text-center bg-pasal-50/30"><i class="fa-solid fa-check text-pasal-500 text-lg"></i></td>
+                        </tr>
+
+                        <!-- CATEGORY: ORDERS & CUSTOMER -->
+                        <tr class="bg-slate-50/80 feature-row" data-category="orders">
+                            <td colspan="4" class="px-5 py-2.5 font-extrabold text-xs text-nilo-800 uppercase tracking-wider">
+                                <i class="fa-solid fa-cart-shopping mr-2"></i> Orders & Customer Engagement
+                            </td>
+                        </tr>
+                        <tr class="hover:bg-slate-50/50 feature-row" data-category="orders">
+                            <td class="px-5 py-4 font-semibold text-slate-800">Customer Orders & Fulfillment</td>
+                            <td class="px-5 py-4 text-center"><i class="fa-solid fa-check text-pasal-500 text-lg"></i></td>
+                            <td class="px-5 py-4 text-center bg-nilo-50/30"><i class="fa-solid fa-check text-pasal-500 text-lg"></i></td>
+                            <td class="px-5 py-4 text-center bg-pasal-50/30"><i class="fa-solid fa-check text-pasal-500 text-lg"></i></td>
+                        </tr>
+                        <tr class="hover:bg-slate-50/50 feature-row" data-category="orders">
+                            <td class="px-5 py-4 font-semibold text-slate-800">Order Status Dashboard & Management</td>
+                            <td class="px-5 py-4 text-center"><i class="fa-solid fa-check text-pasal-500 text-lg"></i></td>
+                            <td class="px-5 py-4 text-center bg-nilo-50/30"><i class="fa-solid fa-check text-pasal-500 text-lg"></i></td>
+                            <td class="px-5 py-4 text-center bg-pasal-50/30"><i class="fa-solid fa-check text-pasal-500 text-lg"></i></td>
+                        </tr>
+                        <tr class="hover:bg-slate-50/50 feature-row" data-category="orders">
+                            <td class="px-5 py-4 font-semibold text-slate-800">Customer Contact & Address Information</td>
+                            <td class="px-5 py-4 text-center"><i class="fa-solid fa-check text-pasal-500 text-lg"></i></td>
+                            <td class="px-5 py-4 text-center bg-nilo-50/30"><i class="fa-solid fa-check text-pasal-500 text-lg"></i></td>
+                            <td class="px-5 py-4 text-center bg-pasal-50/30"><i class="fa-solid fa-check text-pasal-500 text-lg"></i></td>
+                        </tr>
+                        <tr class="hover:bg-slate-50/50 feature-row" data-category="orders">
+                            <td class="px-5 py-4 font-semibold text-slate-800">Direct Chat with Buyers</td>
+                            <td class="px-5 py-4 text-center"><i class="fa-solid fa-check text-pasal-500 text-lg"></i></td>
+                            <td class="px-5 py-4 text-center bg-nilo-50/30"><i class="fa-solid fa-check text-pasal-500 text-lg"></i></td>
+                            <td class="px-5 py-4 text-center bg-pasal-50/30"><i class="fa-solid fa-check text-pasal-500 text-lg"></i></td>
+                        </tr>
+                        <tr class="hover:bg-slate-50/50 feature-row" data-category="orders">
+                            <td class="px-5 py-4 font-semibold text-slate-800">Store Map Location Integration</td>
+                            <td class="px-5 py-4 text-center"><i class="fa-solid fa-check text-pasal-500 text-lg"></i></td>
+                            <td class="px-5 py-4 text-center bg-nilo-50/30"><i class="fa-solid fa-check text-pasal-500 text-lg"></i></td>
+                            <td class="px-5 py-4 text-center bg-pasal-50/30"><i class="fa-solid fa-check text-pasal-500 text-lg"></i></td>
+                        </tr>
+
+                        <!-- CATEGORY: DIGITAL KHATA -->
+                        <tr class="bg-slate-50/80 feature-row" data-category="khata">
+                            <td colspan="4" class="px-5 py-2.5 font-extrabold text-xs text-nilo-800 uppercase tracking-wider">
+                                <i class="fa-solid fa-book-bookmark mr-2"></i> Digital Khata & Financial Ledgers
+                            </td>
+                        </tr>
+                        <tr class="hover:bg-slate-50/50 feature-row" data-category="khata">
+                            <td class="px-5 py-4 font-semibold text-slate-800">Digital Khata Ledger System</td>
+                            <td class="px-5 py-4 text-center"><i class="fa-solid fa-check text-pasal-500 text-lg"></i></td>
+                            <td class="px-5 py-4 text-center bg-nilo-50/30"><i class="fa-solid fa-check text-pasal-500 text-lg"></i></td>
+                            <td class="px-5 py-4 text-center bg-pasal-50/30"><i class="fa-solid fa-check text-pasal-500 text-lg"></i></td>
+                        </tr>
+                        <tr class="hover:bg-slate-50/50 feature-row" data-category="khata">
+                            <td class="px-5 py-4 font-semibold text-slate-800">Customer Credit / Udharo Tracking</td>
+                            <td class="px-5 py-4 text-center"><i class="fa-solid fa-check text-pasal-500 text-lg"></i></td>
+                            <td class="px-5 py-4 text-center bg-nilo-50/30"><i class="fa-solid fa-check text-pasal-500 text-lg"></i></td>
+                            <td class="px-5 py-4 text-center bg-pasal-50/30"><i class="fa-solid fa-check text-pasal-500 text-lg"></i></td>
+                        </tr>
+                        <tr class="hover:bg-slate-50/50 feature-row" data-category="khata">
+                            <td class="px-5 py-4 font-semibold text-slate-800">Payment Records & Settlement Logs</td>
+                            <td class="px-5 py-4 text-center"><i class="fa-solid fa-check text-pasal-500 text-lg"></i></td>
+                            <td class="px-5 py-4 text-center bg-nilo-50/30"><i class="fa-solid fa-check text-pasal-500 text-lg"></i></td>
+                            <td class="px-5 py-4 text-center bg-pasal-50/30"><i class="fa-solid fa-check text-pasal-500 text-lg"></i></td>
+                        </tr>
+                        <tr class="hover:bg-slate-50/50 feature-row" data-category="khata">
+                            <td class="px-5 py-4 font-semibold text-slate-800">Khata Detailed Transaction History</td>
+                            <td class="px-5 py-4 text-center"><i class="fa-solid fa-check text-pasal-500 text-lg"></i></td>
+                            <td class="px-5 py-4 text-center bg-nilo-50/30"><i class="fa-solid fa-check text-pasal-500 text-lg"></i></td>
+                            <td class="px-5 py-4 text-center bg-pasal-50/30"><i class="fa-solid fa-check text-pasal-500 text-lg"></i></td>
+                        </tr>
+                        <tr class="hover:bg-slate-50/50 feature-row" data-category="khata">
+                            <td class="px-5 py-4 font-semibold text-slate-800">Nilopasal Credit Balance System</td>
+                            <td class="px-5 py-4 text-center"><i class="fa-solid fa-check text-pasal-500 text-lg"></i></td>
+                            <td class="px-5 py-4 text-center bg-nilo-50/30"><i class="fa-solid fa-check text-pasal-500 text-lg"></i></td>
+                            <td class="px-5 py-4 text-center bg-pasal-50/30"><i class="fa-solid fa-check text-pasal-500 text-lg"></i></td>
+                        </tr>
+
+                        <!-- PROMOTION -->
+                        <tr class="bg-slate-50/80 feature-row" data-category="store">
+                            <td colspan="4" class="px-5 py-2.5 font-extrabold text-xs text-nilo-800 uppercase tracking-wider">
+                                <i class="fa-solid fa-bullhorn mr-2"></i> Marketing & Exposure
+                            </td>
+                        </tr>
+                        <tr class="hover:bg-slate-50/50 feature-row" data-category="store">
+                            <td class="px-5 py-4 font-semibold text-slate-800">Marketplace Exposure across Nepal</td>
+                            <td class="px-5 py-4 text-center"><i class="fa-solid fa-check text-pasal-500 text-lg"></i></td>
+                            <td class="px-5 py-4 text-center bg-nilo-50/30"><i class="fa-solid fa-check text-pasal-500 text-lg"></i></td>
+                            <td class="px-5 py-4 text-center bg-pasal-50/30"><i class="fa-solid fa-check text-pasal-500 text-lg"></i></td>
+                        </tr>
+                        <tr class="hover:bg-slate-50/50 feature-row" data-category="store">
+                            <td class="px-5 py-4 font-extrabold text-nilo-900 flex items-center gap-2">
+                                <span>Featured Product & Store Banner</span>
+                                <span class="bg-amber-100 text-amber-800 text-[10px] font-extrabold px-2 py-0.5 rounded">BOOST</span>
+                            </td>
+                            <td class="px-5 py-4 text-center text-slate-300 font-bold">—</td>
+                            <td class="px-5 py-4 text-center bg-nilo-50/30"><i class="fa-solid fa-check text-pasal-500 text-lg"></i></td>
+                            <td class="px-5 py-4 text-center bg-pasal-50/30"><i class="fa-solid fa-check text-pasal-500 text-lg"></i></td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Digital Khata Interactive Preview Section -->
+    <section id="khata-preview" class="bg-slate-900 text-white py-20 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                
+                <div class="lg:col-span-5 space-y-6">
+                    <span class="text-xs font-bold uppercase tracking-wider text-pasal-400 bg-pasal-950 px-3 py-1 rounded-full border border-pasal-800">
+                        Feature Spotlight
+                    </span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold leading-tight">
+                        Built-in <span class="text-pasal-400">Digital Khata</span> for Nepali Retailers
+                    </h2>
+                    <p class="text-slate-300 leading-relaxed text-sm sm:text-base">
+                        Replace traditional paper notebooks with our instant Digital Khata. Track customer credit (Udharo), record partial payments, and send automatic WhatsApp balance reminders with 1-click.
+                    </p>
+
+                    <div class="space-y-4 pt-2">
+                        <div class="flex items-start gap-3">
+                            <div class="w-8 h-8 rounded-lg bg-pasal-500/20 text-pasal-400 flex items-center justify-center shrink-0 mt-0.5">
+                                <i class="fa-solid fa-bell"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-sm text-white">Automated Due Alerts</h4>
+                                <p class="text-xs text-slate-400">Send direct payment links and SMS alerts to customers for pending dues.</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-3">
+                            <div class="w-8 h-8 rounded-lg bg-nilo-500/20 text-nilo-400 flex items-center justify-center shrink-0 mt-0.5">
+                                <i class="fa-solid fa-shield-halved"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-sm text-white">100% Cloud Backup</h4>
+                                <p class="text-xs text-slate-400">Never lose transaction histories or ledger entries even if you change phones.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pt-4">
+                        <button onclick="openKhataModal()" class="bg-pasal-500 hover:bg-pasal-600 text-white font-bold px-6 py-3 rounded-xl transition shadow-lg flex items-center gap-2 text-sm">
+                            <i class="fa-solid fa-eye"></i> Live Interactive Khata Demo
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Live Khata UI Card Simulation -->
+                <div class="lg:col-span-7 bg-slate-800/90 border border-slate-700 rounded-2xl p-6 shadow-2xl relative">
+                    <div class="flex items-center justify-between pb-4 border-b border-slate-700">
+                        <div class="flex items-center gap-3">
+                            <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                            <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+                            <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                            <span class="text-xs font-mono text-slate-400 ml-2">Nilopasal Digital Khata v2.4</span>
+                        </div>
+                        <span class="text-xs font-bold bg-pasal-500/20 text-pasal-300 px-2.5 py-1 rounded-full border border-pasal-500/30">
+                            Store Balance: Rs. 42,500
+                        </span>
+                    </div>
+
+                    <!-- Khata Mock Data List -->
+                    <div class="mt-4 space-y-3">
+                        <div class="bg-slate-900/80 p-3.5 rounded-xl border border-slate-700/60 flex items-center justify-between">
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 rounded-full bg-nilo-600 flex items-center justify-center font-bold text-sm">
+                                    RP
+                                </div>
+                                <div>
+                                    <div class="font-bold text-sm text-slate-100">Ram Shrestha (New Market Store)</div>
+                                    <div class="text-xs text-slate-400">Last updated: Today 10:45 AM</div>
+                                </div>
+                            </div>
+                            <div class="text-right">
+                                <div class="text-xs text-slate-400">Pending Due</div>
+                                <div class="text-sm font-extrabold text-red-400">Rs. 3,450</div>
+                            </div>
+                        </div>
+
+                        <div class="bg-slate-900/80 p-3.5 rounded-xl border border-slate-700/60 flex items-center justify-between">
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 rounded-full bg-pasal-600 flex items-center justify-center font-bold text-sm">
+                                    SK
+                                </div>
+                                <div>
+                                    <div class="font-bold text-sm text-slate-100">Sita Karki (Retail Buyer)</div>
+                                    <div class="text-xs text-slate-400">Payment received via eSewa</div>
+                                </div>
+                            </div>
+                            <div class="text-right">
+                                <div class="text-xs text-slate-400">Settled</div>
+                                <div class="text-sm font-extrabold text-pasal-400">Rs. 0.00</div>
+                            </div>
+                        </div>
+
+                        <div class="bg-slate-900/80 p-3.5 rounded-xl border border-slate-700/60 flex items-center justify-between">
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 rounded-full bg-amber-600 flex items-center justify-center font-bold text-sm">
+                                    BG
+                                </div>
+                                <div>
+                                    <div class="font-bold text-sm text-slate-100">Bishal Grocery Mart</div>
+                                    <div class="text-xs text-slate-400">Stock Order #NILO-9921</div>
+                                </div>
+                            </div>
+                            <div class="text-right">
+                                <div class="text-xs text-slate-400">Pending Due</div>
+                                <div class="text-sm font-extrabold text-red-400">Rs. 12,800</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-4 pt-3 border-t border-slate-700/60 flex justify-between items-center text-xs text-slate-400">
+                        <span><i class="fa-solid fa-lock text-pasal-400 mr-1"></i> End-to-end encrypted records</span>
+                        <a href="#plans" onclick="scrollToPlans('yearly')" class="text-pasal-400 font-bold hover:underline">Get full access →</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Vendor Benefits Cards -->
+    <section id="benefits" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+        <div class="text-center mb-16">
+            <h2 class="text-3xl font-extrabold text-slate-900">Why 5,000+ Nepali Vendors Choose Nilopasal</h2>
+            <p class="text-slate-600 mt-2">Everything you need to modernize your traditional physical shop into an online enterprise.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            
+            <div class="bg-white p-8 rounded-2xl border border-slate-200 card-shadow hover:border-nilo-300 transition">
+                <div class="w-12 h-12 rounded-xl bg-nilo-100 text-nilo-700 flex items-center justify-center text-xl font-bold mb-6">
+                    <i class="fa-solid fa-chart-line"></i>
+                </div>
+                <h3 class="text-xl font-bold text-slate-900 mb-2">Increased Direct Sales</h3>
+                <p class="text-slate-600 text-sm leading-relaxed">
+                    Gain exposure across all major provinces in Nepal. Receive customer inquiries directly via chat or phone call.
+                </p>
+            </div>
+
+            <div class="bg-white p-8 rounded-2xl border border-slate-200 card-shadow hover:border-nilo-300 transition">
+                <div class="w-12 h-12 rounded-xl bg-pasal-100 text-pasal-700 flex items-center justify-center text-xl font-bold mb-6">
+                    <i class="fa-solid fa-boxes-packing"></i>
+                </div>
+                <h3 class="text-xl font-bold text-slate-900 mb-2">Effortless Inventory</h3>
+                <p class="text-slate-600 text-sm leading-relaxed">
+                    Never run out of stock or overstock items again. Track exact item quantities with instant low-stock notifications.
+                </p>
+            </div>
+
+            <div class="bg-white p-8 rounded-2xl border border-slate-200 card-shadow hover:border-nilo-300 transition">
+                <div class="w-12 h-12 rounded-xl bg-amber-100 text-amber-700 flex items-center justify-center text-xl font-bold mb-6">
+                    <i class="fa-solid fa-receipt"></i>
+                </div>
+                <h3 class="text-xl font-bold text-slate-900 mb-2">Udharo / Credit Control</h3>
+                <p class="text-slate-600 text-sm leading-relaxed">
+                    Track customer credit balances effortlessly. Keep transparent transaction records to reduce unpaid customer dues.
+                </p>
+            </div>
+
+            <div class="bg-white p-8 rounded-2xl border border-slate-200 card-shadow hover:border-nilo-300 transition">
+                <div class="w-12 h-12 rounded-xl bg-purple-100 text-purple-700 flex items-center justify-center text-xl font-bold mb-6">
+                    <i class="fa-solid fa-store"></i>
+                </div>
+                <h3 class="text-xl font-bold text-slate-900 mb-2">Your Own Branded Profile</h3>
+                <p class="text-slate-600 text-sm leading-relaxed">
+                    Share your custom Nilopasal shop link on Facebook, TikTok, and WhatsApp for quick ordering by existing regular buyers.
+                </p>
+            </div>
+
+            <div class="bg-white p-8 rounded-2xl border border-slate-200 card-shadow hover:border-nilo-300 transition">
+                <div class="w-12 h-12 rounded-xl bg-teal-100 text-teal-700 flex items-center justify-center text-xl font-bold mb-6">
+                    <i class="fa-solid fa-comments"></i>
+                </div>
+                <h3 class="text-xl font-bold text-slate-900 mb-2">Direct Buyer Messaging</h3>
+                <p class="text-slate-600 text-sm leading-relaxed">
+                    Negotiate bulk prices, discuss delivery locations, and send product photos in real-time through vendor chat.
+                </p>
+            </div>
+
+            <div class="bg-white p-8 rounded-2xl border border-slate-200 card-shadow hover:border-nilo-300 transition">
+                <div class="w-12 h-12 rounded-xl bg-rose-100 text-rose-700 flex items-center justify-center text-xl font-bold mb-6">
+                    <i class="fa-solid fa-headset"></i>
+                </div>
+                <h3 class="text-xl font-bold text-slate-900 mb-2">Local Nepali Support</h3>
+                <p class="text-slate-600 text-sm leading-relaxed">
+                    Dedicated onboarding team based in Kathmandu, Pokhara, and Chitwan to help set up your shop listing in Nepali or English.
+                </p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl font-extrabold text-slate-900">Frequently Asked Questions</h2>
+            <p class="text-slate-600 mt-2">Common questions regarding Nilopasal vendor plans and digital store setup.</p>
+        </div>
+
+        <div class="space-y-4">
+            
+            <div class="bg-white rounded-xl border border-slate-200 overflow-hidden card-shadow">
+                <button onclick="toggleFaq(1)" class="w-full px-6 py-4 text-left font-bold text-slate-800 flex justify-between items-center hover:bg-slate-50 transition">
+                    <span>How does the 1 Month Free Trial work?</span>
+                    <i id="faq-icon-1" class="fa-solid fa-chevron-down text-slate-400 transition-transform"></i>
+                </button>
+                <div id="faq-ans-1" class="hidden px-6 pb-4 text-sm text-slate-600 border-t border-slate-100 pt-3">
+                    When you sign up for the Free Trial, you get full access to all essential shop management, stock logging, and digital khata tools for 30 days without any fee or payment card required.
+                </div>
+            </div>
+
+            <div class="bg-white rounded-xl border border-slate-200 overflow-hidden card-shadow">
+                <button onclick="toggleFaq(2)" class="w-full px-6 py-4 text-left font-bold text-slate-800 flex justify-between items-center hover:bg-slate-50 transition">
+                    <span>How do I save Rs. 1,200 with the Yearly Plan?</span>
+                    <i id="faq-icon-2" class="fa-solid fa-chevron-down text-slate-400 transition-transform"></i>
+                </button>
+                <div id="faq-ans-2" class="hidden px-6 pb-4 text-sm text-slate-600 border-t border-slate-100 pt-3">
+                    The Monthly plan costs Rs. 600/month (which totals Rs. 7,200 per year). By choosing the Yearly Plan at Rs. 6,000 upfront, you effectively pay only Rs. 500/month and receive 2 full months free!
+                </div>
+            </div>
+
+            <div class="bg-white rounded-xl border border-slate-200 overflow-hidden card-shadow">
+                <button onclick="toggleFaq(3)" class="w-full px-6 py-4 text-left font-bold text-slate-800 flex justify-between items-center hover:bg-slate-50 transition">
+                    <span>Can I upgrade from Free Trial to Monthly or Yearly later?</span>
+                    <i id="faq-icon-3" class="fa-solid fa-chevron-down text-slate-400 transition-transform"></i>
+                </button>
+                <div id="faq-ans-3" class="hidden px-6 pb-4 text-sm text-slate-600 border-t border-slate-100 pt-3">
+                    Yes! You can upgrade anytime during or after your trial from your vendor dashboard. All your product data, inventory logs, and Digital Khata records will remain saved safely.
+                </div>
+            </div>
+
+            <div class="bg-white rounded-xl border border-slate-200 overflow-hidden card-shadow">
+                <button onclick="toggleFaq(4)" class="w-full px-6 py-4 text-left font-bold text-slate-800 flex justify-between items-center hover:bg-slate-50 transition">
+                    <span>What payment methods are accepted for plan activation?</span>
+                    <i id="faq-icon-4" class="fa-solid fa-chevron-down text-slate-400 transition-transform"></i>
+                </button>
+                <div id="faq-ans-4" class="hidden px-6 pb-4 text-sm text-slate-600 border-t border-slate-100 pt-3">
+                    We support all major digital wallets and banking methods in Nepal including eSewa, Khalti, IME Pay, ConnectIPS, and direct Bank Transfer.
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Final CTA Banner -->
+    <section class="bg-gradient-to-r from-nilo-700 to-nilo-900 text-white py-16">
+        <div class="max-w-5xl mx-auto px-4 text-center">
+            <h2 class="text-3xl sm:text-4xl font-extrabold mb-4">Ready to Grow Your Retail Business Online?</h2>
+            <p class="text-slate-300 max-w-2xl mx-auto text-base sm:text-lg mb-8">
+                Join thousands of shops, wholesalers, and retailers across Nepal leveraging Nilopasal to manage orders, stock, and digital khata.
+            </p>
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <button onclick="scrollToPlans('free')" class="w-full sm:w-auto px-8 py-4 bg-pasal-500 hover:bg-pasal-600 text-white font-extrabold rounded-xl shadow-lg transition transform hover:-translate-y-0.5">
+                    Start 1-Month Free Trial Now
+                </button>
+                <button onclick="scrollToPlans('yearly')" class="w-full sm:w-auto px-8 py-4 bg-white/10 hover:bg-white/20 border border-white/20 text-white font-bold rounded-xl transition">
+                    Choose Annual Plan (Save Rs. 1,200)
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-slate-950 text-slate-400 py-12 border-t border-slate-800 text-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+                <div>
+                    <span class="text-xl font-extrabold text-white">NILOPASAL<span class="text-pasal-500">.COM</span></span>
+                    <p class="text-xs text-slate-500 mt-1">Empowering Retailers & Vendors Across Nepal</p>
+                </div>
+                <div class="flex space-x-6 text-xs font-semibold">
+                    <a href="#" class="hover:text-white transition">Privacy Policy</a>
+                    <a href="#" class="hover:text-white transition">Terms of Vendor Agreement</a>
+                    <a href="#" class="hover:text-white transition">Support Hotline: +977 01-4XXXXXX</a>
+                </div>
+            </div>
+            <div class="mt-8 pt-6 border-t border-slate-900 text-center text-xs text-slate-600">
+                &copy; 2026 Nilopasal.com. All Rights Reserved. Designed for Nepali Retail Marketplace.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Khata Modal -->
+    <div id="khataModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl max-w-lg w-full p-6 text-slate-800 shadow-2xl relative animate-in fade-in zoom-in duration-200">
+            <button onclick="closeKhataModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 text-xl font-bold">
+                &times;
+            </button>
+            
+            <div class="flex items-center gap-3 mb-4">
+                <div class="w-10 h-10 rounded-xl bg-pasal-100 text-pasal-600 flex items-center justify-center font-bold text-lg">
+                    <i class="fa-solid fa-book"></i>
+                </div>
+                <div>
+                    <h3 class="font-extrabold text-lg text-slate-900">Digital Khata Interactive Demo</h3>
+                    <p class="text-xs text-slate-500">Simulate adding an Udharo (Credit) or Payment record</p>
+                </div>
+            </div>
+
+            <!-- Modal Content Form -->
+            <div class="space-y-3 bg-slate-50 p-4 rounded-xl border border-slate-200">
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">Customer Name</label>
+                    <input type="text" id="demoCustomer" value="Hari Pokharel (Shree Krishna Traders)" class="w-full text-xs font-semibold px-3 py-2 border rounded-lg focus:ring-2 focus:ring-nilo-500 outline-none">
+                </div>
+                <div class="grid grid-cols-2 gap-3">
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 mb-1">Amount (Rs.)</label>
+                        <input type="number" id="demoAmount" value="2500" class="w-full text-xs font-semibold px-3 py-2 border rounded-lg focus:ring-2 focus:ring-nilo-500 outline-none">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 mb-1">Type</label>
+                        <select id="demoType" class="w-full text-xs font-semibold px-3 py-2 border rounded-lg focus:ring-2 focus:ring-nilo-500 outline-none bg-white">
+                            <option value="due">Credit Given (Udharo)</option>
+                            <option value="paid">Payment Received (Sodh)</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div id="demoAlert" class="mt-3 p-3 bg-pasal-50 border border-pasal-200 text-pasal-800 rounded-lg text-xs hidden">
+                <i class="fa-solid fa-circle-check mr-1 text-pasal-600"></i> Entry logged into Digital Khata successfully!
+            </div>
+
+            <div class="mt-5 flex gap-3">
+                <button onclick="addDemoEntry()" class="w-full bg-nilo-600 hover:bg-nilo-700 text-white font-bold py-2.5 rounded-xl text-xs transition">
+                    Save Record Entry
+                </button>
+                <button onclick="closeKhataModal()" class="w-1/3 bg-slate-200 hover:bg-slate-300 text-slate-700 font-bold py-2.5 rounded-xl text-xs transition">
+                    Close
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Interactive Logic Scripts -->
+    <script>
+        let isYearly = true;
+
+        // Toggle Billing Logic
+        function toggleBilling() {
+            isYearly = !isYearly;
+            const toggleDot = document.getElementById('toggleDot');
+            const toggleBtn = document.getElementById('billingToggle');
+            const cardYearly = document.getElementById('card-yearly');
+            const cardMonthly = document.getElementById('card-monthly');
+
+            if (isYearly) {
+                toggleDot.classList.remove('translate-x-0');
+                toggleDot.classList.add('translate-x-8');
+                toggleBtn.classList.remove('bg-slate-400');
+                toggleBtn.classList.add('bg-nilo-600');
+                
+                // Highlight Yearly
+                cardYearly.classList.add('scale-105', 'z-10');
+                cardMonthly.classList.remove('scale-105', 'z-10');
+            } else {
+                toggleDot.classList.remove('translate-x-8');
+                toggleDot.classList.add('translate-x-0');
+                toggleBtn.classList.remove('bg-nilo-600');
+                toggleBtn.classList.add('bg-slate-400');
+                
+                // Highlight Monthly
+                cardMonthly.classList.add('scale-105', 'z-10');
+                cardYearly.classList.remove('scale-105', 'z-10');
+            }
+        }
+
+        // Filter Table Categories
+        function filterTable(category) {
+            const rows = document.querySelectorAll('.feature-row');
+            const buttons = document.querySelectorAll('.filter-btn');
+
+            buttons.forEach(btn => {
+                if (btn.getAttribute('data-cat') === category) {
+                    btn.classList.add('bg-nilo-600', 'text-white');
+                    btn.classList.remove('bg-slate-100', 'text-slate-600');
+                } else {
+                    btn.classList.remove('bg-nilo-600', 'text-white');
+                    btn.classList.add('bg-slate-100', 'text-slate-600');
+                }
+            });
+
+            rows.forEach(row => {
+                if (category === 'all' || row.getAttribute('data-category') === category) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        }
+
+        // Calculate ROI Savings
+        function calculateSavings() {
+            const rev = parseFloat(document.getElementById('monthlyRevenue').value) || 0;
+            const pct = parseFloat(document.getElementById('udharoPercent').value) || 0;
+            document.getElementById('udharoVal').innerText = `${pct}% average credit loss`;
+
+            // Estimating 70% recovery speedup with digital khata alerts
+            const monthlyLoss = rev * (pct / 100);
+            const recovered = Math.round(monthlyLoss * 0.70);
+
+            document.getElementById('savingsResult').innerText = `Rs. ${recovered.toLocaleString()} / mo`;
+        }
+
+        // Select Plan Trigger Notification
+        function selectPlan(planName) {
+            const msg = `Thank you for selecting the ${planName} Plan on Nilopasal.com!\n\nRedirecting to store setup and vendor onboarding portal...`;
+            showNotification(msg);
+        }
+
+        // Scroll helper
+        function scrollToPlans(targetPlan) {
+            document.getElementById('plans').scrollIntoView({ behavior: 'smooth' });
+            if (targetPlan === 'yearly' && !isYearly) {
+                toggleBilling();
+            } else if (targetPlan === 'monthly' && isYearly) {
+                toggleBilling();
+            }
+        }
+
+        // FAQ Toggle Logic
+        function toggleFaq(index) {
+            const ans = document.getElementById(`faq-ans-${index}`);
+            const icon = document.getElementById(`faq-icon-${index}`);
+
+            if (ans.classList.contains('hidden')) {
+                ans.classList.remove('hidden');
+                icon.classList.add('rotate-180');
+            } else {
+                ans.classList.add('hidden');
+                icon.classList.remove('rotate-180');
+            }
+        }
+
+        // Modal Functions
+        function openKhataModal() {
+            document.getElementById('khataModal').classList.remove('hidden');
+        }
+
+        function closeKhataModal() {
+            document.getElementById('khataModal').classList.add('hidden');
+            document.getElementById('demoAlert').classList.add('hidden');
+        }
+
+        function addDemoEntry() {
+            const alertBox = document.getElementById('demoAlert');
+            alertBox.classList.remove('hidden');
+            setTimeout(() => {
+                closeKhataModal();
+            }, 1800);
+        }
+
+        // Custom Notification Box (replacing alert)
+        function showNotification(message) {
+            const notif = document.createElement('div');
+            notif.className = "fixed bottom-6 right-6 bg-nilo-900 text-white px-6 py-4 rounded-xl shadow-2xl z-50 flex items-center gap-3 border border-nilo-500 max-w-md animate-bounce";
+            notif.innerHTML = `
+                <i class="fa-solid fa-circle-check text-pasal-400 text-xl"></i>
+                <div class="text-xs font-semibold">${message.replace(/\n/g, '<br>')}</div>
+            `;
+            document.body.appendChild(notif);
+
+            setTimeout(() => {
+                notif.remove();
+            }, 4000);
+        }
+
+        // Initialize default state
+        window.onload = function() {
+            calculateSavings();
+        };
+    </script>
+</body>
+</html>

@@ -12,7 +12,6 @@ yarn-error.log*
 
 # Build outputs
 backend/dist/
-dist/
 
 # OS and Editor files
 .DS_Store

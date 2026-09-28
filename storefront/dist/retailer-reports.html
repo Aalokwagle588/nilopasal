@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full bg-slate-50">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reports &amp; Financial Analytics — Nilopasal Retailer ERP</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Inter', 'sans-serif'] },
+        }
+      }
+    };
+  </script>
+  <style>
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: #f8fafc; }
+    ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 999px; }
+    @media print {
+      body * { visibility: hidden; }
+      #printable-report-area, #printable-report-area * { visibility: visible; }
+      #printable-report-area { position: absolute; left: 0; top: 0; width: 100%; }
+      .no-print { display: none !important; }
+    }
+  </style>
+</head>
+<body class="min-h-full bg-slate-100 font-sans text-slate-800 antialiased" data-page="retailer-reports">
+  <div class="flex min-h-screen">
+    <!-- LEFT SIDEBAR -->
+    <aside class="hidden lg:flex w-64 shrink-0 flex-col justify-between bg-slate-950 text-slate-300">
+      <div>
+        <!-- Brand -->
+        <div class="flex h-16 items-center gap-3 border-b border-slate-800 px-6">
+          <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-600 text-lg font-black text-white shadow-md shadow-blue-500/20">N</div>
+          <div>
+            <p class="text-base font-black tracking-wide text-white">NILOPASAL</p>
+            <p class="text-[10px] font-extrabold uppercase tracking-widest text-blue-400">Retailer ERP</p>
+          </div>
+        </div>
+
+        <!-- Store Context Widget -->
+        <div class="p-3">
+          <div class="rounded-xl border border-slate-800 bg-slate-900/60 p-3">
+            <p class="text-[10px] font-extrabold uppercase tracking-wider text-slate-500">Active Store</p>
+            <p class="text-xs font-bold text-white truncate mt-0.5" id="retailer-business-name">Loading store...</p>
+            <div class="mt-2 flex items-center gap-2">
+              <span class="inline-block h-2 w-2 rounded-full bg-emerald-400"></span>
+              <span class="text-[11px] font-semibold text-slate-400 capitalize" id="retailer-status-verification">Verified</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Navigation Menu -->
+        <nav class="space-y-0.5 px-3 py-1 text-xs font-semibold">
+          <a href="./retailer-dashboard.html" class="flex items-center gap-3 rounded-lg px-3 py-2 text-slate-400 hover:bg-slate-900 hover:text-white transition">
+            <i class="fa-solid fa-chart-pie w-4 text-center"></i>
+            Dashboard
+          </a>
+
+          <div class="pt-3 pb-1 px-3 text-[10px] font-extrabold uppercase tracking-widest text-slate-500">Sales &amp; POS</div>
+          <a href="./retailer-pos.html" class="flex items-center gap-3 rounded-lg px-3 py-2 text-slate-400 hover:bg-slate-900 hover:text-white transition">
+            <i class="fa-solid fa-cash-register w-4 text-center text-blue-400"></i>
+            POS Counter
+          </a>
+          <a href="./retailer-sales.html" class="flex items-center gap-3 rounded-lg px-3 py-2 text-slate-400 hover:bg-slate-900 hover:text-white transition">
+            <i class="fa-solid fa-receipt w-4 text-center"></i>
+            Sales Invoices
+          </a>
+
+          <div class="pt-3 pb-1 px-3 text-[10px] font-extrabold uppercase tracking-widest text-slate-500">Catalog &amp; Stock</div>
+          <a href="./retailer-products.html" class="flex items-center gap-3 rounded-lg px-3 py-2 text-slate-400 hover:bg-slate-900 hover:text-white transition">
+            <i class="fa-solid fa-box-open w-4 text-center"></i>
+            Products
+          </a>
+          <a href="./retailer-inventory.html" class="flex items-center gap-3 rounded-lg px-3 py-2 text-slate-400 hover:bg-slate-900 hover:text-white transition">
+            <i class="fa-solid fa-warehouse w-4 text-center"></i>
+            Inventory ERP
+          </a>
+
+          <div class="pt-3 pb-1 px-3 text-[10px] font-extrabold uppercase tracking-widest text-slate-500">Khata &amp; Suppliers</div>
+          <a href="./retailer-khata.html" class="flex items-center gap-3 rounded-lg px-3 py-2 text-slate-400 hover:bg-slate-900 hover:text-white transition">
+            <i class="fa-solid fa-book-bookmark w-4 text-center text-emerald-400"></i>
+            Digital Khata
+          </a>
+          <a href="./retailer-suppliers.html" class="flex items-center gap-3 rounded-lg px-3 py-2 text-slate-400 hover:bg-slate-900 hover:text-white transition">
+            <i class="fa-solid fa-truck-field w-4 text-center text-amber-400"></i>
+            Suppliers &amp; Purchases
+          </a>
+
+          <div class="pt-3 pb-1 px-3 text-[10px] font-extrabold uppercase tracking-widest text-slate-500">Analytics &amp; Administration</div>
+          <a href="./retailer-reports.html" class="flex items-center gap-3 rounded-lg bg-purple-600 px-3 py-2.5 text-white font-bold shadow-sm shadow-purple-500/30">
+            <i class="fa-solid fa-chart-line w-4 text-center"></i>
+            Reports &amp; VAT
+          </a>
+          <a href="./retailer-staff.html" class="flex items-center gap-3 rounded-lg px-3 py-2 text-slate-400 hover:bg-slate-900 hover:text-white transition">
+            <i class="fa-solid fa-users-gear w-4 text-center text-blue-400"></i>
+            Staff &amp; Security
+          </a>
+          <a href="./retailer-subscription.html" class="flex items-center justify-between rounded-lg px-3 py-2 text-slate-400 hover:bg-slate-900 hover:text-white transition">
+            <span class="flex items-center gap-3">
+              <i class="fa-solid fa-crown w-4 text-center text-amber-400"></i>
+              Subscription
+            </span>
+          </a>
+        </nav>
+      </div>
+
+      <!-- User footer -->
+      <div class="border-t border-slate-800 p-4">
+        <div class="flex items-center justify-between">
+          <div class="truncate">
+            <p class="text-xs font-bold text-white truncate" id="retailer-user-name">Staff Member</p>
+            <p class="text-[11px] text-slate-500 truncate" id="retailer-user-email">Retailer Role</p>
+          </div>
+          <button id="retailer-logout-btn" title="Sign out" class="text-slate-400 hover:text-rose-400 p-1.5 rounded transition">
+            <i class="fa-solid fa-arrow-right-from-bracket"></i>
+          </button>
+        </div>
+      </div>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="flex-1 flex flex-col min-w-0 overflow-y-auto">
+      <!-- TOP BAR -->
+      <header class="sticky top-0 z-20 border-b border-slate-200 bg-white/95 px-4 py-3 shadow-sm backdrop-blur sm:px-6">
+        <div class="flex flex-wrap items-center justify-between gap-4">
+          <div class="flex items-center gap-3 min-w-0">
+            <div class="flex h-9 w-9 items-center justify-center rounded-xl bg-purple-600 text-sm font-black text-white lg:hidden">R</div>
+            <div class="min-w-0">
+              <div class="flex items-center gap-2">
+                <p class="text-[11px] font-bold uppercase tracking-wider text-purple-600">Executive Analytics</p>
+                <span class="rounded-full bg-purple-100 px-2 py-0.5 text-[10px] font-bold text-purple-900">Real-Time P&amp;L</span>
+              </div>
+              <h1 class="text-base font-black tracking-tight text-slate-900 truncate">Reports, VAT &amp; Financial Analytics</h1>
+            </div>
+          </div>
+
+          <!-- Controls: Period filter & Actions -->
+          <div class="flex flex-wrap items-center gap-3">
+            <div class="flex items-center gap-2">
+              <select id="report-period-select" class="rounded-xl border border-slate-300 bg-white px-3 py-1.5 text-xs font-semibold text-slate-700 shadow-sm focus:border-purple-500 focus:outline-none focus:ring-1 focus:ring-purple-500">
+                <option value="today">Today</option>
+                <option value="yesterday">Yesterday</option>
+                <option value="this_week">Last 7 Days</option>
+                <option value="this_month" selected>This Month</option>
+                <option value="last_month">Last Month</option>
+                <option value="custom">Custom Date Range...</option>
+              </select>
+
+              <div id="custom-date-container" class="hidden flex items-center gap-1.5">
+                <input type="date" id="custom-start-date" class="rounded-xl border border-slate-300 bg-white px-2 py-1 text-xs text-slate-700">
+                <span class="text-xs text-slate-400">to</span>
+                <input type="date" id="custom-end-date" class="rounded-xl border border-slate-300 bg-white px-2 py-1 text-xs text-slate-700">
+              </div>
+
+              <button id="refresh-reports-btn" class="rounded-xl bg-purple-600 px-3.5 py-1.5 text-xs font-bold text-white shadow-sm shadow-purple-500/20 hover:bg-purple-700 transition">
+                <i class="fa-solid fa-rotate mr-1"></i> Update
+              </button>
+            </div>
+
+            <button onclick="window.print()" class="rounded-xl border border-slate-200 bg-white px-3 py-1.5 text-xs font-semibold text-slate-700 shadow-sm hover:bg-slate-50 transition">
+              <i class="fa-solid fa-print mr-1 text-slate-500"></i> Print
+            </button>
+          </div>
+        </div>
+      </header>
+
+      <div class="p-4 sm:p-6 space-y-6" id="printable-report-area">
+        <!-- REPORT HEADER (FOR PRINT) -->
+        <div class="hidden print:block border-b border-slate-300 pb-4 mb-4">
+          <h2 class="text-xl font-black text-slate-900" id="print-store-name">Nilopasal Store</h2>
+          <p class="text-xs text-slate-600 font-medium">Financial P&amp;L and VAT Audit Statement</p>
+          <p class="text-[11px] text-slate-500 mt-1" id="print-date-range">Reporting Period: -</p>
+        </div>
+
+        <!-- ========================================== -->
+        <!-- EXECUTIVE KPI SUMMARY CARDS -->
+        <!-- ========================================== -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <!-- Gross Revenue -->
+          <div class="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-bold uppercase tracking-wider text-slate-500">Total Revenue</span>
+              <span class="flex h-8 w-8 items-center justify-center rounded-xl bg-blue-50 text-blue-600">
+                <i class="fa-solid fa-hand-holding-dollar"></i>
+              </span>
+            </div>
+            <p class="mt-2 text-2xl font-black text-slate-900" id="kpi-total-revenue">Rs. 0.00</p>
+            <div class="mt-1 flex items-center justify-between text-[11px] text-slate-500">
+              <span>Net Sales: <b id="kpi-net-sales">Rs. 0.00</b></span>
+              <span id="kpi-invoices-count">0 sales</span>
+            </div>
+          </div>
+
+          <!-- Cost of Goods Sold (COGS) -->
+          <div class="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-bold uppercase tracking-wider text-slate-500">Cost of Goods (COGS)</span>
+              <span class="flex h-8 w-8 items-center justify-center rounded-xl bg-rose-50 text-rose-600">
+                <i class="fa-solid fa-receipt"></i>
+              </span>
+            </div>
+            <p class="mt-2 text-2xl font-black text-rose-600" id="kpi-cogs">Rs. 0.00</p>
+            <div class="mt-1 flex items-center justify-between text-[11px] text-slate-500">
+              <span>Calculated at purchase cost</span>
+              <span class="font-semibold text-slate-600">Direct Cost</span>
+            </div>
+          </div>
+
+          <!-- Gross Profit & Margin -->
+          <div class="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-bold uppercase tracking-wider text-slate-500">Gross Profit</span>
+              <span class="flex h-8 w-8 items-center justify-center rounded-xl bg-emerald-50 text-emerald-600">
+                <i class="fa-solid fa-arrow-trend-up"></i>
+              </span>
+            </div>
+            <p class="mt-2 text-2xl font-black text-emerald-600" id="kpi-gross-profit">Rs. 0.00</p>
+            <div class="mt-1 flex items-center justify-between text-[11px]">
+              <span class="text-slate-500">Profit Margin:</span>
+              <span id="kpi-gross-margin" class="rounded-full bg-emerald-100 px-2 py-0.5 font-black text-emerald-800">0%</span>
+            </div>
+          </div>
+
+          <!-- VAT & Tax Collected -->
+          <div class="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-bold uppercase tracking-wider text-slate-500">Nepal 13% VAT</span>
+              <span class="flex h-8 w-8 items-center justify-center rounded-xl bg-purple-50 text-purple-600">
+                <i class="fa-solid fa-file-invoice"></i>
+              </span>
+            </div>
+            <p class="mt-2 text-2xl font-black text-purple-600" id="kpi-vat-collected">Rs. 0.00</p>
+            <div class="mt-1 flex items-center justify-between text-[11px] text-slate-500">
+              <span>Avg Order: <b id="kpi-aov">Rs. 0.00</b></span>
+              <span class="font-bold text-purple-700">IRD Payable</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- ========================================== -->
+        <!-- WORKING CAPITAL & BALANCE SHEET SNAPSHOT -->
+        <!-- ========================================== -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <!-- Khata Debtors (Receivables) -->
+          <div class="rounded-2xl border border-amber-200 bg-amber-50/60 p-4">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-2">
+                <i class="fa-solid fa-book-bookmark text-amber-600"></i>
+                <h4 class="text-xs font-bold uppercase tracking-wider text-amber-900">Customer Khata Receivables (उधारो रकम)</h4>
+              </div>
+              <a href="./retailer-khata.html" class="text-xs font-bold text-amber-700 hover:text-amber-900 underline">Manage Khata &rarr;</a>
+            </div>
+            <div class="mt-3 flex items-baseline justify-between">
+              <p class="text-2xl font-black text-amber-950" id="balance-khata-receivables">Rs. 0.00</p>
+              <span class="text-xs font-semibold text-amber-800" id="balance-khata-debtors-count">0 customers with balance</span>
+            </div>
+            <p class="mt-1 text-[11px] text-amber-700">Total uncollected credit extended to retail customers.</p>
+          </div>
+
+          <!-- Supplier Creditors (Payables) -->
+          <div class="rounded-2xl border border-indigo-200 bg-indigo-50/60 p-4">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-2">
+                <i class="fa-solid fa-truck-field text-indigo-600"></i>
+                <h4 class="text-xs font-bold uppercase tracking-wider text-indigo-900">Supplier Accounts Payable (साहु भुक्तानी)</h4>
+              </div>
+              <a href="./retailer-suppliers.html" class="text-xs font-bold text-indigo-700 hover:text-indigo-900 underline">Manage Suppliers &rarr;</a>
+            </div>
+            <div class="mt-3 flex items-baseline justify-between">
+              <p class="text-2xl font-black text-indigo-950" id="balance-supplier-payables">Rs. 0.00</p>
+              <span class="text-xs font-semibold text-indigo-800" id="balance-supplier-creditors-count">0 suppliers with balance</span>
+            </div>
+            <p class="mt-1 text-[11px] text-indigo-700">Outstanding liabilities owed to wholesalers and distributors.</p>
+          </div>
+        </div>
+
+        <!-- ========================================== -->
+        <!-- P&L BREAKDOWN & PAYMENT METHODS -->
+        <!-- ========================================== -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          <!-- P&L Statement Table (2 Cols) -->
+          <div class="lg:col-span-2 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+            <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+              <div>
+                <h3 class="text-sm font-bold text-slate-900">Profit &amp; Loss Statement (नाफा / नोक्सान)</h3>
+                <p class="text-xs text-slate-500" id="pl-statement-subtitle">Period Financial Breakdown</p>
+              </div>
+              <span class="rounded-full bg-slate-100 px-2.5 py-0.5 text-[10px] font-bold text-slate-700">Accrual Basis</span>
+            </div>
+
+            <div class="mt-4 divide-y divide-slate-100 text-xs font-medium">
+              <div class="flex items-center justify-between py-2.5">
+                <span class="text-slate-600">Gross Sales (Total item list prices)</span>
+                <span class="font-bold text-slate-900" id="pl-gross-sales">Rs. 0.00</span>
+              </div>
+              <div class="flex items-center justify-between py-2.5">
+                <span class="text-slate-600">Less: Sales Discounts &amp; Markdowns</span>
+                <span class="font-bold text-rose-600" id="pl-total-discount">- Rs. 0.00</span>
+              </div>
+              <div class="flex items-center justify-between py-2.5 bg-slate-50/70 px-2 rounded-lg font-bold">
+                <span class="text-slate-900">Net Sales Revenue</span>
+                <span class="text-blue-700" id="pl-net-sales">Rs. 0.00</span>
+              </div>
+              <div class="flex items-center justify-between py-2.5">
+                <span class="text-slate-600">Less: Cost of Goods Sold (Inventory purchase cost)</span>
+                <span class="font-bold text-rose-600" id="pl-cogs">- Rs. 0.00</span>
+              </div>
+              <div class="flex items-center justify-between py-3 bg-emerald-50/80 px-2 rounded-lg text-sm font-black">
+                <span class="text-emerald-950">Gross Operating Profit</span>
+                <span class="text-emerald-700" id="pl-gross-profit">Rs. 0.00</span>
+              </div>
+              <div class="flex items-center justify-between py-2.5">
+                <span class="text-slate-600">Add: 13% VAT Collected for Nepal IRD</span>
+                <span class="font-bold text-purple-600" id="pl-vat-collected">+ Rs. 0.00</span>
+              </div>
+              <div class="flex items-center justify-between py-3 border-t-2 border-slate-800 text-sm font-black">
+                <span class="text-slate-900">Total Billed Invoice Volume</span>
+                <span class="text-slate-900" id="pl-grand-total">Rs. 0.00</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Payment Methods Breakdown (1 Col) -->
+          <div class="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+            <h3 class="text-sm font-bold text-slate-900">Sales by Payment Method</h3>
+            <p class="text-xs text-slate-500 mb-4">Cash vs Digital vs Khata credit</p>
+
+            <div class="space-y-3" id="payment-methods-list">
+              <div class="text-center py-6 text-xs text-slate-400">Loading payment breakdown...</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ========================================== -->
+        <!-- NEPAL IRD 13% VAT RECONCILIATION -->
+        <!-- ========================================== -->
+        <div class="rounded-2xl border border-slate-200 bg-white shadow-sm overflow-hidden">
+          <div class="border-b border-slate-200 px-5 py-4 flex flex-wrap items-center justify-between gap-3">
+            <div>
+              <div class="flex items-center gap-2">
+                <span class="rounded bg-purple-100 px-2 py-0.5 text-[10px] font-extrabold text-purple-800">IRD NEPAL</span>
+                <h3 class="text-sm font-bold text-slate-900">Value Added Tax (VAT / कर विवरण) Reconciliation</h3>
+              </div>
+              <p class="text-xs text-slate-500">13% Taxable Sales vs Non-Taxable / Exempt Item Segregation (Annex 5 Format)</p>
+            </div>
+            <div class="text-right text-xs">
+              <span class="text-slate-500">Store PAN/VAT:</span>
+              <span class="font-mono font-bold text-slate-900 ml-1" id="vat-report-pan">Not Registered</span>
+            </div>
+          </div>
+
+          <!-- VAT Summary 4-Col Strip -->
+          <div class="grid grid-cols-2 md:grid-cols-4 divide-x divide-y md:divide-y-0 divide-slate-100 bg-slate-50/60 border-b border-slate-200 text-xs">
+            <div class="p-4">
+              <p class="text-slate-500 font-medium">Taxable Sales (करयोग्य बिक्री)</p>
+              <p class="text-base font-black text-slate-900 mt-1" id="vat-taxable-sales">Rs. 0.00</p>
+              <p class="text-[10px] text-slate-400 mt-0.5">Subject to 13% VAT</p>
+            </div>
+            <div class="p-4">
+              <p class="text-slate-500 font-medium">13% VAT Collected (उठेको भ्याट)</p>
+              <p class="text-base font-black text-purple-700 mt-1" id="vat-total-collected">Rs. 0.00</p>
+              <p class="text-[10px] text-purple-600 mt-0.5">Payable to IRD</p>
+            </div>
+            <div class="p-4">
+              <p class="text-slate-500 font-medium">Exempt Sales (कर छुट बिक्री)</p>
+              <p class="text-base font-black text-slate-900 mt-1" id="vat-exempt-sales">Rs. 0.00</p>
+              <p class="text-[10px] text-slate-400 mt-0.5">0% Tax rated items</p>
+            </div>
+            <div class="p-4">
+              <p class="text-slate-500 font-medium">Gross Taxable Turnover</p>
+              <p class="text-base font-black text-slate-900 mt-1" id="vat-gross-turnover">Rs. 0.00</p>
+              <p class="text-[10px] text-slate-400 mt-0.5" id="vat-invoice-count">0 invoices</p>
+            </div>
+          </div>
+
+          <!-- Invoice VAT Register Table -->
+          <div class="overflow-x-auto">
+            <table class="w-full text-left text-xs">
+              <thead class="bg-slate-50 text-[11px] font-bold uppercase tracking-wider text-slate-500 border-b border-slate-200">
+                <tr>
+                  <th class="px-5 py-3">Invoice #</th>
+                  <th class="px-4 py-3">Date</th>
+                  <th class="px-4 py-3">Customer</th>
+                  <th class="px-4 py-3 text-right">Taxable Amt</th>
+                  <th class="px-4 py-3 text-right">13% VAT</th>
+                  <th class="px-4 py-3 text-right">Exempt Amt</th>
+                  <th class="px-5 py-3 text-right">Grand Total</th>
+                </tr>
+              </thead>
+              <tbody id="vat-registers-table-body" class="divide-y divide-slate-100 font-medium">
+                <tr>
+                  <td colspan="7" class="px-5 py-6 text-center text-slate-400">Loading VAT register...</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- ========================================== -->
+        <!-- PRODUCT PROFITABILITY & MARGINS LEADERBOARD -->
+        <!-- ========================================== -->
+        <div class="rounded-2xl border border-slate-200 bg-white shadow-sm overflow-hidden">
+          <div class="border-b border-slate-200 px-5 py-4 flex flex-wrap items-center justify-between gap-3">
+            <div>
+              <h3 class="text-sm font-bold text-slate-900">Product Sales &amp; Profit Margins</h3>
+              <p class="text-xs text-slate-500">Performance rankings based on units sold and gross profit</p>
+            </div>
+
+            <!-- Sort By Buttons -->
+            <div class="flex items-center gap-1.5 bg-slate-100 p-1 rounded-xl text-xs">
+              <button id="sort-prod-revenue" class="rounded-lg px-2.5 py-1 font-bold text-white bg-purple-600 shadow-sm transition">
+                Top Revenue
+              </button>
+              <button id="sort-prod-units" class="rounded-lg px-2.5 py-1 font-semibold text-slate-600 hover:text-slate-900 transition">
+                Top Units Sold
+              </button>
+              <button id="sort-prod-profit" class="rounded-lg px-2.5 py-1 font-semibold text-slate-600 hover:text-slate-900 transition">
+                Top Gross Profit
+              </button>
+            </div>
+          </div>
+
+          <div class="overflow-x-auto">
+            <table class="w-full text-left text-xs">
+              <thead class="bg-slate-50 text-[11px] font-bold uppercase tracking-wider text-slate-500 border-b border-slate-200">
+                <tr>
+                  <th class="px-5 py-3">Product Name</th>
+                  <th class="px-4 py-3">SKU</th>
+                  <th class="px-4 py-3 text-right">Units Sold</th>
+                  <th class="px-4 py-3 text-right">Total Revenue</th>
+                  <th class="px-4 py-3 text-right">COGS</th>
+                  <th class="px-4 py-3 text-right">Gross Profit</th>
+                  <th class="px-5 py-3 text-right">Margin %</th>
+                </tr>
+              </thead>
+              <tbody id="products-table-body" class="divide-y divide-slate-100 font-medium">
+                <tr>
+                  <td colspan="7" class="px-5 py-6 text-center text-slate-400">Loading product performance...</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="./retailer-reports.js"></script>
+</body>
+</html>

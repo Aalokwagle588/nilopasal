@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full bg-slate-50">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Staff &amp; Audit Logs — Nilopasal Retailer ERP</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Inter', 'sans-serif'] },
+        }
+      }
+    };
+  </script>
+  <style>
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: #f8fafc; }
+    ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 999px; }
+  </style>
+</head>
+<body class="min-h-full bg-slate-100 font-sans text-slate-800 antialiased" data-page="retailer-staff">
+  <div class="flex min-h-screen">
+    <!-- LEFT SIDEBAR -->
+    <aside class="hidden lg:flex w-64 shrink-0 flex-col justify-between bg-slate-950 text-slate-300">
+      <div>
+        <!-- Brand -->
+        <div class="flex h-16 items-center gap-3 border-b border-slate-800 px-6">
+          <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-600 text-lg font-black text-white shadow-md shadow-blue-500/20">N</div>
+          <div>
+            <p class="text-base font-black tracking-wide text-white">NILOPASAL</p>
+            <p class="text-[10px] font-extrabold uppercase tracking-widest text-blue-400">Retailer ERP</p>
+          </div>
+        </div>
+
+        <!-- Store Context Widget -->
+        <div class="p-3">
+          <div class="rounded-xl border border-slate-800 bg-slate-900/60 p-3">
+            <p class="text-[10px] font-extrabold uppercase tracking-wider text-slate-500">Active Store</p>
+            <p class="text-xs font-bold text-white truncate mt-0.5" id="retailer-business-name">Loading store...</p>
+            <div class="mt-2 flex items-center gap-2">
+              <span class="inline-block h-2 w-2 rounded-full bg-emerald-400"></span>
+              <span class="text-[11px] font-semibold text-slate-400 capitalize" id="retailer-status-verification">Verified</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Navigation Menu -->
+        <nav class="space-y-0.5 px-3 py-1 text-xs font-semibold">
+          <a href="./retailer-dashboard.html" class="flex items-center gap-3 rounded-lg px-3 py-2 text-slate-400 hover:bg-slate-900 hover:text-white transition">
+            <i class="fa-solid fa-chart-pie w-4 text-center"></i>
+            Dashboard
+          </a>
+
+          <div class="pt-3 pb-1 px-3 text-[10px] font-extrabold uppercase tracking-widest text-slate-500">Sales &amp; POS</div>
+          <a href="./retailer-pos.html" class="flex items-center gap-3 rounded-lg px-3 py-2 text-slate-400 hover:bg-slate-900 hover:text-white transition">
+            <i class="fa-solid fa-cash-register w-4 text-center text-blue-400"></i>
+            POS Counter
+          </a>
+          <a href="./retailer-sales.html" class="flex items-center gap-3 rounded-lg px-3 py-2 text-slate-400 hover:bg-slate-900 hover:text-white transition">
+            <i class="fa-solid fa-receipt w-4 text-center"></i>
+            Sales Invoices
+          </a>
+
+          <div class="pt-3 pb-1 px-3 text-[10px] font-extrabold uppercase tracking-widest text-slate-500">Catalog &amp; Stock</div>
+          <a href="./retailer-products.html" class="flex items-center gap-3 rounded-lg px-3 py-2 text-slate-400 hover:bg-slate-900 hover:text-white transition">
+            <i class="fa-solid fa-box-open w-4 text-center"></i>
+            Products
+          </a>
+          <a href="./retailer-inventory.html" class="flex items-center gap-3 rounded-lg px-3 py-2 text-slate-400 hover:bg-slate-900 hover:text-white transition">
+            <i class="fa-solid fa-warehouse w-4 text-center"></i>
+            Inventory ERP
+          </a>
+
+          <div class="pt-3 pb-1 px-3 text-[10px] font-extrabold uppercase tracking-widest text-slate-500">Khata &amp; Suppliers</div>
+          <a href="./retailer-khata.html" class="flex items-center gap-3 rounded-lg px-3 py-2 text-slate-400 hover:bg-slate-900 hover:text-white transition">
+            <i class="fa-solid fa-book-bookmark w-4 text-center text-emerald-400"></i>
+            Digital Khata
+          </a>
+          <a href="./retailer-suppliers.html" class="flex items-center gap-3 rounded-lg px-3 py-2 text-slate-400 hover:bg-slate-900 hover:text-white transition">
+            <i class="fa-solid fa-truck-field w-4 text-center text-amber-400"></i>
+            Suppliers &amp; Purchases
+          </a>
+
+          <div class="pt-3 pb-1 px-3 text-[10px] font-extrabold uppercase tracking-widest text-slate-500">Analytics &amp; Administration</div>
+          <a href="./retailer-reports.html" class="flex items-center gap-3 rounded-lg px-3 py-2 text-slate-400 hover:bg-slate-900 hover:text-white transition">
+            <i class="fa-solid fa-chart-line w-4 text-center text-purple-400"></i>
+            Reports &amp; VAT
+          </a>
+          <a href="./retailer-staff.html" class="flex items-center gap-3 rounded-lg bg-blue-600 px-3 py-2.5 text-white font-bold shadow-sm shadow-blue-500/30">
+            <i class="fa-solid fa-users-gear w-4 text-center"></i>
+            Staff &amp; Security
+          </a>
+          <a href="./retailer-subscription.html" class="flex items-center justify-between rounded-lg px-3 py-2 text-slate-400 hover:bg-slate-900 hover:text-white transition">
+            <span class="flex items-center gap-3">
+              <i class="fa-solid fa-crown w-4 text-center text-amber-400"></i>
+              Subscription
+            </span>
+          </a>
+        </nav>
+      </div>
+
+      <!-- User footer -->
+      <div class="border-t border-slate-800 p-4">
+        <div class="flex items-center justify-between">
+          <div class="truncate">
+            <p class="text-xs font-bold text-white truncate" id="retailer-user-name">Staff Member</p>
+            <p class="text-[11px] text-slate-500 truncate" id="retailer-user-email">Retailer Role</p>
+          </div>
+          <button id="retailer-logout-btn" title="Sign out" class="text-slate-400 hover:text-rose-400 p-1.5 rounded transition">
+            <i class="fa-solid fa-arrow-right-from-bracket"></i>
+          </button>
+        </div>
+      </div>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="flex-1 flex flex-col min-w-0 overflow-y-auto">
+      <!-- TOP BAR -->
+      <header class="sticky top-0 z-20 border-b border-slate-200 bg-white/95 px-4 py-3 shadow-sm backdrop-blur sm:px-6">
+        <div class="flex items-center justify-between gap-4">
+          <div class="flex items-center gap-3 min-w-0">
+            <div class="flex h-9 w-9 items-center justify-center rounded-xl bg-blue-600 text-sm font-black text-white lg:hidden">S</div>
+            <div class="min-w-0">
+              <div class="flex items-center gap-2">
+                <p class="text-[11px] font-bold uppercase tracking-wider text-blue-600">Access Control &amp; Governance</p>
+                <span class="rounded-full bg-blue-100 px-2 py-0.5 text-[10px] font-bold text-blue-900">Multi-Role RBAC</span>
+              </div>
+              <h1 class="text-base font-black tracking-tight text-slate-900 truncate">Staff &amp; Security Audit Logs</h1>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-3">
+            <button id="open-invite-modal-btn" class="inline-flex items-center gap-1.5 rounded-xl bg-blue-600 px-4 py-2 text-xs font-bold text-white shadow-sm shadow-blue-500/20 hover:bg-blue-700 transition">
+              <i class="fa-solid fa-user-plus text-xs"></i>
+              <span>Invite Staff</span>
+            </button>
+            <button id="open-accept-token-btn" class="inline-flex items-center gap-1.5 rounded-xl border border-slate-200 bg-white px-3 py-2 text-xs font-semibold text-slate-700 hover:bg-slate-50 transition">
+              <i class="fa-solid fa-key text-xs text-amber-500"></i>
+              <span>Join with Token</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- TABS -->
+        <div class="mt-4 flex border-b border-slate-200 gap-6">
+          <button id="tab-btn-team" class="tab-btn pb-2.5 text-xs font-bold border-b-2 border-blue-600 text-blue-600 flex items-center gap-2">
+            <i class="fa-solid fa-users"></i>
+            <span>Team Members &amp; Invites</span>
+            <span id="tab-members-count-badge" class="rounded-full bg-blue-100 px-2 py-0.5 text-[10px] text-blue-700 font-extrabold">0</span>
+          </button>
+          <button id="tab-btn-audit" class="tab-btn pb-2.5 text-xs font-semibold border-b-2 border-transparent text-slate-500 hover:text-slate-800 flex items-center gap-2 transition">
+            <i class="fa-solid fa-shield-halved"></i>
+            <span>System Audit Trail</span>
+            <span class="rounded-full bg-slate-200 px-2 py-0.5 text-[10px] text-slate-700 font-bold">Immutable</span>
+          </button>
+        </div>
+      </header>
+
+      <!-- ALERT MESSAGE BANNER -->
+      <div id="status-banner" class="hidden px-4 sm:px-6 pt-4">
+        <div class="rounded-xl p-3 flex items-center justify-between text-xs font-medium" id="status-banner-inner">
+          <div class="flex items-center gap-2">
+            <i id="status-banner-icon" class="fa-solid fa-circle-check"></i>
+            <span id="status-banner-text">Success message</span>
+          </div>
+          <button onclick="document.getElementById('status-banner').classList.add('hidden')" class="text-slate-500 hover:text-slate-800">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+      </div>
+
+      <div class="p-4 sm:p-6 space-y-6">
+        <!-- ========================================== -->
+        <!-- TAB 1: TEAM MEMBERS & INVITES -->
+        <!-- ========================================== -->
+        <div id="tab-content-team" class="space-y-6">
+          <!-- Summary Cards -->
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <div class="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
+              <div class="flex items-center justify-between">
+                <span class="text-xs font-bold uppercase tracking-wider text-slate-500">Active Staff</span>
+                <span class="flex h-8 w-8 items-center justify-center rounded-xl bg-blue-50 text-blue-600">
+                  <i class="fa-solid fa-user-check"></i>
+                </span>
+              </div>
+              <p class="mt-2 text-2xl font-black text-slate-900" id="card-active-staff">0</p>
+              <p class="mt-1 text-[11px] text-slate-500">Roles: Owner, Admin, Manager, Cashier</p>
+            </div>
+
+            <div class="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
+              <div class="flex items-center justify-between">
+                <span class="text-xs font-bold uppercase tracking-wider text-slate-500">Pending Invites</span>
+                <span class="flex h-8 w-8 items-center justify-center rounded-xl bg-amber-50 text-amber-600">
+                  <i class="fa-solid fa-clock-rotate-left"></i>
+                </span>
+              </div>
+              <p class="mt-2 text-2xl font-black text-amber-600" id="card-pending-invites">0</p>
+              <p class="mt-1 text-[11px] text-slate-500">Invites expire in 7 days</p>
+            </div>
+
+            <div class="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
+              <div class="flex items-center justify-between">
+                <span class="text-xs font-bold uppercase tracking-wider text-slate-500">Security Gate</span>
+                <span class="flex h-8 w-8 items-center justify-center rounded-xl bg-emerald-50 text-emerald-600">
+                  <i class="fa-solid fa-lock"></i>
+                </span>
+              </div>
+              <p class="mt-2 text-base font-bold text-slate-900">Protected Store</p>
+              <p class="mt-1 text-[11px] text-slate-500">Owner invariant strictly enforced</p>
+            </div>
+          </div>
+
+          <!-- Active Members Section -->
+          <div class="rounded-2xl border border-slate-200 bg-white shadow-sm overflow-hidden">
+            <div class="border-b border-slate-200 px-5 py-4 flex items-center justify-between">
+              <div>
+                <h3 class="text-sm font-bold text-slate-900">Active Store Staff</h3>
+                <p class="text-xs text-slate-500">Personnel with authorized access to your Retailer ERP account</p>
+              </div>
+              <button id="refresh-members-btn" class="text-xs font-semibold text-blue-600 hover:text-blue-800 flex items-center gap-1.5">
+                <i class="fa-solid fa-rotate"></i>
+                <span>Refresh</span>
+              </button>
+            </div>
+
+            <div class="overflow-x-auto">
+              <table class="w-full text-left text-xs">
+                <thead class="bg-slate-50 text-[11px] font-bold uppercase tracking-wider text-slate-500 border-b border-slate-200">
+                  <tr>
+                    <th class="px-5 py-3">Team Member</th>
+                    <th class="px-4 py-3">Contact</th>
+                    <th class="px-4 py-3">Assigned Role</th>
+                    <th class="px-4 py-3">Status</th>
+                    <th class="px-4 py-3">Joined Date</th>
+                    <th class="px-5 py-3 text-right">Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="members-table-body" class="divide-y divide-slate-100 font-medium">
+                  <tr>
+                    <td colspan="6" class="px-5 py-8 text-center text-slate-400">Loading team members...</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Pending Invites Section -->
+          <div class="rounded-2xl border border-slate-200 bg-white shadow-sm overflow-hidden">
+            <div class="border-b border-slate-200 px-5 py-4 flex items-center justify-between">
+              <div>
+                <h3 class="text-sm font-bold text-slate-900">Pending Invitations</h3>
+                <p class="text-xs text-slate-500">Invited staff members who have not yet accepted their token</p>
+              </div>
+            </div>
+
+            <div class="overflow-x-auto">
+              <table class="w-full text-left text-xs">
+                <thead class="bg-slate-50 text-[11px] font-bold uppercase tracking-wider text-slate-500 border-b border-slate-200">
+                  <tr>
+                    <th class="px-5 py-3">Invited Email</th>
+                    <th class="px-4 py-3">Role</th>
+                    <th class="px-4 py-3">Invited By</th>
+                    <th class="px-4 py-3">Expires At</th>
+                    <th class="px-4 py-3">Status</th>
+                    <th class="px-5 py-3 text-right">Token &amp; Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="invites-table-body" class="divide-y divide-slate-100 font-medium">
+                  <tr>
+                    <td colspan="6" class="px-5 py-8 text-center text-slate-400">No pending invitations</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Roles & Permissions Matrix Card -->
+          <div class="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+            <h4 class="text-xs font-bold uppercase tracking-wider text-slate-500 mb-3">Role Permissions Reference (RBAC)</h4>
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-4 text-xs">
+              <div class="p-3 rounded-xl border border-purple-100 bg-purple-50/50">
+                <span class="inline-block rounded-md bg-purple-100 px-2 py-0.5 text-[10px] font-extrabold text-purple-700">OWNER</span>
+                <p class="mt-2 font-bold text-slate-800">Store Proprietor</p>
+                <p class="mt-1 text-[11px] text-slate-600">Full ownership, subscription billing, cannot be removed or demoted.</p>
+              </div>
+              <div class="p-3 rounded-xl border border-blue-100 bg-blue-50/50">
+                <span class="inline-block rounded-md bg-blue-100 px-2 py-0.5 text-[10px] font-extrabold text-blue-700">ADMIN</span>
+                <p class="mt-2 font-bold text-slate-800">Store Administrator</p>
+                <p class="mt-1 text-[11px] text-slate-600">Staff invites &amp; role management, full inventory, POS, Khata, and supplier purchasing access.</p>
+              </div>
+              <div class="p-3 rounded-xl border border-indigo-100 bg-indigo-50/50">
+                <span class="inline-block rounded-md bg-indigo-100 px-2 py-0.5 text-[10px] font-extrabold text-indigo-700">MANAGER</span>
+                <p class="mt-2 font-bold text-slate-800">Operations Manager</p>
+                <p class="mt-1 text-[11px] text-slate-600">Manages products, stocks, supplier orders, audit log review. Cannot edit staff roles.</p>
+              </div>
+              <div class="p-3 rounded-xl border border-emerald-100 bg-emerald-50/50">
+                <span class="inline-block rounded-md bg-emerald-100 px-2 py-0.5 text-[10px] font-extrabold text-emerald-700">CASHIER</span>
+                <p class="mt-2 font-bold text-slate-800">Counter Cashier</p>
+                <p class="mt-1 text-[11px] text-slate-600">Fast POS sales, barcode scan, VAT billing, Digital Khata customer collections.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ========================================== -->
+        <!-- TAB 2: SYSTEM AUDIT LOGS -->
+        <!-- ========================================== -->
+        <div id="tab-content-audit" class="hidden space-y-6">
+          <!-- Filters & Search -->
+          <div class="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm flex flex-wrap items-center justify-between gap-3">
+            <div class="flex flex-wrap items-center gap-3">
+              <div>
+                <label class="block text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-1">Entity Type</label>
+                <select id="audit-filter-entity" class="rounded-xl border border-slate-200 bg-slate-50 px-3 py-1.5 text-xs font-semibold text-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                  <option value="">All Entities</option>
+                  <option value="Product">Product</option>
+                  <option value="Inventory">Inventory</option>
+                  <option value="Invoice">Invoice / Sale</option>
+                  <option value="Khata">Khata Customer</option>
+                  <option value="Supplier">Supplier / PO</option>
+                  <option value="Staff">Staff / Member</option>
+                </select>
+              </div>
+              <div>
+                <label class="block text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-1">Action Type</label>
+                <input id="audit-filter-action" type="text" placeholder="e.g. INVENT, SALE, STAFF" class="rounded-xl border border-slate-200 bg-slate-50 px-3 py-1.5 text-xs text-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-500 w-44">
+              </div>
+            </div>
+
+            <div class="flex items-center gap-2">
+              <button id="audit-filter-reset" class="rounded-xl border border-slate-200 px-3 py-1.5 text-xs font-semibold text-slate-600 hover:bg-slate-50 transition">
+                Reset
+              </button>
+              <button id="audit-filter-apply" class="rounded-xl bg-blue-600 px-3 py-1.5 text-xs font-bold text-white hover:bg-blue-700 transition">
+                Filter Logs
+              </button>
+            </div>
+          </div>
+
+          <!-- Audit Log Table -->
+          <div class="rounded-2xl border border-slate-200 bg-white shadow-sm overflow-hidden">
+            <div class="border-b border-slate-200 px-5 py-4 flex items-center justify-between">
+              <div>
+                <h3 class="text-sm font-bold text-slate-900">Immutable Audit Trail (अडिट लग)</h3>
+                <p class="text-xs text-slate-500">Real-time log of security events, inventory mutations, and financial transactions</p>
+              </div>
+              <span id="audit-total-count" class="text-xs font-bold text-slate-500">Showing logs</span>
+            </div>
+
+            <div class="overflow-x-auto">
+              <table class="w-full text-left text-xs">
+                <thead class="bg-slate-50 text-[11px] font-bold uppercase tracking-wider text-slate-500 border-b border-slate-200">
+                  <tr>
+                    <th class="px-5 py-3">Timestamp</th>
+                    <th class="px-4 py-3">Action</th>
+                    <th class="px-4 py-3">Target Entity</th>
+                    <th class="px-4 py-3">Actor / User</th>
+                    <th class="px-4 py-3">IP Address</th>
+                    <th class="px-5 py-3 text-right">Details</th>
+                  </tr>
+                </thead>
+                <tbody id="audit-table-body" class="divide-y divide-slate-100 font-medium">
+                  <tr>
+                    <td colspan="6" class="px-5 py-8 text-center text-slate-400">Loading audit trail...</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <!-- Pagination -->
+            <div class="border-t border-slate-200 px-5 py-3 flex items-center justify-between bg-slate-50">
+              <span class="text-xs text-slate-500" id="audit-page-info">Page 1</span>
+              <div class="flex items-center gap-2">
+                <button id="audit-prev-btn" class="rounded-lg border border-slate-200 bg-white px-3 py-1 text-xs font-semibold text-slate-700 hover:bg-slate-50 disabled:opacity-40" disabled>
+                  &larr; Previous
+                </button>
+                <button id="audit-next-btn" class="rounded-lg border border-slate-200 bg-white px-3 py-1 text-xs font-semibold text-slate-700 hover:bg-slate-50 disabled:opacity-40">
+                  Next &rarr;
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- ========================================== -->
+  <!-- MODAL: INVITE STAFF MEMBER -->
+  <!-- ========================================== -->
+  <div id="modal-invite-staff" class="fixed inset-0 z-50 hidden bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="w-full max-w-md rounded-2xl bg-white p-6 shadow-2xl">
+      <div class="flex items-center justify-between border-b border-slate-100 pb-4">
+        <div>
+          <h3 class="text-base font-bold text-slate-900">Invite Staff Member</h3>
+          <p class="text-xs text-slate-500">Send an invitation link with assigned operational permissions</p>
+        </div>
+        <button id="close-invite-modal" class="text-slate-400 hover:text-slate-600">
+          <i class="fa-solid fa-xmark text-lg"></i>
+        </button>
+      </div>
+
+      <form id="invite-staff-form" class="mt-4 space-y-4">
+        <div>
+          <label class="block text-xs font-bold text-slate-700 mb-1">Staff Email Address *</label>
+          <input type="email" id="invite-email" required placeholder="colleague@example.com" class="w-full rounded-xl border border-slate-300 px-3.5 py-2 text-xs focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500">
+        </div>
+
+        <div>
+          <label class="block text-xs font-bold text-slate-700 mb-1">Assign Role *</label>
+          <select id="invite-role" required class="w-full rounded-xl border border-slate-300 px-3.5 py-2 text-xs focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500">
+            <option value="CASHIER">CASHIER (POS Counter, Sales, Billing, Khata Collection)</option>
+            <option value="MANAGER">MANAGER (Inventory, Stock Adjustments, Purchases)</option>
+            <option value="ADMIN">ADMIN (Full Store Operations, Team Management)</option>
+          </select>
+          <p class="mt-1 text-[11px] text-slate-500" id="role-hint">Cashiers cannot view audit logs or edit store settings.</p>
+        </div>
+
+        <div id="invite-token-output" class="hidden rounded-xl border border-emerald-200 bg-emerald-50 p-3 space-y-2">
+          <p class="text-xs font-bold text-emerald-800"><i class="fa-solid fa-circle-check text-emerald-600 mr-1"></i> Invitation Created!</p>
+          <p class="text-[11px] text-emerald-700">Share this Invite Token or direct link with your staff member:</p>
+          <div class="flex items-center gap-2">
+            <input type="text" id="generated-token-input" readonly class="w-full rounded-lg border border-emerald-300 bg-white px-2.5 py-1 text-xs font-mono font-bold text-emerald-950">
+            <button type="button" id="copy-token-btn" class="shrink-0 rounded-lg bg-emerald-700 px-3 py-1 text-xs font-bold text-white hover:bg-emerald-800">
+              Copy
+            </button>
+          </div>
+        </div>
+
+        <div class="flex items-center justify-end gap-3 pt-3 border-t border-slate-100">
+          <button type="button" id="cancel-invite-btn" class="rounded-xl border border-slate-200 px-4 py-2 text-xs font-semibold text-slate-600 hover:bg-slate-50">
+            Close
+          </button>
+          <button type="submit" id="submit-invite-btn" class="rounded-xl bg-blue-600 px-5 py-2 text-xs font-bold text-white hover:bg-blue-700 shadow-sm shadow-blue-500/20">
+            Send Invitation
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ========================================== -->
+  <!-- MODAL: UPDATE ROLE -->
+  <!-- ========================================== -->
+  <div id="modal-update-role" class="fixed inset-0 z-50 hidden bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="w-full max-w-sm rounded-2xl bg-white p-6 shadow-2xl">
+      <div class="flex items-center justify-between border-b border-slate-100 pb-4">
+        <h3 class="text-base font-bold text-slate-900">Change Staff Role</h3>
+        <button id="close-role-modal" class="text-slate-400 hover:text-slate-600">
+          <i class="fa-solid fa-xmark text-lg"></i>
+        </button>
+      </div>
+
+      <form id="update-role-form" class="mt-4 space-y-4">
+        <input type="hidden" id="edit-member-id">
+        <div>
+          <label class="block text-xs font-bold text-slate-700 mb-1">Staff Member</label>
+          <p id="edit-member-name" class="text-xs font-bold text-slate-900"></p>
+          <p id="edit-member-email" class="text-[11px] text-slate-500"></p>
+        </div>
+
+        <div>
+          <label class="block text-xs font-bold text-slate-700 mb-1">New Role *</label>
+          <select id="edit-new-role" required class="w-full rounded-xl border border-slate-300 px-3.5 py-2 text-xs focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500">
+            <option value="CASHIER">CASHIER</option>
+            <option value="MANAGER">MANAGER</option>
+            <option value="ADMIN">ADMIN</option>
+          </select>
+        </div>
+
+        <div class="flex items-center justify-end gap-3 pt-3 border-t border-slate-100">
+          <button type="button" id="cancel-role-btn" class="rounded-xl border border-slate-200 px-4 py-2 text-xs font-semibold text-slate-600 hover:bg-slate-50">
+            Cancel
+          </button>
+          <button type="submit" class="rounded-xl bg-blue-600 px-5 py-2 text-xs font-bold text-white hover:bg-blue-700">
+            Update Role
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ========================================== -->
+  <!-- MODAL: ACCEPT TOKEN (JOIN STORE) -->
+  <!-- ========================================== -->
+  <div id="modal-accept-token" class="fixed inset-0 z-50 hidden bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="w-full max-w-md rounded-2xl bg-white p-6 shadow-2xl">
+      <div class="flex items-center justify-between border-b border-slate-100 pb-4">
+        <div>
+          <h3 class="text-base font-bold text-slate-900">Join Store as Staff</h3>
+          <p class="text-xs text-slate-500">Enter the invitation token provided by your store owner</p>
+        </div>
+        <button id="close-token-modal" class="text-slate-400 hover:text-slate-600">
+          <i class="fa-solid fa-xmark text-lg"></i>
+        </button>
+      </div>
+
+      <form id="accept-token-form" class="mt-4 space-y-4">
+        <div>
+          <label class="block text-xs font-bold text-slate-700 mb-1">Invitation Token *</label>
+          <input type="text" id="accept-token-input" required placeholder="Paste invitation token here" class="w-full rounded-xl border border-slate-300 px-3.5 py-2 text-xs font-mono focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500">
+        </div>
+
+        <div class="flex items-center justify-end gap-3 pt-3 border-t border-slate-100">
+          <button type="button" id="cancel-token-btn" class="rounded-xl border border-slate-200 px-4 py-2 text-xs font-semibold text-slate-600 hover:bg-slate-50">
+            Cancel
+          </button>
+          <button type="submit" class="rounded-xl bg-emerald-600 px-5 py-2 text-xs font-bold text-white hover:bg-emerald-700">
+            Accept &amp; Join
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ========================================== -->
+  <!-- MODAL: AUDIT METADATA VIEWER -->
+  <!-- ========================================== -->
+  <div id="modal-audit-details" class="fixed inset-0 z-50 hidden bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="w-full max-w-lg rounded-2xl bg-white p-6 shadow-2xl">
+      <div class="flex items-center justify-between border-b border-slate-100 pb-4">
+        <div>
+          <h3 class="text-base font-bold text-slate-900">Audit Log Payload</h3>
+          <p class="text-xs text-slate-500" id="audit-detail-title">Action details</p>
+        </div>
+        <button id="close-audit-modal" class="text-slate-400 hover:text-slate-600">
+          <i class="fa-solid fa-xmark text-lg"></i>
+        </button>
+      </div>
+
+      <div class="mt-4">
+        <pre id="audit-detail-json" class="p-4 rounded-xl bg-slate-900 text-emerald-400 text-xs font-mono overflow-x-auto max-h-96"></pre>
+      </div>
+
+      <div class="flex items-center justify-end pt-4 border-t border-slate-100 mt-4">
+        <button type="button" id="close-audit-details-btn" class="rounded-xl bg-slate-800 px-4 py-2 text-xs font-semibold text-white hover:bg-slate-700">
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script src="./retailer-staff.js"></script>
+</body>
+</html>

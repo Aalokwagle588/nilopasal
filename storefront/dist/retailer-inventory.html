@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full bg-slate-50">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inventory ERP &amp; Stock Ledger — Nilopasal</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Inter', 'sans-serif'] },
+        }
+      }
+    };
+  </script>
+  <style>
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: #f8fafc; }
+    ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 999px; }
+  </style>
+</head>
+<body class="min-h-full bg-slate-100 font-sans text-slate-800 antialiased" data-page="retailer-inventory">
+  <div class="flex min-h-screen">
+    <!-- LEFT SIDEBAR -->
+    <aside class="hidden lg:flex w-64 shrink-0 flex-col justify-between bg-slate-950 text-slate-300">
+      <div>
+        <!-- Brand -->
+        <div class="flex h-16 items-center gap-3 border-b border-slate-800 px-6">
+          <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-600 text-lg font-black text-white shadow-md shadow-blue-500/20">N</div>
+          <div>
+            <p class="text-base font-black tracking-wide text-white">NILOPASAL</p>
+            <p class="text-[10px] font-extrabold uppercase tracking-widest text-blue-400">Retailer ERP</p>
+          </div>
+        </div>
+
+        <!-- Store Context Widget -->
+        <div class="p-3">
+          <div class="rounded-xl border border-slate-800 bg-slate-900/60 p-3">
+            <p class="text-[10px] font-extrabold uppercase tracking-wider text-slate-500">Active Store</p>
+            <p class="text-xs font-bold text-white truncate mt-0.5" id="retailer-business-name">Loading store...</p>
+            <div class="mt-2 flex items-center gap-2">
+              <span class="inline-block h-2 w-2 rounded-full bg-emerald-400"></span>
+              <span class="text-[11px] font-semibold text-slate-400 capitalize" id="retailer-status-verification">Verified</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Navigation Menu -->
+        <nav class="space-y-0.5 px-3 py-1 text-xs font-semibold">
+          <a href="./retailer-dashboard.html" class="flex items-center gap-3 rounded-lg px-3 py-2 text-slate-400 hover:bg-slate-900 hover:text-white transition">
+            <i class="fa-solid fa-chart-pie w-4 text-center"></i>
+            Dashboard
+          </a>
+
+          <div class="pt-3 pb-1 px-3 text-[10px] font-extrabold uppercase tracking-widest text-slate-500">Sales &amp; POS</div>
+          <a href="./retailer-pos.html" class="flex items-center gap-3 rounded-lg px-3 py-2 text-slate-400 hover:bg-slate-900 hover:text-white transition">
+            <i class="fa-solid fa-cash-register w-4 text-center text-blue-400"></i>
+            POS Counter
+          </a>
+          <a href="./retailer-sales.html" class="flex items-center gap-3 rounded-lg px-3 py-2 text-slate-400 hover:bg-slate-900 hover:text-white transition">
+            <i class="fa-solid fa-receipt w-4 text-center"></i>
+            Sales Invoices
+          </a>
+
+          <div class="pt-3 pb-1 px-3 text-[10px] font-extrabold uppercase tracking-widest text-slate-500">Catalog &amp; Stock</div>
+          <a href="./retailer-products.html" class="flex items-center gap-3 rounded-lg px-3 py-2 text-slate-400 hover:bg-slate-900 hover:text-white transition">
+            <i class="fa-solid fa-box-open w-4 text-center"></i>
+            Products
+          </a>
+          <a href="./retailer-inventory.html" class="flex items-center gap-3 rounded-lg bg-blue-600 px-3 py-2.5 text-white font-bold shadow-sm shadow-blue-900/50">
+            <i class="fa-solid fa-warehouse w-4 text-center"></i>
+            Inventory ERP
+          </a>
+
+          <div class="pt-3 pb-1 px-3 text-[10px] font-extrabold uppercase tracking-widest text-slate-500">Khata &amp; Suppliers</div>
+          <a href="./retailer-khata.html" class="flex items-center gap-3 rounded-lg px-3 py-2 text-slate-400 hover:bg-slate-900 hover:text-white transition">
+            <i class="fa-solid fa-book-bookmark w-4 text-center text-emerald-400"></i>
+            Digital Khata
+          </a>
+          <a href="./retailer-suppliers.html" class="flex items-center gap-3 rounded-lg px-3 py-2 text-slate-400 hover:bg-slate-900 hover:text-white transition">
+            <i class="fa-solid fa-truck-field w-4 text-center"></i>
+            Suppliers &amp; Purchases
+          </a>
+
+          <div class="pt-3 pb-1 px-3 text-[10px] font-extrabold uppercase tracking-widest text-slate-500">Analytics &amp; Administration</div>
+          <a href="./retailer-reports.html" class="flex items-center gap-3 rounded-lg px-3 py-2 text-slate-400 hover:bg-slate-900 hover:text-white transition">
+            <i class="fa-solid fa-chart-line w-4 text-center text-purple-400"></i>
+            Reports &amp; VAT
+          </a>
+          <a href="./retailer-staff.html" class="flex items-center gap-3 rounded-lg px-3 py-2 text-slate-400 hover:bg-slate-900 hover:text-white transition">
+            <i class="fa-solid fa-users-gear w-4 text-center text-blue-400"></i>
+            Staff &amp; Security
+          </a>
+          <a href="./retailer-subscription.html" class="flex items-center justify-between rounded-lg px-3 py-2 text-slate-400 hover:bg-slate-900 hover:text-white transition">
+            <span class="flex items-center gap-3">
+              <i class="fa-solid fa-crown w-4 text-center text-amber-400"></i>
+              Subscription
+            </span>
+            <span class="text-[10px] uppercase font-bold bg-emerald-400/20 text-emerald-300 px-1.5 py-0.5 rounded" id="retailer-status-subscription">Active</span>
+          </a>
+        </nav>
+      </div>
+
+      <!-- User footer -->
+      <div class="border-t border-slate-800 p-4">
+        <div class="flex items-center justify-between">
+          <div class="truncate">
+            <p class="text-xs font-bold text-white truncate" id="retailer-user-name">Retailer Staff</p>
+            <p class="text-[11px] text-slate-500 truncate" id="retailer-user-email">Loading account...</p>
+          </div>
+          <button id="retailer-logout-btn" title="Sign out" class="text-slate-400 hover:text-rose-400 p-1.5 rounded transition">
+            <i class="fa-solid fa-arrow-right-from-bracket"></i>
+          </button>
+        </div>
+      </div>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="flex-1 flex flex-col min-w-0 overflow-y-auto">
+      <!-- TOP BAR -->
+      <header class="sticky top-0 z-20 border-b border-slate-200 bg-white/95 px-4 py-3 shadow-sm backdrop-blur sm:px-6">
+        <div class="flex items-center justify-between gap-4">
+          <div class="flex items-center gap-3 min-w-0">
+            <div class="flex h-9 w-9 items-center justify-center rounded-xl bg-blue-600 text-sm font-black text-white lg:hidden">N</div>
+            <div class="min-w-0">
+              <p class="text-[11px] font-bold uppercase tracking-wider text-blue-600">Inventory ERP</p>
+              <h1 class="text-base font-black tracking-tight text-slate-900 truncate" id="retailer-topbar-shop-name">Stock &amp; Audit Trail</h1>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-3">
+            <a href="./retailer-products.html?action=new" class="inline-flex items-center gap-2 rounded-xl bg-blue-600 hover:bg-blue-700 px-3.5 py-2 text-xs font-bold text-white shadow-sm transition">
+              <i class="fa-solid fa-plus text-xs"></i>
+              <span>Add Product</span>
+            </a>
+            <a href="./index.html" class="inline-flex items-center gap-1.5 rounded-xl border border-slate-200 bg-white px-3 py-2 text-xs font-semibold text-slate-700 hover:bg-slate-50 transition">
+              <i class="fa-solid fa-store text-xs text-slate-400"></i>
+              <span>Storefront</span>
+            </a>
+          </div>
+        </div>
+      </header>
+
+      <!-- BODY AREA -->
+      <div class="p-4 sm:p-6 lg:p-8 space-y-6">
+        <!-- BREADCRUMBS -->
+        <nav class="flex items-center gap-2 text-xs font-semibold text-slate-400" aria-label="Breadcrumbs">
+          <a href="./retailer-dashboard.html" class="hover:text-slate-600">Dashboard</a>
+          <span>/</span>
+          <span class="text-slate-800">Catalog &amp; Stock</span>
+          <span>/</span>
+          <span class="text-blue-600">Inventory ERP</span>
+        </nav>
+
+        <!-- KPI SUMMARY CARDS -->
+        <div class="grid grid-cols-2 lg:grid-cols-5 gap-4">
+          <div class="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+            <p class="text-xs font-bold text-slate-400 uppercase tracking-wider">Total SKUs</p>
+            <p class="mt-1 text-2xl font-black text-slate-900" id="kpi-total-skus">0</p>
+            <p class="mt-1 text-[11px] text-slate-500 font-medium">Tracked products &amp; variants</p>
+          </div>
+
+          <div class="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+            <p class="text-xs font-bold text-slate-400 uppercase tracking-wider">In-Stock Units</p>
+            <p class="mt-1 text-2xl font-black text-slate-900" id="kpi-total-units">0</p>
+            <p class="mt-1 text-[11px] text-slate-500 font-medium">Available physical count</p>
+          </div>
+
+          <div class="col-span-2 sm:col-span-1 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+            <p class="text-xs font-bold text-slate-400 uppercase tracking-wider">Stock Valuation</p>
+            <p class="mt-1 text-2xl font-black text-blue-900" id="kpi-total-valuation">Rs. 0.00</p>
+            <p class="mt-1 text-[11px] text-slate-500 font-medium">At current cost price</p>
+          </div>
+
+          <div id="card-low-stock-kpi" class="cursor-pointer rounded-2xl border border-amber-200 bg-amber-50/50 hover:bg-amber-50 p-5 shadow-sm transition">
+            <div class="flex items-center justify-between">
+              <p class="text-xs font-bold text-amber-700 uppercase tracking-wider">Low Stock</p>
+              <i class="fa-solid fa-triangle-exclamation text-amber-500 text-xs"></i>
+            </div>
+            <p class="mt-1 text-2xl font-black text-amber-900" id="kpi-low-stock">0</p>
+            <p class="mt-1 text-[11px] text-amber-600 font-medium">Needs reorder soon</p>
+          </div>
+
+          <div id="card-out-of-stock-kpi" class="cursor-pointer rounded-2xl border border-rose-200 bg-rose-50/50 hover:bg-rose-50 p-5 shadow-sm transition">
+            <div class="flex items-center justify-between">
+              <p class="text-xs font-bold text-rose-700 uppercase tracking-wider">Out of Stock</p>
+              <i class="fa-solid fa-circle-xmark text-rose-500 text-xs"></i>
+            </div>
+            <p class="mt-1 text-2xl font-black text-rose-900" id="kpi-out-of-stock">0</p>
+            <p class="mt-1 text-[11px] text-rose-600 font-medium">Zero available units</p>
+          </div>
+        </div>
+
+        <!-- TABS BAR -->
+        <div class="border-b border-slate-200">
+          <div class="flex items-center gap-6">
+            <button id="tab-btn-balances" class="px-4 py-2 border-b-2 border-blue-600 font-bold text-blue-600 text-sm">
+              <i class="fa-solid fa-cubes-stacked mr-1.5"></i> Current Stock Balances
+            </button>
+            <button id="tab-btn-audit" class="px-4 py-2 border-b-2 border-transparent font-semibold text-slate-500 hover:text-slate-800 text-sm">
+              <i class="fa-solid fa-clock-rotate-left mr-1.5"></i> Stock Movement Audit Trail
+            </button>
+          </div>
+        </div>
+
+        <!-- TAB 1: CURRENT STOCK BALANCES -->
+        <div id="panel-balances" class="space-y-4">
+          <!-- Search Toolbar -->
+          <div class="rounded-2xl border border-slate-200 bg-white p-3 shadow-sm flex items-center justify-between gap-4">
+            <div class="relative flex-1 max-w-md">
+              <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
+              <input
+                type="text"
+                id="search-inventory"
+                placeholder="Search inventory by product, variant or SKU..."
+                class="w-full rounded-xl border border-slate-200 bg-slate-50/50 pl-9 pr-4 py-2 text-xs font-medium text-slate-900 placeholder:text-slate-400 focus:border-blue-500 focus:bg-white focus:outline-none transition"
+              >
+            </div>
+            <a href="./retailer-inventory.html" class="text-xs font-bold text-slate-500 hover:text-slate-800 transition">
+              <i class="fa-solid fa-rotate-right mr-1"></i> Refresh
+            </a>
+          </div>
+
+          <!-- Inventory Table -->
+          <div class="rounded-2xl border border-slate-200 bg-white shadow-sm overflow-hidden">
+            <div class="overflow-x-auto">
+              <table class="w-full text-left border-collapse">
+                <thead>
+                  <tr class="border-b border-slate-200 bg-slate-50 text-[11px] font-black uppercase tracking-wider text-slate-500">
+                    <th class="px-6 py-3">Item Name</th>
+                    <th class="px-6 py-3">SKU</th>
+                    <th class="px-6 py-3">Cost Price</th>
+                    <th class="px-6 py-3">Selling Price</th>
+                    <th class="px-6 py-3">Available Balance</th>
+                    <th class="px-6 py-3">Valuation (NPR)</th>
+                    <th class="px-6 py-3">Health</th>
+                    <th class="px-6 py-3 text-right">Adjustment</th>
+                  </tr>
+                </thead>
+                <tbody id="inventory-tbody">
+                  <!-- Loaded dynamically -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- TAB 2: AUDIT TRAIL LEDGER -->
+        <div id="panel-audit" class="space-y-4 hidden">
+          <div class="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm flex items-center justify-between">
+            <div>
+              <h3 class="text-sm font-extrabold text-slate-900">Stock Movement Audit Trail</h3>
+              <p class="text-xs text-slate-500">Immutable ledger log of all stock increases, sales, and manual write-offs</p>
+            </div>
+          </div>
+
+          <div class="rounded-2xl border border-slate-200 bg-white shadow-sm overflow-hidden">
+            <div class="overflow-x-auto">
+              <table class="w-full text-left border-collapse">
+                <thead>
+                  <tr class="border-b border-slate-200 bg-slate-50 text-[11px] font-black uppercase tracking-wider text-slate-500">
+                    <th class="px-6 py-3">Timestamp</th>
+                    <th class="px-6 py-3">Product / SKU</th>
+                    <th class="px-6 py-3">Type</th>
+                    <th class="px-6 py-3">Quantity</th>
+                    <th class="px-6 py-3">Balance Change</th>
+                    <th class="px-6 py-3">Reason</th>
+                    <th class="px-6 py-3">Logged By</th>
+                  </tr>
+                </thead>
+                <tbody id="audit-tbody">
+                  <!-- Loaded dynamically -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- MODAL: STOCK ADJUSTMENT -->
+  <div id="modal-adjust-stock" class="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/60 backdrop-blur-xs p-4 hidden">
+    <div class="w-full max-w-lg rounded-3xl bg-white p-6 sm:p-8 shadow-2xl">
+      <div class="flex items-center justify-between border-b border-slate-100 pb-4">
+        <div>
+          <h3 class="text-lg font-black text-slate-900">Record Stock Adjustment</h3>
+          <p class="text-xs text-slate-500">Immutable stock ledger update with reason and staff log</p>
+        </div>
+        <button id="btn-close-adjust" class="text-slate-400 hover:text-slate-600 p-2">
+          <i class="fa-solid fa-xmark text-lg"></i>
+        </button>
+      </div>
+
+      <div class="mt-4 rounded-xl bg-slate-50 p-4 border border-slate-100">
+        <p class="text-xs font-extrabold text-slate-900" id="adjust-product-title">Item Name</p>
+        <p class="text-[11px] font-mono text-slate-500 mt-0.5" id="adjust-product-sku">SKU</p>
+        <div class="mt-2 flex items-center justify-between text-xs">
+          <span class="text-slate-500 font-medium">Current Stock Balance:</span>
+          <span class="font-black text-slate-900" id="adjust-current-balance">0 units</span>
+        </div>
+      </div>
+
+      <form id="form-adjust-stock" class="mt-5 space-y-4">
+        <!-- Adjustment Type -->
+        <div>
+          <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">Adjustment Type *</label>
+          <select id="adjust-type" required class="w-full rounded-xl border border-slate-200 px-3.5 py-2 text-xs font-semibold text-slate-900 focus:border-blue-500 focus:outline-none">
+            <option value="STOCK_IN">Stock In (Supplier delivery / Restock) &rarr; (+)</option>
+            <option value="ADJUSTMENT_IN">Adjustment In (Inventory count surplus) &rarr; (+)</option>
+            <option value="DAMAGED">Damaged / Broken goods write-off &rarr; (-)</option>
+            <option value="EXPIRED">Expired stock write-off &rarr; (-)</option>
+            <option value="ADJUSTMENT_OUT">Adjustment Out (Physical count deficit) &rarr; (-)</option>
+            <option value="TRANSFER">Transfer to secondary storage &rarr; (-)</option>
+          </select>
+        </div>
+
+        <!-- Quantity -->
+        <div>
+          <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">Quantity *</label>
+          <input type="number" id="adjust-quantity" min="1" required value="1" class="w-full rounded-xl border border-slate-200 px-3.5 py-2 text-xs font-semibold text-slate-900 focus:border-blue-500 focus:outline-none">
+        </div>
+
+        <!-- Reason -->
+        <div>
+          <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">Reason for Adjustment *</label>
+          <input type="text" id="adjust-reason" minlength="3" required placeholder="e.g. Received shipment from wholesaler, damaged during stocking" class="w-full rounded-xl border border-slate-200 px-3.5 py-2 text-xs font-semibold text-slate-900 focus:border-blue-500 focus:outline-none">
+        </div>
+
+        <!-- Preview Balance -->
+        <div class="rounded-xl bg-blue-50/60 border border-blue-100 p-3 flex items-center justify-between text-xs">
+          <span class="font-medium text-slate-600">New Available Balance:</span>
+          <span class="font-black text-blue-700" id="adjust-preview-balance">0 units</span>
+        </div>
+
+        <div id="adjust-message"></div>
+
+        <div class="flex items-center justify-end gap-3 pt-3 border-t border-slate-100">
+          <button type="button" id="btn-cancel-adjust" class="px-4 py-2 text-xs font-bold text-slate-600 hover:text-slate-800 transition">Cancel</button>
+          <button type="submit" class="px-5 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs shadow-sm transition">
+            Confirm &amp; Record
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="./api-config.js"></script>
+  <script src="./retailer-catalog.js"></script>
+</body>
+</html>

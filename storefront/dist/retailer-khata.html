@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full bg-slate-50">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Digital Customer Khata &amp; Ledgers — Nilopasal Retailer ERP</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Inter', 'sans-serif'] },
+        }
+      }
+    };
+  </script>
+  <style>
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: #f8fafc; }
+    ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 999px; }
+    @media print {
+      body * { visibility: hidden; }
+      #statement-modal-content, #statement-modal-content * { visibility: visible; }
+      #statement-modal-content { position: absolute; left: 0; top: 0; width: 100%; }
+      .no-print { display: none !important; }
+    }
+  </style>
+</head>
+<body class="min-h-full bg-slate-100 font-sans text-slate-800 antialiased" data-page="retailer-khata">
+  <div class="flex min-h-screen">
+    <!-- LEFT SIDEBAR -->
+    <aside class="hidden lg:flex w-64 shrink-0 flex-col justify-between bg-slate-950 text-slate-300">
+      <div>
+        <!-- Brand -->
+        <div class="flex h-16 items-center gap-3 border-b border-slate-800 px-6">
+          <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-600 text-lg font-black text-white shadow-md shadow-blue-500/20">N</div>
+          <div>
+            <p class="text-base font-black tracking-wide text-white">NILOPASAL</p>
+            <p class="text-[10px] font-extrabold uppercase tracking-widest text-blue-400">Retailer ERP</p>
+          </div>
+        </div>
+
+        <!-- Store Context Widget -->
+        <div class="p-3">
+          <div class="rounded-xl border border-slate-800 bg-slate-900/60 p-3">
+            <p class="text-[10px] font-extrabold uppercase tracking-wider text-slate-500">Active Store</p>
+            <p class="text-xs font-bold text-white truncate mt-0.5" id="retailer-business-name">Loading store...</p>
+            <div class="mt-2 flex items-center gap-2">
+              <span class="inline-block h-2 w-2 rounded-full bg-emerald-400"></span>
+              <span class="text-[11px] font-semibold text-slate-400 capitalize" id="retailer-status-verification">Verified</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Navigation Menu -->
+        <nav class="space-y-0.5 px-3 py-1 text-xs font-semibold">
+          <a href="./retailer-dashboard.html" class="flex items-center gap-3 rounded-lg px-3 py-2 text-slate-400 hover:bg-slate-900 hover:text-white transition">
+            <i class="fa-solid fa-chart-pie w-4 text-center"></i>
+            Dashboard
+          </a>
+
+          <div class="pt-3 pb-1 px-3 text-[10px] font-extrabold uppercase tracking-widest text-slate-500">Sales &amp; POS</div>
+          <a href="./retailer-pos.html" class="flex items-center gap-3 rounded-lg px-3 py-2 text-slate-400 hover:bg-slate-900 hover:text-white transition">
+            <i class="fa-solid fa-cash-register w-4 text-center text-blue-400"></i>
+            POS Counter
+          </a>
+          <a href="./retailer-sales.html" class="flex items-center gap-3 rounded-lg px-3 py-2 text-slate-400 hover:bg-slate-900 hover:text-white transition">
+            <i class="fa-solid fa-receipt w-4 text-center"></i>
+            Sales Invoices
+          </a>
+
+          <div class="pt-3 pb-1 px-3 text-[10px] font-extrabold uppercase tracking-widest text-slate-500">Catalog &amp; Stock</div>
+          <a href="./retailer-products.html" class="flex items-center gap-3 rounded-lg px-3 py-2 text-slate-400 hover:bg-slate-900 hover:text-white transition">
+            <i class="fa-solid fa-box-open w-4 text-center"></i>
+            Products
+          </a>
+          <a href="./retailer-inventory.html" class="flex items-center gap-3 rounded-lg px-3 py-2 text-slate-400 hover:bg-slate-900 hover:text-white transition">
+            <i class="fa-solid fa-warehouse w-4 text-center"></i>
+            Inventory ERP
+          </a>
+
+          <div class="pt-3 pb-1 px-3 text-[10px] font-extrabold uppercase tracking-widest text-slate-500">Khata &amp; Suppliers</div>
+          <a href="./retailer-khata.html" class="flex items-center gap-3 rounded-lg bg-emerald-600 px-3 py-2.5 text-white font-bold shadow-sm shadow-emerald-900/50">
+            <i class="fa-solid fa-book-bookmark w-4 text-center text-emerald-100"></i>
+            Digital Khata
+          </a>
+          <a href="./retailer-suppliers.html" class="flex items-center gap-3 rounded-lg px-3 py-2 text-slate-400 hover:bg-slate-900 hover:text-white transition">
+            <i class="fa-solid fa-truck-field w-4 text-center"></i>
+            Suppliers &amp; Purchases
+          </a>
+
+          <div class="pt-3 pb-1 px-3 text-[10px] font-extrabold uppercase tracking-widest text-slate-500">Analytics &amp; Administration</div>
+          <a href="./retailer-reports.html" class="flex items-center gap-3 rounded-lg px-3 py-2 text-slate-400 hover:bg-slate-900 hover:text-white transition">
+            <i class="fa-solid fa-chart-line w-4 text-center text-purple-400"></i>
+            Reports &amp; VAT
+          </a>
+          <a href="./retailer-staff.html" class="flex items-center gap-3 rounded-lg px-3 py-2 text-slate-400 hover:bg-slate-900 hover:text-white transition">
+            <i class="fa-solid fa-users-gear w-4 text-center text-blue-400"></i>
+            Staff &amp; Security
+          </a>
+          <a href="./retailer-subscription.html" class="flex items-center justify-between rounded-lg px-3 py-2 text-slate-400 hover:bg-slate-900 hover:text-white transition">
+            <span class="flex items-center gap-3">
+              <i class="fa-solid fa-crown w-4 text-center text-amber-400"></i>
+              Subscription
+            </span>
+          </a>
+        </nav>
+      </div>
+
+      <!-- User footer -->
+      <div class="border-t border-slate-800 p-4">
+        <div class="flex items-center justify-between">
+          <div class="truncate">
+            <p class="text-xs font-bold text-white truncate" id="retailer-user-name">Staff Member</p>
+            <p class="text-[11px] text-slate-500 truncate" id="retailer-user-email">Retailer Role</p>
+          </div>
+          <button id="retailer-logout-btn" title="Sign out" class="text-slate-400 hover:text-rose-400 p-1.5 rounded transition">
+            <i class="fa-solid fa-arrow-right-from-bracket"></i>
+          </button>
+        </div>
+      </div>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="flex-1 flex flex-col min-w-0 overflow-y-auto">
+      <!-- TOP BAR -->
+      <header class="sticky top-0 z-20 border-b border-slate-200 bg-white/95 px-4 py-3 shadow-sm backdrop-blur sm:px-6">
+        <div class="flex items-center justify-between gap-4">
+          <div class="flex items-center gap-3 min-w-0">
+            <div class="flex h-9 w-9 items-center justify-center rounded-xl bg-emerald-600 text-sm font-black text-white lg:hidden">K</div>
+            <div class="min-w-0">
+              <div class="flex items-center gap-2">
+                <p class="text-[11px] font-bold uppercase tracking-wider text-emerald-600">Customer Credit Ledger</p>
+                <span class="rounded-full bg-emerald-100 px-2 py-0.5 text-[10px] font-bold text-emerald-800">Udharo Khata</span>
+              </div>
+              <h1 class="text-base font-black tracking-tight text-slate-900 truncate">Digital Customer Khata</h1>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-3">
+            <button id="open-add-customer-modal-btn" class="inline-flex items-center gap-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 px-3.5 py-2 text-xs font-bold text-white shadow-sm transition">
+              <i class="fa-solid fa-user-plus text-xs"></i>
+              <span>Add Customer</span>
+            </button>
+            <a href="./retailer-pos.html" class="inline-flex items-center gap-1.5 rounded-xl border border-slate-200 bg-white px-3 py-1.5 text-xs font-semibold text-slate-700 hover:bg-slate-50 transition">
+              <i class="fa-solid fa-cash-register text-xs text-blue-600"></i>
+              <span>POS Counter</span>
+            </a>
+          </div>
+        </div>
+      </header>
+
+      <!-- PAGE BODY -->
+      <div class="p-4 sm:p-6 space-y-6">
+        <!-- 4 KHATA KPI CARDS -->
+        <section class="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+          <article class="rounded-2xl border border-rose-200 bg-rose-50/50 p-5 shadow-sm">
+            <div class="flex items-center justify-between text-rose-500">
+              <span class="text-xs font-bold uppercase tracking-wider">Total Outstanding Debt</span>
+              <i class="fa-solid fa-hand-holding-dollar text-rose-400"></i>
+            </div>
+            <p class="mt-2 text-2xl font-black text-rose-900" id="kpi-total-receivables">Rs. 0.00</p>
+            <p class="mt-1 text-[11px] text-rose-700 font-medium">Store money to collect from customers</p>
+          </article>
+
+          <article class="rounded-2xl border border-amber-200 bg-amber-50/50 p-5 shadow-sm">
+            <div class="flex items-center justify-between text-amber-600">
+              <span class="text-xs font-bold uppercase tracking-wider">Customers with Balance</span>
+              <i class="fa-solid fa-users text-amber-500"></i>
+            </div>
+            <p class="mt-2 text-2xl font-black text-amber-900" id="kpi-customers-with-debt">0</p>
+            <p class="mt-1 text-[11px] text-amber-700 font-medium">Accounts currently carrying debt</p>
+          </article>
+
+          <article class="rounded-2xl border border-emerald-200 bg-emerald-50/50 p-5 shadow-sm">
+            <div class="flex items-center justify-between text-emerald-600">
+              <span class="text-xs font-bold uppercase tracking-wider">Collections Today</span>
+              <i class="fa-solid fa-receipt text-emerald-500"></i>
+            </div>
+            <p class="mt-2 text-2xl font-black text-emerald-900" id="kpi-today-collections">Rs. 0.00</p>
+            <p class="mt-1 text-[11px] text-emerald-700 font-medium">Payments recorded today</p>
+          </article>
+
+          <article class="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+            <div class="flex items-center justify-between text-slate-400">
+              <span class="text-xs font-bold uppercase tracking-wider">Total Customers</span>
+              <i class="fa-solid fa-address-book text-slate-400"></i>
+            </div>
+            <p class="mt-2 text-2xl font-black text-slate-900" id="kpi-total-customers">0</p>
+            <p class="mt-1 text-[11px] text-slate-500">Registered store customer profiles</p>
+          </article>
+        </section>
+
+        <!-- SEARCH, FILTERS & ACTION BAR -->
+        <section class="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-4">
+          <!-- Search box -->
+          <div class="relative flex-1 max-w-md">
+            <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
+            <input
+              type="text"
+              id="khata-search-input"
+              placeholder="Search customer by name or phone (e.g. 9841...)"
+              class="w-full rounded-xl border border-slate-200 bg-slate-50 pl-9 pr-4 py-2 text-xs font-medium text-slate-900 placeholder-slate-400 focus:border-emerald-500 focus:bg-white focus:outline-none focus:ring-1 focus:ring-emerald-500 transition"
+            >
+          </div>
+
+          <!-- Status Filter Tabs -->
+          <div class="flex items-center gap-1.5 p-1 rounded-xl bg-slate-100 text-xs font-bold text-slate-600">
+            <button data-filter="ALL" class="khata-filter-tab rounded-lg px-3 py-1.5 transition bg-white text-slate-900 shadow-sm">
+              All Customers
+            </button>
+            <button data-filter="WITH_DEBT" class="khata-filter-tab rounded-lg px-3 py-1.5 text-slate-500 hover:text-slate-900 transition">
+              Due Balance (उधारो)
+            </button>
+            <button data-filter="ZERO_BALANCE" class="khata-filter-tab rounded-lg px-3 py-1.5 text-slate-500 hover:text-slate-900 transition">
+              Settled
+            </button>
+          </div>
+        </section>
+
+        <!-- CUSTOMERS TABLE -->
+        <section class="rounded-2xl border border-slate-200 bg-white shadow-sm overflow-hidden">
+          <div class="overflow-x-auto">
+            <table class="w-full text-left border-collapse">
+              <thead class="bg-slate-50 text-[11px] font-bold uppercase tracking-wider text-slate-500 border-b border-slate-100">
+                <tr>
+                  <th class="px-5 py-3.5">Customer</th>
+                  <th class="px-5 py-3.5">Contact &amp; Address</th>
+                  <th class="px-5 py-3.5">Credit Limit</th>
+                  <th class="px-5 py-3.5">Outstanding Balance</th>
+                  <th class="px-5 py-3.5">Khata Status</th>
+                  <th class="px-5 py-3.5 text-right">Actions</th>
+                </tr>
+              </thead>
+              <tbody id="khata-customers-tbody" class="divide-y divide-slate-100 text-xs">
+                <!-- Dynamically populated -->
+                <tr>
+                  <td colspan="6" class="p-8 text-center text-slate-400 font-medium">
+                    <i class="fa-solid fa-spinner fa-spin text-lg mb-2"></i>
+                    <p>Loading Khata customer ledgers...</p>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Pagination Bar -->
+          <div class="border-t border-slate-100 bg-slate-50/50 px-5 py-3 flex items-center justify-between text-xs text-slate-500">
+            <span id="khata-pagination-info">Showing 0 of 0 customers</span>
+            <div class="flex items-center gap-2">
+              <button id="khata-prev-page-btn" disabled class="px-3 py-1 rounded-lg border border-slate-200 bg-white text-slate-600 disabled:opacity-50 disabled:cursor-not-allowed hover:bg-slate-50 transition">
+                &larr; Prev
+              </button>
+              <button id="khata-next-page-btn" disabled class="px-3 py-1 rounded-lg border border-slate-200 bg-white text-slate-600 disabled:opacity-50 disabled:cursor-not-allowed hover:bg-slate-50 transition">
+                Next &rarr;
+              </button>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <!-- MODAL: ADD NEW CUSTOMER -->
+  <div id="add-customer-modal" class="fixed inset-0 z-50 hidden bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="w-full max-w-md rounded-2xl bg-white p-6 shadow-2xl space-y-4">
+      <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+        <div class="flex items-center gap-2.5">
+          <div class="flex h-8 w-8 items-center justify-center rounded-xl bg-emerald-50 text-emerald-600 font-bold">
+            <i class="fa-solid fa-user-plus text-sm"></i>
+          </div>
+          <h3 class="text-sm font-black text-slate-900">Add New Khata Customer</h3>
+        </div>
+        <button class="close-modal-btn text-slate-400 hover:text-slate-600 p-1 rounded transition">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <form id="add-customer-form" class="space-y-3.5 text-xs">
+        <div>
+          <label class="block font-bold text-slate-700 mb-1">Customer Full Name <span class="text-rose-500">*</span></label>
+          <input type="text" id="add-customer-name" required placeholder="e.g. Shyam Sundar Shrestha" class="w-full rounded-xl border border-slate-200 px-3 py-2 font-medium focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500">
+        </div>
+
+        <div>
+          <label class="block font-bold text-slate-700 mb-1">Phone Number <span class="text-rose-500">*</span></label>
+          <input type="tel" id="add-customer-phone" required placeholder="98XXXXXXXX" class="w-full rounded-xl border border-slate-200 px-3 py-2 font-medium focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500">
+        </div>
+
+        <div>
+          <label class="block font-bold text-slate-700 mb-1">Address / Landmark</label>
+          <input type="text" id="add-customer-address" placeholder="e.g. Asan Galli, Ward 24" class="w-full rounded-xl border border-slate-200 px-3 py-2 font-medium focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500">
+        </div>
+
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block font-bold text-slate-700 mb-1">Credit Limit (Rs.)</label>
+            <input type="number" id="add-customer-credit-limit" min="0" placeholder="Optional" class="w-full rounded-xl border border-slate-200 px-3 py-2 font-medium focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500">
+            <span class="text-[10px] text-slate-400">Leave blank for no limit</span>
+          </div>
+
+          <div>
+            <label class="block font-bold text-slate-700 mb-1">Opening Debt (Rs.)</label>
+            <input type="number" id="add-customer-opening-balance" min="0" value="0" placeholder="0" class="w-full rounded-xl border border-slate-200 px-3 py-2 font-medium focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500">
+            <span class="text-[10px] text-slate-400">Existing debt if any</span>
+          </div>
+        </div>
+
+        <div id="add-customer-error" class="hidden text-rose-600 bg-rose-50 p-2.5 rounded-xl border border-rose-200 font-semibold text-[11px]"></div>
+
+        <div class="flex items-center justify-end gap-2 pt-2 border-t border-slate-100">
+          <button type="button" class="close-modal-btn px-4 py-2 rounded-xl border border-slate-200 bg-white font-bold text-slate-700 hover:bg-slate-50 transition">
+            Cancel
+          </button>
+          <button type="submit" id="add-customer-submit-btn" class="px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 font-bold text-white shadow-sm transition">
+            Create Customer
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- MODAL: RECORD PAYMENT -->
+  <div id="record-payment-modal" class="fixed inset-0 z-50 hidden bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="w-full max-w-md rounded-2xl bg-white p-6 shadow-2xl space-y-4">
+      <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+        <div class="flex items-center gap-2.5">
+          <div class="flex h-8 w-8 items-center justify-center rounded-xl bg-emerald-50 text-emerald-600 font-bold">
+            <i class="fa-solid fa-receipt text-sm"></i>
+          </div>
+          <div>
+            <h3 class="text-sm font-black text-slate-900">Record Khata Payment</h3>
+            <p class="text-[11px] text-slate-500" id="record-payment-customer-name">Customer</p>
+          </div>
+        </div>
+        <button class="close-modal-btn text-slate-400 hover:text-slate-600 p-1 rounded transition">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <form id="record-payment-form" class="space-y-3.5 text-xs">
+        <input type="hidden" id="record-payment-customer-id">
+
+        <!-- Balance Info Banner -->
+        <div class="rounded-xl bg-slate-50 border border-slate-200 p-3 flex items-center justify-between">
+          <div>
+            <span class="text-[10px] font-bold uppercase tracking-wider text-slate-400">Current Due Balance</span>
+            <p class="text-base font-black text-rose-600" id="record-payment-current-balance">Rs. 0.00</p>
+          </div>
+          <button type="button" id="pay-full-balance-btn" class="px-2.5 py-1 rounded-lg bg-emerald-100 text-emerald-800 text-[11px] font-bold hover:bg-emerald-200 transition">
+            Pay Full Due
+          </button>
+        </div>
+
+        <div>
+          <label class="block font-bold text-slate-700 mb-1">Amount Tendered / Received (Rs.) <span class="text-rose-500">*</span></label>
+          <input type="number" id="record-payment-amount" min="1" step="any" required placeholder="Enter amount paid" class="w-full rounded-xl border border-slate-200 px-3 py-2 text-sm font-bold focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500">
+        </div>
+
+        <div>
+          <label class="block font-bold text-slate-700 mb-1">Payment Method <span class="text-rose-500">*</span></label>
+          <div class="grid grid-cols-4 gap-2 text-center" id="payment-method-selector">
+            <label class="cursor-pointer border-2 border-emerald-500 bg-emerald-50 rounded-xl p-2 font-bold text-[11px] text-emerald-800">
+              <input type="radio" name="payment-method" value="CASH" checked class="sr-only">
+              <i class="fa-solid fa-money-bill-wave block mb-1"></i> Cash
+            </label>
+            <label class="cursor-pointer border border-slate-200 hover:border-emerald-300 rounded-xl p-2 font-bold text-[11px] text-slate-700">
+              <input type="radio" name="payment-method" value="ESEWA" class="sr-only">
+              <i class="fa-solid fa-mobile-screen-button block mb-1 text-emerald-500"></i> eSewa
+            </label>
+            <label class="cursor-pointer border border-slate-200 hover:border-emerald-300 rounded-xl p-2 font-bold text-[11px] text-slate-700">
+              <input type="radio" name="payment-method" value="KHALTI" class="sr-only">
+              <i class="fa-solid fa-wallet block mb-1 text-purple-600"></i> Khalti
+            </label>
+            <label class="cursor-pointer border border-slate-200 hover:border-emerald-300 rounded-xl p-2 font-bold text-[11px] text-slate-700">
+              <input type="radio" name="payment-method" value="BANK" class="sr-only">
+              <i class="fa-solid fa-building-columns block mb-1 text-blue-600"></i> Bank
+            </label>
+          </div>
+        </div>
+
+        <div>
+          <label class="block font-bold text-slate-700 mb-1">Reference / Transaction ID</label>
+          <input type="text" id="record-payment-reference" placeholder="e.g. eSewa Txn ID, Voucher #" class="w-full rounded-xl border border-slate-200 px-3 py-2 font-medium focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500">
+        </div>
+
+        <div>
+          <label class="block font-bold text-slate-700 mb-1">Remarks / Note</label>
+          <input type="text" id="record-payment-notes" placeholder="Optional payment note" class="w-full rounded-xl border border-slate-200 px-3 py-2 font-medium focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500">
+        </div>
+
+        <div id="record-payment-error" class="hidden text-rose-600 bg-rose-50 p-2.5 rounded-xl border border-rose-200 font-semibold text-[11px]"></div>
+
+        <div class="flex items-center justify-end gap-2 pt-2 border-t border-slate-100">
+          <button type="button" class="close-modal-btn px-4 py-2 rounded-xl border border-slate-200 bg-white font-bold text-slate-700 hover:bg-slate-50 transition">
+            Cancel
+          </button>
+          <button type="submit" id="record-payment-submit-btn" class="px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 font-bold text-white shadow-sm transition">
+            Confirm Payment
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- MODAL: MANUAL ADJUSTMENT -->
+  <div id="record-adjustment-modal" class="fixed inset-0 z-50 hidden bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="w-full max-w-md rounded-2xl bg-white p-6 shadow-2xl space-y-4">
+      <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+        <div class="flex items-center gap-2.5">
+          <div class="flex h-8 w-8 items-center justify-center rounded-xl bg-purple-50 text-purple-600 font-bold">
+            <i class="fa-solid fa-sliders text-sm"></i>
+          </div>
+          <div>
+            <h3 class="text-sm font-black text-slate-900">Khata Balance Adjustment</h3>
+            <p class="text-[11px] text-slate-500" id="record-adj-customer-name">Customer</p>
+          </div>
+        </div>
+        <button class="close-modal-btn text-slate-400 hover:text-slate-600 p-1 rounded transition">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <form id="record-adjustment-form" class="space-y-3.5 text-xs">
+        <input type="hidden" id="record-adj-customer-id">
+
+        <div>
+          <label class="block font-bold text-slate-700 mb-1">Adjustment Type <span class="text-rose-500">*</span></label>
+          <div class="grid grid-cols-2 gap-3" id="adj-direction-selector">
+            <label class="cursor-pointer border-2 border-rose-500 bg-rose-50 rounded-xl p-3 text-center">
+              <input type="radio" name="adj-direction" value="DEBIT" checked class="sr-only">
+              <span class="block font-bold text-rose-800 text-xs">Debit (+ Debt)</span>
+              <span class="block text-[10px] text-rose-600">Customer owes more</span>
+            </label>
+            <label class="cursor-pointer border border-slate-200 hover:border-emerald-300 rounded-xl p-3 text-center">
+              <input type="radio" name="adj-direction" value="CREDIT" class="sr-only">
+              <span class="block font-bold text-emerald-800 text-xs">Credit (- Debt)</span>
+              <span class="block text-[10px] text-emerald-600">Waiver / Discount</span>
+            </label>
+          </div>
+        </div>
+
+        <div>
+          <label class="block font-bold text-slate-700 mb-1">Amount (Rs.) <span class="text-rose-500">*</span></label>
+          <input type="number" id="record-adj-amount" min="1" step="any" required placeholder="Adjustment amount" class="w-full rounded-xl border border-slate-200 px-3 py-2 text-sm font-bold focus:border-purple-500 focus:outline-none focus:ring-1 focus:ring-purple-500">
+        </div>
+
+        <div>
+          <label class="block font-bold text-slate-700 mb-1">Reason / Explanation <span class="text-rose-500">*</span></label>
+          <input type="text" id="record-adj-reason" required placeholder="e.g. Round-off waiver, extra delivery fee" class="w-full rounded-xl border border-slate-200 px-3 py-2 font-medium focus:border-purple-500 focus:outline-none focus:ring-1 focus:ring-purple-500">
+        </div>
+
+        <div id="record-adj-error" class="hidden text-rose-600 bg-rose-50 p-2.5 rounded-xl border border-rose-200 font-semibold text-[11px]"></div>
+
+        <div class="flex items-center justify-end gap-2 pt-2 border-t border-slate-100">
+          <button type="button" class="close-modal-btn px-4 py-2 rounded-xl border border-slate-200 bg-white font-bold text-slate-700 hover:bg-slate-50 transition">
+            Cancel
+          </button>
+          <button type="submit" id="record-adj-submit-btn" class="px-4 py-2 rounded-xl bg-purple-600 hover:bg-purple-700 font-bold text-white shadow-sm transition">
+            Apply Adjustment
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- MODAL: CUSTOMER STATEMENT & TRANSACTION LEDGER -->
+  <div id="statement-modal" class="fixed inset-0 z-50 hidden bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="w-full max-w-3xl max-h-[90vh] flex flex-col rounded-2xl bg-white shadow-2xl overflow-hidden">
+      <!-- Modal Header (no-print) -->
+      <div class="flex items-center justify-between border-b border-slate-100 p-4 no-print">
+        <div class="flex items-center gap-3">
+          <div class="flex h-9 w-9 items-center justify-center rounded-xl bg-blue-50 text-blue-600 font-bold">
+            <i class="fa-solid fa-file-invoice text-sm"></i>
+          </div>
+          <div>
+            <h3 class="text-sm font-black text-slate-900" id="statement-customer-header">Customer Account Statement</h3>
+            <p class="text-[11px] text-slate-500">Complete chronological Khata history</p>
+          </div>
+        </div>
+        <div class="flex items-center gap-2">
+          <button id="statement-print-btn" class="px-3 py-1.5 rounded-xl border border-slate-200 bg-slate-50 hover:bg-slate-100 text-xs font-bold text-slate-700 transition">
+            <i class="fa-solid fa-print mr-1"></i> Print Statement
+          </button>
+          <button class="close-modal-btn text-slate-400 hover:text-slate-600 p-1.5 rounded transition">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Printable Statement Body -->
+      <div id="statement-modal-content" class="flex-1 overflow-y-auto p-6 space-y-6 text-xs">
+        <!-- Store & Customer Header -->
+        <div class="flex items-start justify-between border-b border-slate-200 pb-4">
+          <div>
+            <h2 class="text-lg font-black text-slate-900" id="statement-store-name">Store Name</h2>
+            <p class="text-slate-500 text-[11px]">Nilopasal Retailer ERP</p>
+            <p class="text-slate-500 text-[11px]" id="statement-store-pan">PAN / VAT: -</p>
+          </div>
+          <div class="text-right">
+            <span class="inline-block px-2.5 py-1 rounded-lg bg-emerald-100 text-emerald-800 text-[10px] font-black uppercase tracking-wider">Account Statement</span>
+            <p class="text-slate-400 text-[10px] mt-1" id="statement-generated-date">Date: -</p>
+          </div>
+        </div>
+
+        <!-- Customer Summary Cards -->
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+          <div class="rounded-xl border border-slate-200 bg-slate-50 p-3">
+            <p class="text-[10px] font-bold uppercase tracking-wider text-slate-400">Customer Details</p>
+            <p class="text-sm font-black text-slate-900 mt-1" id="statement-customer-name">Name</p>
+            <p class="text-slate-600 text-[11px]" id="statement-customer-phone">Phone</p>
+            <p class="text-slate-500 text-[10px]" id="statement-customer-address">Address</p>
+          </div>
+
+          <div class="rounded-xl border border-slate-200 bg-slate-50 p-3">
+            <p class="text-[10px] font-bold uppercase tracking-wider text-slate-400">Credit Limit</p>
+            <p class="text-sm font-black text-slate-900 mt-1" id="statement-credit-limit">Rs. 0</p>
+            <div class="mt-2 w-full bg-slate-200 rounded-full h-1.5 overflow-hidden">
+              <div id="statement-limit-progress-bar" class="bg-emerald-500 h-1.5 rounded-full" style="width: 0%"></div>
+            </div>
+            <p class="text-[10px] text-slate-500 mt-1" id="statement-utilization-copy">0% utilized</p>
+          </div>
+
+          <div class="rounded-xl border border-rose-200 bg-rose-50/50 p-3">
+            <p class="text-[10px] font-bold uppercase tracking-wider text-rose-600">Net Due Balance</p>
+            <p class="text-xl font-black text-rose-900 mt-1" id="statement-current-balance">Rs. 0.00</p>
+            <p class="text-[10px] text-rose-700 mt-1" id="statement-balance-status-pill">Active Balance</p>
+          </div>
+        </div>
+
+        <!-- Transactions Ledger Table -->
+        <div class="space-y-2">
+          <h4 class="text-xs font-black uppercase tracking-wider text-slate-700">Chronological Transaction Ledger</h4>
+          <div class="rounded-xl border border-slate-200 overflow-hidden">
+            <table class="w-full text-left border-collapse">
+              <thead class="bg-slate-50 text-[10px] font-bold uppercase tracking-wider text-slate-500 border-b border-slate-200">
+                <tr>
+                  <th class="px-4 py-2.5">Date &amp; Time</th>
+                  <th class="px-4 py-2.5">Type</th>
+                  <th class="px-4 py-2.5">Reference / Notes</th>
+                  <th class="px-4 py-2.5 text-right">Debit (+)</th>
+                  <th class="px-4 py-2.5 text-right">Credit (-)</th>
+                  <th class="px-4 py-2.5 text-right">Balance</th>
+                </tr>
+              </thead>
+              <tbody id="statement-transactions-tbody" class="divide-y divide-slate-100 text-[11px]">
+                <!-- Populated dynamically -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- LOAD SCRIPT -->
+  <script src="./retailer-khata.js"></script>
+</body>
+</html>

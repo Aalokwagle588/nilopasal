@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full bg-slate-50">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inbound Purchases &amp; Stock Orders — Nilopasal Retailer ERP</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Inter', 'sans-serif'] },
+        }
+      }
+    };
+  </script>
+  <style>
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: #f8fafc; }
+    ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 999px; }
+    @media print {
+      body * { visibility: hidden; }
+      #po-view-modal-content, #po-view-modal-content * { visibility: visible; }
+      #po-view-modal-content { position: absolute; left: 0; top: 0; width: 100%; }
+      .no-print { display: none !important; }
+    }
+  </style>
+</head>
+<body class="min-h-full bg-slate-100 font-sans text-slate-800 antialiased" data-page="retailer-purchases">
+  <div class="flex min-h-screen">
+    <!-- LEFT SIDEBAR -->
+    <aside class="hidden lg:flex w-64 shrink-0 flex-col justify-between bg-slate-950 text-slate-300">
+      <div>
+        <!-- Brand -->
+        <div class="flex h-16 items-center gap-3 border-b border-slate-800 px-6">
+          <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-600 text-lg font-black text-white shadow-md shadow-blue-500/20">N</div>
+          <div>
+            <p class="text-base font-black tracking-wide text-white">NILOPASAL</p>
+            <p class="text-[10px] font-extrabold uppercase tracking-widest text-blue-400">Retailer ERP</p>
+          </div>
+        </div>
+
+        <!-- Store Context Widget -->
+        <div class="p-3">
+          <div class="rounded-xl border border-slate-800 bg-slate-900/60 p-3">
+            <p class="text-[10px] font-extrabold uppercase tracking-wider text-slate-500">Active Store</p>
+            <p class="text-xs font-bold text-white truncate mt-0.5" id="retailer-business-name">Loading store...</p>
+            <div class="mt-2 flex items-center gap-2">
+              <span class="inline-block h-2 w-2 rounded-full bg-emerald-400"></span>
+              <span class="text-[11px] font-semibold text-slate-400 capitalize" id="retailer-status-verification">Verified</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Navigation Menu -->
+        <nav class="space-y-0.5 px-3 py-1 text-xs font-semibold">
+          <a href="./retailer-dashboard.html" class="flex items-center gap-3 rounded-lg px-3 py-2 text-slate-400 hover:bg-slate-900 hover:text-white transition">
+            <i class="fa-solid fa-chart-pie w-4 text-center"></i>
+            Dashboard
+          </a>
+
+          <div class="pt-3 pb-1 px-3 text-[10px] font-extrabold uppercase tracking-widest text-slate-500">Sales &amp; POS</div>
+          <a href="./retailer-pos.html" class="flex items-center gap-3 rounded-lg px-3 py-2 text-slate-400 hover:bg-slate-900 hover:text-white transition">
+            <i class="fa-solid fa-cash-register w-4 text-center text-blue-400"></i>
+            POS Counter
+          </a>
+          <a href="./retailer-sales.html" class="flex items-center gap-3 rounded-lg px-3 py-2 text-slate-400 hover:bg-slate-900 hover:text-white transition">
+            <i class="fa-solid fa-receipt w-4 text-center"></i>
+            Sales Invoices
+          </a>
+
+          <div class="pt-3 pb-1 px-3 text-[10px] font-extrabold uppercase tracking-widest text-slate-500">Catalog &amp; Stock</div>
+          <a href="./retailer-products.html" class="flex items-center gap-3 rounded-lg px-3 py-2 text-slate-400 hover:bg-slate-900 hover:text-white transition">
+            <i class="fa-solid fa-box-open w-4 text-center"></i>
+            Products
+          </a>
+          <a href="./retailer-inventory.html" class="flex items-center gap-3 rounded-lg px-3 py-2 text-slate-400 hover:bg-slate-900 hover:text-white transition">
+            <i class="fa-solid fa-warehouse w-4 text-center"></i>
+            Inventory ERP
+          </a>
+
+          <div class="pt-3 pb-1 px-3 text-[10px] font-extrabold uppercase tracking-widest text-slate-500">Khata &amp; Suppliers</div>
+          <a href="./retailer-khata.html" class="flex items-center gap-3 rounded-lg px-3 py-2 text-slate-400 hover:bg-slate-900 hover:text-white transition">
+            <i class="fa-solid fa-book-bookmark w-4 text-center text-emerald-400"></i>
+            Digital Khata
+          </a>
+          <a href="./retailer-suppliers.html" class="flex items-center gap-3 rounded-lg bg-amber-500 px-3 py-2.5 text-slate-950 font-bold shadow-sm shadow-amber-900/40">
+            <i class="fa-solid fa-truck-field w-4 text-center text-slate-950"></i>
+            Suppliers &amp; Purchases
+          </a>
+
+          <div class="pt-3 pb-1 px-3 text-[10px] font-extrabold uppercase tracking-widest text-slate-500">Analytics &amp; Administration</div>
+          <a href="./retailer-reports.html" class="flex items-center gap-3 rounded-lg px-3 py-2 text-slate-400 hover:bg-slate-900 hover:text-white transition">
+            <i class="fa-solid fa-chart-line w-4 text-center text-purple-400"></i>
+            Reports &amp; VAT
+          </a>
+          <a href="./retailer-staff.html" class="flex items-center gap-3 rounded-lg px-3 py-2 text-slate-400 hover:bg-slate-900 hover:text-white transition">
+            <i class="fa-solid fa-users-gear w-4 text-center text-blue-400"></i>
+            Staff &amp; Security
+          </a>
+          <a href="./retailer-subscription.html" class="flex items-center justify-between rounded-lg px-3 py-2 text-slate-400 hover:bg-slate-900 hover:text-white transition">
+            <span class="flex items-center gap-3">
+              <i class="fa-solid fa-crown w-4 text-center text-amber-400"></i>
+              Subscription
+            </span>
+          </a>
+        </nav>
+      </div>
+
+      <!-- User footer -->
+      <div class="border-t border-slate-800 p-4">
+        <div class="flex items-center justify-between">
+          <div class="truncate">
+            <p class="text-xs font-bold text-white truncate" id="retailer-user-name">Staff Member</p>
+            <p class="text-[11px] text-slate-500 truncate" id="retailer-user-email">Retailer Role</p>
+          </div>
+          <button id="retailer-logout-btn" title="Sign out" class="text-slate-400 hover:text-rose-400 p-1.5 rounded transition">
+            <i class="fa-solid fa-arrow-right-from-bracket"></i>
+          </button>
+        </div>
+      </div>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="flex-1 flex flex-col min-w-0 overflow-y-auto">
+      <!-- TOP BAR -->
+      <header class="sticky top-0 z-20 border-b border-slate-200 bg-white/95 px-4 py-3 shadow-sm backdrop-blur sm:px-6">
+        <div class="flex items-center justify-between gap-4">
+          <div class="flex items-center gap-3 min-w-0">
+            <div class="flex h-9 w-9 items-center justify-center rounded-xl bg-blue-600 text-sm font-black text-white lg:hidden">P</div>
+            <div class="min-w-0">
+              <div class="flex items-center gap-2">
+                <a href="./retailer-suppliers.html" class="text-[11px] font-bold uppercase tracking-wider text-slate-400 hover:text-slate-600 transition">&larr; Suppliers Directory</a>
+                <span class="text-slate-300">/</span>
+                <span class="text-[11px] font-bold uppercase tracking-wider text-blue-600">Inbound Orders</span>
+              </div>
+              <h1 class="text-base font-black tracking-tight text-slate-900 truncate">Purchase Orders &amp; Stock In</h1>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-3">
+            <button id="open-new-po-modal-btn" class="inline-flex items-center gap-2 rounded-xl bg-blue-600 hover:bg-blue-700 px-3.5 py-2 text-xs font-bold text-white shadow-sm transition">
+              <i class="fa-solid fa-boxes-packing text-xs"></i>
+              <span>New Purchase Order</span>
+            </button>
+          </div>
+        </div>
+      </header>
+
+      <!-- PAGE BODY -->
+      <div class="p-4 sm:p-6 space-y-6">
+        <!-- SEARCH & FILTERS -->
+        <section class="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-4">
+          <div class="relative flex-1 max-w-md">
+            <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
+            <input
+              type="text"
+              id="po-search-input"
+              placeholder="Search by PO number or supplier name..."
+              class="w-full rounded-xl border border-slate-200 bg-slate-50 pl-9 pr-4 py-2 text-xs font-medium text-slate-900 placeholder-slate-400 focus:border-blue-500 focus:bg-white focus:outline-none focus:ring-1 focus:ring-blue-500 transition"
+            >
+          </div>
+
+          <div class="flex items-center gap-1.5 p-1 rounded-xl bg-slate-100 text-xs font-bold text-slate-600">
+            <button data-filter="ALL" class="po-filter-tab rounded-lg px-3 py-1.5 transition bg-white text-slate-900 shadow-sm">
+              All Orders
+            </button>
+            <button data-filter="RECEIVED" class="po-filter-tab rounded-lg px-3 py-1.5 text-slate-500 hover:text-slate-900 transition">
+              Received (In Stock)
+            </button>
+            <button data-filter="ORDERED" class="po-filter-tab rounded-lg px-3 py-1.5 text-slate-500 hover:text-slate-900 transition">
+              Pending Receipt
+            </button>
+          </div>
+        </section>
+
+        <!-- PURCHASES TABLE -->
+        <section class="rounded-2xl border border-slate-200 bg-white shadow-sm overflow-hidden">
+          <div class="overflow-x-auto">
+            <table class="w-full text-left border-collapse">
+              <thead class="bg-slate-50 text-[11px] font-bold uppercase tracking-wider text-slate-500 border-b border-slate-100">
+                <tr>
+                  <th class="px-5 py-3.5">PO Number</th>
+                  <th class="px-5 py-3.5">Date</th>
+                  <th class="px-5 py-3.5">Supplier</th>
+                  <th class="px-5 py-3.5">Items</th>
+                  <th class="px-5 py-3.5">Grand Total</th>
+                  <th class="px-5 py-3.5">Paid Upfront</th>
+                  <th class="px-5 py-3.5">Status</th>
+                  <th class="px-5 py-3.5 text-right">Actions</th>
+                </tr>
+              </thead>
+              <tbody id="purchases-tbody" class="divide-y divide-slate-100 text-xs">
+                <tr>
+                  <td colspan="8" class="p-8 text-center text-slate-400 font-medium">
+                    <i class="fa-solid fa-spinner fa-spin text-lg mb-2"></i>
+                    <p>Loading purchase orders...</p>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="border-t border-slate-100 bg-slate-50/50 px-5 py-3 flex items-center justify-between text-xs text-slate-500">
+            <span id="po-pagination-info">Showing 0 of 0 purchases</span>
+            <div class="flex items-center gap-2">
+              <button id="po-prev-btn" disabled class="px-3 py-1 rounded-lg border border-slate-200 bg-white text-slate-600 disabled:opacity-50 disabled:cursor-not-allowed hover:bg-slate-50 transition">
+                &larr; Prev
+              </button>
+              <button id="po-next-btn" disabled class="px-3 py-1 rounded-lg border border-slate-200 bg-white text-slate-600 disabled:opacity-50 disabled:cursor-not-allowed hover:bg-slate-50 transition">
+                Next &rarr;
+              </button>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <!-- MODAL: CREATE PURCHASE ORDER -->
+  <div id="new-po-modal" class="fixed inset-0 z-50 hidden bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="w-full max-w-2xl max-h-[90vh] flex flex-col rounded-2xl bg-white shadow-2xl overflow-hidden">
+      <div class="flex items-center justify-between border-b border-slate-100 p-4">
+        <div class="flex items-center gap-2.5">
+          <div class="flex h-8 w-8 items-center justify-center rounded-xl bg-blue-50 text-blue-600 font-bold">
+            <i class="fa-solid fa-dolly text-sm"></i>
+          </div>
+          <div>
+            <h3 class="text-sm font-black text-slate-900">New Inbound Purchase Order</h3>
+            <p class="text-[11px] text-slate-500">Replenish store inventory from supplier</p>
+          </div>
+        </div>
+        <button class="close-modal-btn text-slate-400 hover:text-slate-600 p-1 rounded transition">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <form id="new-po-form" class="flex-1 overflow-y-auto p-5 space-y-4 text-xs">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div>
+            <label class="block font-bold text-slate-700 mb-1">Select Supplier <span class="text-rose-500">*</span></label>
+            <select id="po-supplier-select" required class="w-full rounded-xl border border-slate-200 px-3 py-2 font-medium focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500">
+              <option value="">Choose Supplier...</option>
+            </select>
+          </div>
+
+          <div>
+            <label class="block font-bold text-slate-700 mb-1">Receipt Status <span class="text-rose-500">*</span></label>
+            <select id="po-status-select" required class="w-full rounded-xl border border-slate-200 px-3 py-2 font-medium focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500">
+              <option value="RECEIVED" selected>Received Stock (Auto-increment inventory now)</option>
+              <option value="ORDERED">Ordered (Wait for delivery before receiving)</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- LINE ITEMS BOX -->
+        <div class="rounded-xl border border-slate-200 p-3.5 space-y-3 bg-slate-50/50">
+          <div class="flex items-center justify-between">
+            <p class="text-[11px] font-black uppercase tracking-wider text-slate-600">Purchase Line Items</p>
+          </div>
+
+          <!-- Add Item Row -->
+          <div class="grid grid-cols-1 sm:grid-cols-12 gap-2 items-end">
+            <div class="sm:col-span-5">
+              <label class="block text-[10px] font-bold text-slate-500 mb-1">Product</label>
+              <select id="po-item-product" class="w-full rounded-xl border border-slate-200 bg-white px-2.5 py-1.5 text-xs font-medium focus:border-blue-500 focus:outline-none">
+                <option value="">Select product...</option>
+              </select>
+            </div>
+            <div class="sm:col-span-3">
+              <label class="block text-[10px] font-bold text-slate-500 mb-1">Unit Cost (Rs.)</label>
+              <input type="number" id="po-item-cost" min="0" step="any" placeholder="Cost" class="w-full rounded-xl border border-slate-200 bg-white px-2.5 py-1.5 text-xs font-bold focus:border-blue-500 focus:outline-none">
+            </div>
+            <div class="sm:col-span-2">
+              <label class="block text-[10px] font-bold text-slate-500 mb-1">Quantity</label>
+              <input type="number" id="po-item-qty" min="1" value="1" class="w-full rounded-xl border border-slate-200 bg-white px-2.5 py-1.5 text-xs font-bold focus:border-blue-500 focus:outline-none">
+            </div>
+            <div class="sm:col-span-2">
+              <button type="button" id="po-add-item-btn" class="w-full py-1.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs transition">
+                + Add
+              </button>
+            </div>
+          </div>
+
+          <!-- Items Table -->
+          <div class="rounded-xl border border-slate-200 bg-white overflow-hidden">
+            <table class="w-full text-left border-collapse text-xs">
+              <thead class="bg-slate-100 text-[10px] font-bold uppercase text-slate-500 border-b border-slate-200">
+                <tr>
+                  <th class="px-3 py-2">Item</th>
+                  <th class="px-3 py-2 text-right">Cost (Rs.)</th>
+                  <th class="px-3 py-2 text-center">Qty</th>
+                  <th class="px-3 py-2 text-right">Total (Rs.)</th>
+                  <th class="px-2 py-2 text-center"></th>
+                </tr>
+              </thead>
+              <tbody id="po-items-tbody" class="divide-y divide-slate-100">
+                <tr>
+                  <td colspan="5" class="p-4 text-center text-slate-400">No items added yet.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- PAYMENT & TOTALS -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
+          <div>
+            <label class="block font-bold text-slate-700 mb-1">Paid Upfront (Rs.)</label>
+            <input type="number" id="po-paid-amount" min="0" step="any" value="0" placeholder="0" class="w-full rounded-xl border border-slate-200 px-3 py-2 font-bold focus:border-blue-500 focus:outline-none">
+            <span class="text-[10px] text-slate-400">Unpaid balance is added to supplier debt</span>
+          </div>
+
+          <div class="rounded-xl bg-slate-50 border border-slate-200 p-3 flex flex-col justify-center items-end">
+            <span class="text-[10px] font-bold uppercase tracking-wider text-slate-400">Grand Total</span>
+            <p class="text-xl font-black text-slate-900" id="po-calculated-total">Rs. 0.00</p>
+          </div>
+        </div>
+
+        <div>
+          <label class="block font-bold text-slate-700 mb-1">Notes / Invoice Reference</label>
+          <input type="text" id="po-notes" placeholder="e.g. Supplier Challan # 1928" class="w-full rounded-xl border border-slate-200 px-3 py-2 font-medium focus:border-blue-500 focus:outline-none">
+        </div>
+
+        <div id="new-po-error" class="hidden text-rose-600 bg-rose-50 p-2.5 rounded-xl border border-rose-200 font-semibold text-[11px]"></div>
+
+        <div class="flex items-center justify-end gap-2 pt-3 border-t border-slate-100">
+          <button type="button" class="close-modal-btn px-4 py-2 rounded-xl border border-slate-200 bg-white font-bold text-slate-700 hover:bg-slate-50 transition">
+            Cancel
+          </button>
+          <button type="submit" id="new-po-submit-btn" class="px-5 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 font-bold text-white shadow-sm transition">
+            Create Purchase Order
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- MODAL: VIEW PURCHASE ORDER DETAILS -->
+  <div id="view-po-modal" class="fixed inset-0 z-50 hidden bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="w-full max-w-2xl max-h-[90vh] flex flex-col rounded-2xl bg-white shadow-2xl overflow-hidden">
+      <div class="flex items-center justify-between border-b border-slate-100 p-4 no-print">
+        <div class="flex items-center gap-2.5">
+          <div class="flex h-8 w-8 items-center justify-center rounded-xl bg-blue-50 text-blue-600 font-bold">
+            <i class="fa-solid fa-receipt text-sm"></i>
+          </div>
+          <h3 class="text-sm font-black text-slate-900" id="view-po-title">Purchase Order Details</h3>
+        </div>
+        <div class="flex items-center gap-2">
+          <button id="view-po-print-btn" class="px-3 py-1.5 rounded-xl border border-slate-200 bg-slate-50 hover:bg-slate-100 text-xs font-bold text-slate-700 transition">
+            <i class="fa-solid fa-print mr-1"></i> Print PO
+          </button>
+          <button class="close-modal-btn text-slate-400 hover:text-slate-600 p-1 rounded transition">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+      </div>
+
+      <div id="po-view-modal-content" class="flex-1 overflow-y-auto p-6 space-y-5 text-xs">
+        <div class="flex items-start justify-between border-b border-slate-200 pb-4">
+          <div>
+            <h2 class="text-lg font-black text-slate-900" id="view-po-store-name">Store Name</h2>
+            <p class="text-slate-500 text-[11px]" id="view-po-num">PO Number</p>
+          </div>
+          <div class="text-right">
+            <span class="inline-block px-2.5 py-1 rounded-lg text-[10px] font-black uppercase tracking-wider" id="view-po-status-badge">RECEIVED</span>
+            <p class="text-slate-400 text-[10px] mt-1" id="view-po-date">Date: -</p>
+          </div>
+        </div>
+
+        <div class="rounded-xl border border-slate-200 bg-slate-50 p-3">
+          <p class="text-[10px] font-bold uppercase tracking-wider text-slate-400">Supplier Details</p>
+          <p class="text-sm font-black text-slate-900 mt-0.5" id="view-po-supplier-name">Supplier</p>
+          <p class="text-slate-600 text-[11px]" id="view-po-supplier-phone">Phone</p>
+        </div>
+
+        <div class="rounded-xl border border-slate-200 overflow-hidden">
+          <table class="w-full text-left border-collapse text-xs">
+            <thead class="bg-slate-100 text-[10px] font-bold uppercase text-slate-500 border-b border-slate-200">
+              <tr>
+                <th class="px-4 py-2.5">Product SKU / Title</th>
+                <th class="px-4 py-2.5 text-right">Unit Cost</th>
+                <th class="px-4 py-2.5 text-center">Qty</th>
+                <th class="px-4 py-2.5 text-right">Line Total</th>
+              </tr>
+            </thead>
+            <tbody id="view-po-items-tbody" class="divide-y divide-slate-100">
+              <!-- Populated dynamically -->
+            </tbody>
+          </table>
+        </div>
+
+        <div class="flex justify-end">
+          <div class="w-64 space-y-1.5 text-right">
+            <div class="flex justify-between text-slate-500">
+              <span>Subtotal:</span>
+              <span id="view-po-subtotal">Rs. 0.00</span>
+            </div>
+            <div class="flex justify-between text-slate-500">
+              <span>Paid Amount:</span>
+              <span id="view-po-paid">Rs. 0.00</span>
+            </div>
+            <div class="flex justify-between text-base font-black text-slate-900 border-t border-slate-200 pt-1">
+              <span>Total:</span>
+              <span id="view-po-grand-total">Rs. 0.00</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="./retailer-purchases.js"></script>
+</body>
+</html>

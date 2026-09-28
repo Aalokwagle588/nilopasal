@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full bg-slate-100">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>POS Counter &amp; Billing — Nilopasal Retailer ERP</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Inter', 'sans-serif'] },
+        }
+      }
+    };
+  </script>
+  <style>
+    @media print {
+      body * { visibility: hidden; }
+      #printable-receipt-area, #printable-receipt-area * { visibility: visible; }
+      #printable-receipt-area { position: absolute; left: 0; top: 0; width: 100%; max-width: 320px; margin: 0 auto; }
+    }
+  </style>
+</head>
+<body class="min-h-full bg-slate-100 font-sans text-slate-800 antialiased" data-page="retailer-pos">
+  <div class="flex min-h-screen">
+    <!-- LEFT SIDEBAR -->
+    <aside class="hidden lg:flex w-60 shrink-0 flex-col justify-between bg-slate-950 text-slate-300">
+      <div>
+        <!-- Brand -->
+        <div class="flex h-16 items-center gap-3 border-b border-slate-800 px-6">
+          <div class="flex h-9 w-9 items-center justify-center rounded-xl bg-blue-600 text-base font-black text-white shadow-md shadow-blue-500/20">N</div>
+          <div>
+            <p class="text-sm font-black tracking-wide text-white">NILOPASAL</p>
+            <p class="text-[9px] font-extrabold uppercase tracking-widest text-blue-400">Retailer ERP</p>
+          </div>
+        </div>
+
+        <!-- Store Context Widget -->
+        <div class="p-3">
+          <div class="rounded-xl border border-slate-800 bg-slate-900/60 p-3">
+            <p class="text-[10px] font-extrabold uppercase tracking-wider text-slate-500">Active Store</p>
+            <p class="text-xs font-bold text-white truncate mt-0.5" id="pos-store-name">Loading store...</p>
+            <div class="mt-2 flex items-center gap-2">
+              <span class="inline-block h-2 w-2 rounded-full bg-emerald-400"></span>
+              <span class="text-[11px] font-semibold text-emerald-400" id="pos-cashier-badge">Cashier</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Navigation Menu -->
+        <nav class="space-y-0.5 px-3 py-1 text-xs font-semibold">
+          <a href="./retailer-dashboard.html" class="flex items-center gap-3 rounded-lg px-3 py-2 text-slate-400 hover:bg-slate-900 hover:text-white transition">
+            <i class="fa-solid fa-chart-pie w-4 text-center"></i>
+            Dashboard
+          </a>
+
+          <div class="pt-3 pb-1 px-3 text-[10px] font-extrabold uppercase tracking-widest text-slate-500">Sales &amp; POS</div>
+          <a href="./retailer-pos.html" class="flex items-center gap-3 rounded-lg bg-blue-600 px-3 py-2.5 text-white font-bold shadow-sm shadow-blue-900/50">
+            <i class="fa-solid fa-cash-register w-4 text-center"></i>
+            POS Counter
+          </a>
+          <a href="./retailer-sales.html" class="flex items-center gap-3 rounded-lg px-3 py-2 text-slate-400 hover:bg-slate-900 hover:text-white transition">
+            <i class="fa-solid fa-receipt w-4 text-center"></i>
+            Sales Invoices
+          </a>
+
+          <div class="pt-3 pb-1 px-3 text-[10px] font-extrabold uppercase tracking-widest text-slate-500">Catalog &amp; Stock</div>
+          <a href="./retailer-products.html" class="flex items-center gap-3 rounded-lg px-3 py-2 text-slate-400 hover:bg-slate-900 hover:text-white transition">
+            <i class="fa-solid fa-box-open w-4 text-center"></i>
+            Products
+          </a>
+          <a href="./retailer-inventory.html" class="flex items-center gap-3 rounded-lg px-3 py-2 text-slate-400 hover:bg-slate-900 hover:text-white transition">
+            <i class="fa-solid fa-warehouse w-4 text-center"></i>
+            Inventory ERP
+          </a>
+
+          <div class="pt-3 pb-1 px-3 text-[10px] font-extrabold uppercase tracking-widest text-slate-500">Khata &amp; Suppliers</div>
+          <a href="./retailer-khata.html" class="flex items-center gap-3 rounded-lg px-3 py-2 text-slate-400 hover:bg-slate-900 hover:text-white transition">
+            <i class="fa-solid fa-book-bookmark w-4 text-center text-emerald-400"></i>
+            Digital Khata
+          </a>
+          <a href="./retailer-suppliers.html" class="flex items-center gap-3 rounded-lg px-3 py-2 text-slate-400 hover:bg-slate-900 hover:text-white transition">
+            <i class="fa-solid fa-truck-field w-4 text-center"></i>
+            Suppliers &amp; Purchases
+          </a>
+        </nav>
+      </div>
+
+      <!-- User footer -->
+      <div class="border-t border-slate-800 p-4">
+        <div class="flex items-center justify-between">
+          <div class="truncate">
+            <p class="text-xs font-bold text-white truncate" id="retailer-user-name">Staff</p>
+            <p class="text-[10px] text-slate-500">POS Operator</p>
+          </div>
+          <a href="./retailer-dashboard.html" title="Exit POS" class="text-slate-400 hover:text-white p-1.5 rounded transition">
+            <i class="fa-solid fa-arrow-right-from-bracket"></i>
+          </a>
+        </div>
+      </div>
+    </aside>
+
+    <!-- MAIN POS SCREEN -->
+    <main class="flex-1 flex flex-col min-w-0 h-screen overflow-hidden">
+      <!-- TOP BAR -->
+      <header class="h-14 shrink-0 border-b border-slate-200 bg-white px-4 flex items-center justify-between shadow-xs">
+        <div class="flex items-center gap-3">
+          <div class="flex h-8 w-8 items-center justify-center rounded-lg bg-blue-600 text-xs font-black text-white lg:hidden">N</div>
+          <h1 class="text-sm font-extrabold text-slate-900 tracking-tight" id="retailer-topbar-shop-name">POS Terminal</h1>
+          <span class="hidden sm:inline-flex items-center gap-1.5 px-2 py-0.5 rounded-md bg-slate-100 text-slate-600 text-[11px] font-semibold">
+            <kbd class="font-mono bg-white px-1 rounded border border-slate-200 text-[10px]">F1</kbd> Search
+            <kbd class="font-mono bg-white px-1 rounded border border-slate-200 text-[10px] ml-1">F2</kbd> Checkout
+          </span>
+        </div>
+
+        <div class="flex items-center gap-3">
+          <a href="./retailer-sales.html" class="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg border border-slate-200 bg-white hover:bg-slate-50 text-slate-700 text-xs font-bold transition">
+            <i class="fa-solid fa-receipt text-slate-400"></i> Past Invoices
+          </a>
+          <button id="btn-clear-cart" class="px-3 py-1.5 rounded-lg border border-rose-200 bg-rose-50 hover:bg-rose-100 text-rose-700 text-xs font-bold transition">
+            <i class="fa-solid fa-rotate-left mr-1"></i> Clear Cart
+          </button>
+        </div>
+      </header>
+
+      <!-- POS BODY: SPLIT VIEW -->
+      <div class="flex-1 flex flex-col lg:flex-row min-h-0 bg-slate-100">
+        <!-- LEFT: SEARCH & CART ITEMS -->
+        <div class="flex-1 flex flex-col p-4 space-y-4 min-h-0 overflow-y-auto">
+          <!-- SEARCH & SCANNER INPUT -->
+          <div class="relative">
+            <div class="flex items-center rounded-2xl border-2 border-blue-500 bg-white shadow-sm overflow-hidden px-3.5 py-1">
+              <i class="fa-solid fa-barcode text-blue-600 text-lg mr-2"></i>
+              <input
+                type="text"
+                id="pos-barcode-input"
+                autofocus
+                placeholder="Scan barcode or type SKU / product name (Press F1)..."
+                class="w-full py-2 text-sm font-semibold text-slate-900 placeholder:text-slate-400 focus:outline-none"
+              >
+              <i class="fa-solid fa-magnifying-glass text-slate-400 text-sm"></i>
+            </div>
+
+            <!-- DROPDOWN SEARCH RESULTS -->
+            <div id="pos-search-dropdown" class="absolute left-0 right-0 top-full mt-1.5 z-30 max-h-72 overflow-y-auto rounded-2xl border border-slate-200 bg-white shadow-xl hidden">
+              <!-- Rendered dynamically -->
+            </div>
+          </div>
+
+          <!-- CART LINE ITEMS TABLE -->
+          <div class="flex-1 rounded-2xl border border-slate-200 bg-white shadow-sm overflow-hidden flex flex-col">
+            <div class="p-3.5 border-b border-slate-100 bg-slate-50/50 flex items-center justify-between">
+              <span class="text-xs font-black uppercase tracking-wider text-slate-600">Current Sale Items</span>
+              <span class="text-xs font-bold text-blue-600" id="summary-item-count">0 items</span>
+            </div>
+
+            <div class="flex-1 overflow-y-auto">
+              <table class="w-full text-left border-collapse">
+                <thead class="sticky top-0 bg-slate-50 text-[11px] font-black uppercase tracking-wider text-slate-500 border-b border-slate-200">
+                  <tr>
+                    <th class="px-4 py-2.5">Item &amp; Tax</th>
+                    <th class="px-3 py-2.5">Price</th>
+                    <th class="px-3 py-2.5">Quantity</th>
+                    <th class="px-3 py-2.5">Total</th>
+                    <th class="px-3 py-2.5 text-right"></th>
+                  </tr>
+                </thead>
+                <tbody id="pos-cart-tbody">
+                  <!-- Rendered dynamically -->
+                </tbody>
+              </table>
+
+              <!-- EMPTY CART NOTICE -->
+              <div id="pos-cart-empty" class="p-12 text-center text-slate-400">
+                <i class="fa-solid fa-cash-register text-4xl mb-3 text-slate-300 block"></i>
+                <p class="font-bold text-slate-600 text-sm">Cart is currently empty</p>
+                <p class="text-xs text-slate-400 mt-1">Use the barcode scanner above or search product names to ring up items.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- RIGHT: BILLING & PAYMENT SUMMARY -->
+        <div class="w-full lg:w-96 shrink-0 bg-white border-l border-slate-200 flex flex-col justify-between p-5 overflow-y-auto shadow-lg">
+          <div class="space-y-5">
+            <!-- Customer Mode -->
+            <div>
+              <label class="block text-xs font-black uppercase tracking-wider text-slate-700 mb-2">Customer Account</label>
+              <div class="grid grid-cols-2 gap-2 text-xs font-bold">
+                <label class="flex items-center gap-2 p-2 rounded-xl border border-slate-200 cursor-pointer hover:bg-slate-50">
+                  <input type="radio" name="customerMode" id="customer-mode-walkin" checked class="text-blue-600">
+                  <span>Walk-in (Cash)</span>
+                </label>
+                <label class="flex items-center gap-2 p-2 rounded-xl border border-slate-200 cursor-pointer hover:bg-slate-50">
+                  <input type="radio" name="customerMode" id="customer-mode-khata" class="text-blue-600">
+                  <span>Khata / Credit</span>
+                </label>
+              </div>
+
+              <!-- Customer input fields -->
+              <div id="khata-customer-fields" class="mt-2 space-y-2 hidden">
+                <input type="text" id="input-customer-name" placeholder="Customer Name (e.g. Ram Kumar)" class="w-full rounded-xl border border-slate-200 px-3 py-1.5 text-xs font-semibold text-slate-900 focus:outline-none focus:border-blue-500">
+                <input type="tel" id="input-customer-phone" placeholder="Customer Phone (Required for Khata)" class="w-full rounded-xl border border-slate-200 px-3 py-1.5 text-xs font-semibold text-slate-900 focus:outline-none focus:border-blue-500">
+              </div>
+            </div>
+
+            <!-- Payment Method Selector -->
+            <div>
+              <label class="block text-xs font-black uppercase tracking-wider text-slate-700 mb-2">Payment Method</label>
+              <div class="grid grid-cols-3 gap-2 text-xs font-bold">
+                <button type="button" data-method="CASH" class="payment-method-btn p-2 rounded-xl border border-blue-600 bg-blue-50/50 text-blue-900 text-center transition">
+                  <i class="fa-solid fa-money-bill-wave block mb-1 text-sm"></i> Cash
+                </button>
+                <button type="button" data-method="ESEWA" class="payment-method-btn p-2 rounded-xl border border-slate-200 text-slate-700 hover:bg-slate-50 text-center transition">
+                  <i class="fa-solid fa-wallet block mb-1 text-sm text-emerald-600"></i> eSewa
+                </button>
+                <button type="button" data-method="KHALTI" class="payment-method-btn p-2 rounded-xl border border-slate-200 text-slate-700 hover:bg-slate-50 text-center transition">
+                  <i class="fa-solid fa-mobile-screen block mb-1 text-sm text-purple-600"></i> Khalti
+                </button>
+                <button type="button" data-method="CARD" class="payment-method-btn p-2 rounded-xl border border-slate-200 text-slate-700 hover:bg-slate-50 text-center transition">
+                  <i class="fa-solid fa-credit-card block mb-1 text-sm text-blue-600"></i> Card
+                </button>
+                <button type="button" data-method="CREDIT_KHATA" class="payment-method-btn p-2 rounded-xl border border-slate-200 text-slate-700 hover:bg-slate-50 text-center transition">
+                  <i class="fa-solid fa-book-bookmark block mb-1 text-sm text-amber-600"></i> Khata
+                </button>
+                <button type="button" data-method="BANK" class="payment-method-btn p-2 rounded-xl border border-slate-200 text-slate-700 hover:bg-slate-50 text-center transition">
+                  <i class="fa-solid fa-building-columns block mb-1 text-sm text-indigo-600"></i> Bank
+                </button>
+              </div>
+
+              <!-- Cash Tendered & Change -->
+              <div id="cash-tendered-container" class="mt-3 p-3 rounded-xl bg-slate-50 border border-slate-200 space-y-2">
+                <div class="flex items-center justify-between">
+                  <span class="text-xs font-bold text-slate-600">Cash Received:</span>
+                  <input type="number" id="input-cash-tendered" placeholder="0.00" class="w-28 text-right font-black text-slate-900 border border-slate-300 rounded-lg px-2 py-1 text-sm focus:outline-none focus:border-blue-500">
+                </div>
+                <div class="flex items-center justify-between border-t border-slate-200 pt-2 text-xs">
+                  <span class="font-bold text-slate-600">Change Due:</span>
+                  <span id="cash-change-display" class="font-black text-emerald-600 text-sm">Rs. 0.00</span>
+                </div>
+              </div>
+
+              <!-- Digital Payment Reference Input -->
+              <div id="payment-reference-container" class="mt-2 hidden">
+                <input type="text" id="input-payment-reference" placeholder="Wallet Transaction Code / Approval Code" class="w-full rounded-xl border border-slate-200 px-3 py-1.5 text-xs font-semibold text-slate-900 focus:outline-none focus:border-blue-500">
+              </div>
+            </div>
+
+            <!-- Financial Totals -->
+            <div class="space-y-1.5 border-t border-slate-100 pt-4 text-xs font-semibold text-slate-600">
+              <div class="flex justify-between">
+                <span>Subtotal (Gross):</span>
+                <span class="text-slate-900" id="summary-subtotal">Rs. 0.00</span>
+              </div>
+              <div class="flex justify-between text-slate-500">
+                <span>Taxable Amount (13%):</span>
+                <span id="summary-taxable">Rs. 0.00</span>
+              </div>
+              <div class="flex justify-between text-slate-500">
+                <span>Non-Taxable Amount:</span>
+                <span id="summary-non-taxable">Rs. 0.00</span>
+              </div>
+              <div class="flex justify-between text-slate-800">
+                <span>Nepal VAT (13%):</span>
+                <span class="font-bold text-slate-900" id="summary-vat">Rs. 0.00</span>
+              </div>
+              <div class="flex justify-between text-emerald-700">
+                <span>Discounts:</span>
+                <span class="font-bold" id="summary-discount">-Rs. 0.00</span>
+              </div>
+              <div class="border-t border-slate-200 pt-2 flex justify-between items-baseline text-base font-black text-slate-900">
+                <span>Grand Total:</span>
+                <span class="text-2xl text-blue-900" id="summary-grand-total">Rs. 0.00</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Checkout Button -->
+          <div class="pt-4 border-t border-slate-100">
+            <button id="btn-checkout-sale" class="w-full rounded-2xl bg-emerald-600 hover:bg-emerald-700 active:scale-98 text-white font-black py-3.5 text-sm tracking-wide shadow-md shadow-emerald-900/20 transition flex items-center justify-center gap-2">
+              <i class="fa-solid fa-check-circle text-base"></i>
+              <span>Complete Sale &amp; Print [F2]</span>
+            </button>
+            <div id="pos-checkout-message" class="mt-2 text-center text-xs"></div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- PRINTABLE RECEIPT MODAL -->
+  <div id="modal-sale-receipt" class="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/70 backdrop-blur-xs p-4 hidden">
+    <div class="w-full max-w-sm rounded-3xl bg-white p-6 shadow-2xl overflow-y-auto max-h-[90vh]">
+      <!-- Printable Area -->
+      <div id="printable-receipt-area" class="text-center font-mono text-xs text-slate-900 leading-tight">
+        <h2 class="font-black text-base uppercase tracking-wider" id="receipt-store-name">Nilopasal Kirana</h2>
+        <p class="text-[11px] text-slate-500 mt-0.5" id="receipt-store-address">Kathmandu, Nepal</p>
+        <p class="text-[11px] font-bold text-slate-700 mt-0.5" id="receipt-store-pan">PAN/VAT: 600123456</p>
+        <div class="border-b border-dashed border-slate-300 my-2.5"></div>
+
+        <div class="text-left text-[11px] space-y-0.5">
+          <p id="receipt-invoice-number">Invoice: INV-2026-0001</p>
+          <p id="receipt-datetime">Date: 2026-09-28 16:30</p>
+          <p id="receipt-cashier">Cashier: Staff</p>
+          <p id="receipt-customer">Customer: Walk-in</p>
+        </div>
+
+        <div class="border-b border-dashed border-slate-300 my-2.5"></div>
+
+        <!-- Line items table -->
+        <table class="w-full text-[11px]">
+          <thead>
+            <tr class="border-b border-slate-300 font-bold">
+              <th class="py-1 text-left">Item</th>
+              <th class="py-1 text-center">Qty</th>
+              <th class="py-1 text-right">Rate</th>
+              <th class="py-1 text-right">Total</th>
+            </tr>
+          </thead>
+          <tbody id="receipt-items-tbody">
+            <!-- Rendered dynamically -->
+          </tbody>
+        </table>
+
+        <div class="border-b border-dashed border-slate-300 my-2.5"></div>
+
+        <div class="space-y-1 text-[11px] font-semibold">
+          <div class="flex justify-between"><span>Subtotal:</span><span id="receipt-subtotal">Rs. 0.00</span></div>
+          <div class="flex justify-between"><span>VAT (13%):</span><span id="receipt-tax">Rs. 0.00</span></div>
+          <div class="flex justify-between text-xs font-black border-t border-slate-200 pt-1">
+            <span>Grand Total:</span>
+            <span id="receipt-grand-total">Rs. 0.00</span>
+          </div>
+          <div class="flex justify-between text-[10px] text-slate-500 mt-1">
+            <span id="receipt-payment-method">Paid via CASH</span>
+          </div>
+        </div>
+
+        <div class="border-b border-dashed border-slate-300 my-3"></div>
+        <p class="text-[10px] text-slate-500 font-bold">THANK YOU FOR YOUR VISIT!</p>
+        <p class="text-[9px] text-slate-400 mt-0.5">Powered by Nilopasal Retailer ERP</p>
+      </div>
+
+      <!-- Action buttons -->
+      <div class="mt-6 flex items-center justify-between gap-3 border-t border-slate-100 pt-4">
+        <button id="btn-close-receipt" class="px-4 py-2 text-xs font-bold text-slate-600 hover:text-slate-800 transition">Close</button>
+        <button id="btn-print-receipt" class="px-5 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs shadow-sm transition flex items-center gap-1.5">
+          <i class="fa-solid fa-print"></i> Print Invoice
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script src="./api-config.js"></script>
+  <script src="./retailer-pos.js"></script>
+</body>
+</html>
