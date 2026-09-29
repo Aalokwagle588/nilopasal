@@ -4,7 +4,7 @@ services:
     name: nilopasal-api
     runtime: python
     rootDir: fastapi_backend
-    plan: starter
+    plan: free
     region: singapore # Closest low-latency region to Nepal
     buildCommand: pip install -r requirements.txt
     startCommand: gunicorn main:app -k uvicorn.workers.UvicornWorker -b 0.0.0.0:$PORT
@@ -36,6 +36,6 @@ databases:
   - name: nilopasal-db
     databaseName: nilopasal
     user: nilopasal_user
-    plan: starter
+    plan: free
     region: singapore
     postgresMajorVersion: 16
